@@ -692,3 +692,20 @@ main p, main figcaption { max-width: var(--mesure); }
 .mois-carte dd { margin-left: auto; }
 .carte .carte-legende svg { width: 30px; height: 12px; display: inline-block; }
 .carte figcaption { font-size: .8rem; }
+
+/* ---- Finitions revue 2 ---- */
+/* 2. jauge : quand les deux repères sont proches, « 6 500 € » à gauche de son trait, « 8 500 € » à droite du sien */
+.jauge__repere span.gauche { transform: translateX(calc(-100% - 4px)); }
+.jauge__repere span.apres { transform: translateX(4px); }
+/* 4d. « 1er » : exposant sans toucher à l'interligne */
+sup { font-size: .68em; line-height: 0; vertical-align: baseline; position: relative; top: -.42em; }
+/* 5a. cartes de programme au bureau : titre, prix et « Étapes » sur les mêmes lignes dans les quatre cartes */
+@media (min-width: 1000px) {
+  .cartes-prog { grid-template-rows: auto auto auto auto 1fr auto; row-gap: 0; }
+  .carte-prog { display: grid; grid-template-rows: subgrid; grid-row: span 6; }
+  .carte-prog__corps { display: grid; grid-template-rows: subgrid; grid-row: span 5; row-gap: 10px; }
+  .carte-prog .bouton { margin-top: 8px; }
+  .carte-prog dl { align-content: start; }
+}
+/* 5b. comparateur : la mention « Notre recommandation » et sa réserve vide ont la même hauteur (deux lignes sur téléphone) */
+@media (max-width: 999px) { .comp__entete .comp__val small { line-height: 1.3; min-height: 2.6em; } }

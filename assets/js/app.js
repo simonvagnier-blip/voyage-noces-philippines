@@ -15,15 +15,20 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const NBSP = '\u00a0', FINE = '\u202f';
-  /* typographie française : espace insécable avant : ; ! ? % € et dans « » ; entre un nombre et son unité */
+  /* typographie française : espace insécable avant : ; ! ? % € et dans « » ; entre un nombre et son unité ;
+     apostrophe courbe entre deux lettres. Espace des milliers : U+00A0 (0,20 em en Instrument Sans ; la fine
+     U+202F n’y mesure que 0,10 em, illisible en petit corps), partout, grands montants compris, par simplicité. */
   const typo = (s) => String(s ?? '')
+    .replace(/([A-Za-zÀ-ÿŒœ])'(?=[A-Za-zÀ-ÿŒœ])/g, '$1’')
     .replace(/ ([:;!?%»])/g, FINE + '$1').replace(/ €/g, NBSP + '€').replace(/Hong Kong/g, 'Hong' + NBSP + 'Kong').replace(/« /g, '«' + FINE)
-    .replace(/(\d) (\d{3})(?!\d)/g, '$1' + FINE + '$2')
+    .replace(/(\d)[ \u202f](\d{3})(?!\d)/g, '$1' + NBSP + '$2')
     .replace(/(\d) (m²|h|min|mm|km|kg|Go|nuits|jours|PHP|°C)(?![\wÀ-ÿ])/g, '$1' + NBSP + '$2');
-  const esc = (s) => typo(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  /* escA : attributs et SVG (texte seul) ; esc : contenu HTML, avec « 1er » en exposant */
+  const escA = (s) => typo(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const esc = (s) => escA(s).replace(/\b1er\b/g, '1<sup>er</sup>');
   const escUrl = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const nf = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
-  const nombre = (n) => nf.format(Math.round(Math.abs(n))).replace(/[\s\u00a0\u202f]/g, FINE);
+  const nombre = (n) => nf.format(Math.round(Math.abs(n))).replace(/[\s\u00a0\u202f]/g, NBSP);
   const eur = (n) => (n < 0 ? '−' : '') + nombre(n) + NBSP + '€';
   const eurSigne = (n) => (n > 0 ? '+' + NBSP : n < 0 ? '−' + NBSP : '') + nombre(n) + NBSP + '€';
   const pct = (x) => Math.round(x * 100) + NBSP + '%';
@@ -31,7 +36,7 @@
   const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
   const JOURS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
   const versDate = (iso) => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d); };
-  const jourNum = (d) => (d === 1 ? '1er' : String(d));
+  const jourNum = (d) => (d === 1 ? '1<sup>er</sup>' : String(d));   // HTML : à n’utiliser que dans du contenu
   const dateLongue = (iso, annee = true) => { const d = versDate(iso); return `${JOURS[d.getDay()]} ${jourNum(d.getDate())} ${MOIS[d.getMonth()]}${annee ? ' ' + d.getFullYear() : ''}`; };
   const dateSansJour = (iso, annee = true) => { const d = versDate(iso); return `${jourNum(d.getDate())} ${MOIS[d.getMonth()]}${annee ? ' ' + d.getFullYear() : ''}`; };
   const dateCourte = (iso) => { const d = versDate(iso); return String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0'); };
@@ -53,7 +58,7 @@
     const obs = statut === 'observé';
     const date = obs ? `Relevé le ${dateNum(D.meta.date_observation)}` : `Estimation faite le ${dateNum(D.meta.date_observation)}`;
     const detail = [methode, extra].filter(Boolean).join(' — ');
-    return `<button type="button" class="pastille ${obs ? 'pastille--obs' : 'pastille--est'}" data-titre="${obs ? 'Prix observé' : 'Estimation'}" data-detail="${esc(detail)}" data-date="${esc(date)}" aria-label="${obs ? 'Prix observé' : 'Estimation'} : voir la méthode">${obs ? 'observé' : 'estim.'}</button>`;
+    return `<button type="button" class="pastille ${obs ? 'pastille--obs' : 'pastille--est'}" data-titre="${obs ? 'Prix observé' : 'Estimation'}" data-detail="${escA(detail)}" data-date="${escA(date)}" aria-label="${obs ? 'Prix observé' : 'Estimation'} : voir la méthode">${obs ? 'observé' : 'estim.'}</button>`;
   };
 
   const POSTES = {
@@ -63,7 +68,7 @@
   const COULEURS = { vols_internationaux: '#23483F', vols_interieurs: '#3F6E63', transferts: '#8A7551', hotels: '#0F7C82', experiences: '#C8553D', repas: '#D9A57B', divers: '#B9AE9A', options: '#5BA8AC' };
   const TYPES = { repos: 'Repos', sortie: 'Sortie', wow: 'Moment à part', vol: 'Trajet' };
   const ZONE_DE_LIEU = { 'El Nido': 'el_nido', Panglao: 'bohol_panglao', Boracay: 'boracay' };
-  const CEBU = { nom: 'Cebu', sous: 'aéroport de Mactan', coord: [10.307, 123.979] };   // point d'entrée (coordonnées de l'aéroport)
+  const CEBU = { nom: 'Cebu', sous: 'aéroport de Mactan', coord: [10.307, 123.979] };   // point d’entrée (coordonnées de l’aéroport)
   const PHOTO_CARTE = { essentiel: 'plage-de-l-ile-de-panglao', sur_mesure: 'plage-d-alona-panglao', grand_jeu: 'coucher-de-soleil-sur-la-baie-de-bacuit', palawan_boracay: 'white-beach-boracay' };
 
   let H = {}, P = {}, VOLS = {}, etat;
@@ -72,7 +77,7 @@
   const photoHtml = (ph, { cls = '', sizes = '100vw', eager = false, legende = true, alt } = {}) => {
     if (!ph) return '';
     const credit = `${esc(ph.legende)}. Photo ${lien(ph.page_commons, esc(ph.auteur))}, ${lien(ph.url_licence, esc(ph.licence))}`;
-    return `<figure class="${cls}"><img src="${ph.fichier_800}" srcset="${ph.fichier_800} 800w, ${ph.fichier} ${ph.largeur}w" sizes="${sizes}" width="${ph.largeur}" height="${ph.hauteur}" alt="${esc(alt || ph.legende)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">${legende ? `<figcaption>${credit}</figcaption>` : ''}</figure>`;
+    return `<figure class="${cls}"><img src="${ph.fichier_800}" srcset="${ph.fichier_800} 800w, ${ph.fichier} ${ph.largeur}w" sizes="${sizes}" width="${ph.largeur}" height="${ph.hauteur}" alt="${escA(alt || ph.legende)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">${legende ? `<figcaption>${credit}</figcaption>` : ''}</figure>`;
   };
 
   /* ------------------------------------------------------------------ calculs */
@@ -93,7 +98,7 @@
       const id = v[i]; if (!id) return;
       const o = p.options.find((x) => x.hotel_id === id); const h = H[id];
       lignes.push({ poste: 'options', libelle: `Variante à ${lieuCourt(p.etapes[i].lieu)} : ${o.libelle}`, montant: o.surcout, statut: h.statut_prix,
-        methode: `Écart indiqué par le dossier par rapport à l'hébergement de base. Prix de ${h.nom} : ${eur(h.prix_total_sejour)} le séjour (${h.methode_prix}).`, url: h.url_booking, option: true });
+        methode: `Écart indiqué par le dossier par rapport à l’hébergement de base. Prix de ${h.nom} : ${eur(h.prix_total_sejour)} le séjour (${h.methode_prix}).`, url: h.url_booking, option: true });
     });
     const e = etat.escale[p.id], eo = p.escale_option;
     if (e === 'allongee') {
@@ -160,7 +165,7 @@
       // Variantes haute définition (recette/fix/outils/hero.py) : portrait 1:2 pour téléphone, 2 640 px pour grand écran.
       // Les attributs media / srcset / sizes sont identiques aux deux <link rel="preload"> de index.html.
       const hd = (suffixe) => ph.fichier.replace(/\.jpg$/, suffixe + '.jpg');
-      return `<picture><source media="(max-width: 700px) and (orientation: portrait)" srcset="${hd('-portrait-600')} 600w, ${hd('-portrait-1200')} 1200w" sizes="100vw" width="1200" height="2400"><img src="${ph.fichier}" srcset="${ph.fichier_800} 800w, ${ph.fichier} ${ph.largeur}w, ${hd('-2720')} 2720w" sizes="100vw" width="${ph.largeur}" height="${ph.hauteur}" alt="${esc(ph.legende)} : pitons calcaires couverts de jungle au-dessus d'une eau turquoise" fetchpriority="high"></picture><figcaption>${esc(ph.legende)} — ${lien(ph.page_commons, esc(ph.auteur))}, ${lien(ph.url_licence, esc(ph.licence))}</figcaption>`;
+      return `<picture><source media="(max-width: 700px) and (orientation: portrait)" srcset="${hd('-portrait-600')} 600w, ${hd('-portrait-1200')} 1200w" sizes="100vw" width="1200" height="2400"><img src="${ph.fichier}" srcset="${ph.fichier_800} 800w, ${ph.fichier} ${ph.largeur}w, ${hd('-2720')} 2720w" sizes="100vw" width="${ph.largeur}" height="${ph.hauteur}" alt="${escA(ph.legende)} : pitons calcaires couverts de jungle au-dessus d’une eau turquoise" fetchpriority="high"></picture><figcaption>${esc(ph.legende)} — ${lien(ph.page_commons, esc(ph.auteur))}, ${lien(ph.url_licence, esc(ph.licence))}</figcaption>`;
     })();
     $('#ouverture-sous').textContent = `Philippines, ${MOIS[d.getMonth()]} ${d.getFullYear()}`;
     const etapes = p.etapes.map((e) => `${e.nuits} nuits à ${lieuCourt(e.lieu)}`).join(' puis ');
@@ -175,7 +180,7 @@
     const ecart = total - 8500;
     const parcours = ['Paris', ...p.etapes.map((e) => `<span class="insecable">${lieuCourt(e.lieu)} <span class="petit">${e.nuits}${NBSP}nuits</span></span>`), 'Paris'].map((x, i, a) => i < a.length - 1 ? `<span class="insecable">${x} <span class="fleche" aria-hidden="true">→</span></span>` : x).join(' ');
     const raisons = [p.raison_recommandation, ...p.forces].filter(Boolean);
-    const chambres = p.hotels.map((h) => `${esc(h.chambre)}, ${h.surface_m2} m² (${esc(lieuCourt(h.lieu.split(', ').pop()))})`).join(' ; ');
+    const chambres = p.hotels.map((h) => `${esc(h.chambre)}, ${h.surface_m2}${NBSP}m² (${esc(lieuCourt(h.lieu.split(', ').pop()))})`).join(' ; ');
     $('#reco').innerHTML = `
       <div class="reco">
         <div class="reco__carte">
@@ -198,7 +203,7 @@
         </div>
       </div>
       <div class="vp">
-        <h3 class="bloc__titre">Face à l'offre qui vous a donné l'idée</h3>
+        <h3 class="bloc__titre">Face à l’offre qui vous a donné l’idée</h3>
         <p class="vp__intro">${lien(vp.url, esc(vp.nom))}. ${esc(vp.reserve)}</p>
         <div class="vp__grille">
           <div class="vp__col vp__col--eux">
@@ -224,10 +229,10 @@
             </dl>
           </div>
         </div>
-        <p class="vp__verdict">À base comparable, notre programme coûte <strong class="num">${eur(c.ecart_base_comparable)} de plus</strong> que l'offre Voyage Privé. Cet écart paie ${c.nuits_programme - c.nuits_vp} nuits de plus, ${c.etapes_programme} étapes au lieu de ${c.etapes_vp} et des chambres nommées et notées. <span class="petit">${esc(c.methode)}</span></p>
+        <p class="vp__verdict">À base comparable, notre programme coûte <strong class="num">${eur(c.ecart_base_comparable)} de plus</strong> que l’offre Voyage Privé. Cet écart paie ${c.nuits_programme - c.nuits_vp} nuits de plus, ${c.etapes_programme} étapes au lieu de ${c.etapes_vp} et des chambres nommées et notées. <span class="petit">${esc(c.methode)}</span></p>
         <div class="vp__listes">
-          <div><h4>Ce qu'on fait mieux</h4><ul class="liste-filet plus">${c.mieux.map((m) => `<li>${esc(m)}</li>`).join('')}</ul></div>
-          <div><h4>Ce qu'on perd</h4><ul class="liste-filet moins">${c.perdu.map((m) => `<li>${esc(m)}</li>`).join('')}</ul></div>
+          <div><h4>Ce qu’on fait mieux</h4><ul class="liste-filet plus">${c.mieux.map((m) => `<li>${esc(m)}</li>`).join('')}</ul></div>
+          <div><h4>Ce qu’on perd</h4><ul class="liste-filet moins">${c.perdu.map((m) => `<li>${esc(m)}</li>`).join('')}</ul></div>
         </div>
       </div>`;
     const ph = photo('big-lagoon-el-nido');
@@ -344,7 +349,7 @@
     const fig = $('#frise-prix'); if (!fig) return;
     const W = Math.max(320, Math.min(fig.clientWidth || 360, 1200));
     const etroit = W < 600, Hh = etroit ? 260 : 300;
-    const g = { l: etroit ? 46 : 64, r: 14, t: 34, b: 30 }, dedans = 14;   // dedans : retrait des points par rapport à l'axe
+    const g = { l: etroit ? 46 : 64, r: 14, t: 34, b: 30 }, dedans = 14;   // dedans : retrait des points par rapport à l’axe
     const tous = D.mois.flatMap((m) => m.vols.releves.map((v) => ({ ...v, moisId: m.id })));
     const debut = versDate(D.mois[0].vols.releves.map((v) => v.depart_paris).sort()[0].slice(0, 7) + '-01');
     const fin = new Date(debut.getFullYear(), debut.getMonth() + D.mois.length, 1);
@@ -359,19 +364,20 @@
       const xa = i === 0 ? g.l : g.l + dedans + (a - debut) / (fin - debut) * (W - g.l - dedans - g.r), xb = g.l + dedans + (b - debut) / (fin - debut) * (W - g.l - dedans - g.r);
       const on = m.id === etat.mois;
       s += `<g class="frise-mois" data-mois="${m.id}" style="cursor:pointer"><rect x="${xa}" y="${g.t - 26}" width="${xb - xa}" height="${Hh - g.t - g.b + 26}" fill="${on ? '#EFE6D6' : 'transparent'}" rx="6"/>`;
-      s += `<text x="${(xa + xb) / 2}" y="${g.t - 10}" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="${etroit ? 14 : 16}" fill="${on ? '#1E2A2F' : '#4A5559'}" font-style="italic">${esc(m.nom.split(' ')[0])}</text></g>`;
+      s += `<text x="${(xa + xb) / 2}" y="${g.t - 10}" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="${etroit ? 14 : 16}" fill="${on ? '#1E2A2F' : '#4A5559'}" font-style="italic">${escA(m.nom.split(' ')[0])}</text></g>`;
       if (i > 0) s += `<line x1="${xa}" x2="${xa}" y1="${g.t - 20}" y2="${Hh - g.b}" stroke="rgba(30,42,47,.12)"/>`;
     });
     for (let p = pmin; p <= pmax; p += 500) {
       s += `<line x1="${g.l}" x2="${W - g.r}" y1="${y(p)}" y2="${y(p)}" stroke="rgba(30,42,47,.1)" stroke-dasharray="2 4"/><text x="${g.l - 6}" y="${y(p) + 4}" text-anchor="end" font-size="11" fill="#4A5559" font-family="Instrument Sans, system-ui, sans-serif">${nombre(p)}${NBSP}€</text>`;
     }
-    let etiquette = '';
+    let etiquette = '', choisi = '';
     tous.sort((a, b) => (a.aeroport_arrivee === 'CEB') - (b.aeroport_arrivee === 'CEB')).forEach((v) => {
       const cx = x(v.depart_paris), cy = y(v.prix_2_adultes), ceb = v.aeroport_arrivee === 'CEB';
       const titre = `${dateCourte(v.depart_paris)} → ${dateCourte(v.retour_paris)} : ${eur(v.prix_2_adultes)}, ${v.compagnie}, vers ${ceb ? 'Cebu' : 'Manille'}${v.bagage_soute_inclus ? '' : ', sans bagage en soute'}`;
-      s += `<circle cx="${cx}" cy="${cy}" r="${v.id === ref ? 7 : 5.5}" fill="${ceb ? (v.critere_confort ? '#0F7C82' : '#7FB9BC') : '#F7F2E9'}" stroke="${ceb ? '#fff' : '#4A5559'}" stroke-width="1.6"><title>${esc(titre)}</title></circle>`;
-      if (v.id === ref) {
-        s += `<circle cx="${cx}" cy="${cy}" r="12" fill="none" stroke="#C8553D" stroke-width="1.6"/>`;
+      const rond = `<circle cx="${cx}" cy="${cy}" r="${v.id === ref ? 7 : 5.5}" fill="${ceb ? (v.critere_confort ? '#0F7C82' : '#7FB9BC') : '#F7F2E9'}" stroke="${ceb ? '#fff' : '#4A5559'}" stroke-width="1.6"><title>${escA(titre)}</title></circle>`;
+      if (v.id !== ref) s += rond;
+      else {
+        choisi = rond + `<circle class="frise-anneau" cx="${cx}" cy="${cy}" r="12" fill="none" stroke="#C8553D" stroke-width="1.6"/>`;
         const txt = `Votre vol, ${eur(v.prix_2_adultes)}`, tw = txt.length * 12.5 * .56, th = 14;
         const points = tous.map((o) => [x(o.depart_paris), y(o.prix_2_adultes)]);
         const zones = [...points.map(([px, py]) => ({ x: px - 9, y: py - 9, w: 18, h: 18 }))];
@@ -388,10 +394,10 @@
         etiquette = `<g class="frise-etiquette"><line x1="${cx + ux * 12}" y1="${cy + uy * 12}" x2="${ax}" y2="${ay}" stroke="#C8553D" stroke-width="1.2"/><text x="${b.x}" y="${b.y + th - 3}" font-size="12.5" font-weight="600" fill="#A8432E" font-family="Instrument Sans, system-ui, sans-serif" paint-order="stroke" stroke="#F7F2E9" stroke-width="4">${txt}</text></g>`;
       }
     });
-    s += etiquette + '</svg>';
+    s += choisi + etiquette + '</svg>';
     fig.innerHTML = `<h3 class="sous-titre">Tous les prix relevés, ${esc(deMois(D.mois[0]))} à ${esc(nomMois(D.mois[D.mois.length - 1]))}</h3>${s}
       <div class="frise-legende"><span><i style="background:#0F7C82"></i>Vers Cebu, vol confort</span><span><i style="background:#7FB9BC"></i>Vers Cebu, autre</span><span><i style="background:#F7F2E9;border:1.5px solid #4A5559"></i>Vers Manille (un vol intérieur de plus)</span></div>
-      <figcaption>Le jour de départ compte plus que le mois : à quelques jours d'écart, le même trajet peut coûter plusieurs centaines d'euros de plus. Touchez un mois pour l'afficher.</figcaption>`;
+      <figcaption>Le jour de départ compte plus que le mois : à quelques jours d’écart, le même trajet peut coûter plusieurs centaines d’euros de plus. Touchez un mois pour l’afficher.</figcaption>`;
     $$('.frise-mois', fig).forEach((gm) => gm.addEventListener('click', () => choisirMois(gm.dataset.mois, false)));
   }
 
@@ -425,7 +431,7 @@
   /* ------------------------------------------------------------------ 4. Cartes programmes */
   function rendreCartesProg() {
     const f = D.fenetre_recommandee.principale;
-    $('#prog-chapeau').textContent = `Même fenêtre (${minuscule1(f.libelle)}), mêmes vols, même logique : peu de transports, beaucoup de repos. Ce qui change : les chambres, les sorties privées et, pour l'Alternative, la seconde étape.`;
+    $('#prog-chapeau').innerHTML = `Même fenêtre (${esc(minuscule1(f.libelle))}), mêmes vols, même logique${FINE}: peu de transports, beaucoup de repos. Ce qui change${FINE}: les chambres, les sorties privées et, pour l’Alternative, la seconde étape.`;
     const zone = $('#cartes-prog');
     zone.innerHTML = D.programmes.map((p) => {
       const t = totalBase(p), part = p.budget.lignes.filter((l) => l.statut === 'observé').reduce((a, l) => a + l.montant, 0) / t;
@@ -498,7 +504,7 @@
     const c = calcul(p), e = etat.escale[p.id], ville = p.escale_option.ville;
     const quand = `du ${dateLongue(p.dates.depart, false)} au ${dateLongue(c.retour)}`;
     const avec = e === 'allongee' ? `, escale à ${ville} comprise (${c.jours} jours)` : e === 'sans_allonger' ? `, escale à ${ville} comprise` : '';
-    return `${esc(p.niveau)} · ${esc(quand + avec)}`;
+    return `${esc(p.niveau)} · ${quand}${esc(avec)}`;
   }
   /* tout ce qui dépend des variantes et de l'escale */
   function majDependances(p, anime) {
@@ -524,11 +530,11 @@
         ${ligneEscale('allongee', `${esc(eo.ville)}, +${NBSP}${al.duree_totale_jours - p.dates.jours_porte_a_porte}${NBSP}jours`, `${al.duree_totale_jours} jours, retour ${dateLongue(al.retour_paris, false)}`, eurSigne(al.surcout), eo.recommandation === 'allongee')}
         ${ligneEscale('sans_allonger', `${esc(eo.ville)}, sans allonger`, `${sa.duree_totale_jours} jours, ${sa.nuits_philippines_retirees} nuits de moins aux Philippines`, sa.surcout < 0 ? 'économie de ' + eur(-sa.surcout) : eurSigne(sa.surcout), eo.recommandation === 'sans_allonger')}
       </div><div id="effet-escale"></div></fieldset>
-      ${Object.keys(parEtape).length ? `<details class="config__variantes" open><summary>Variantes d'hébergement</summary>${Object.keys(parEtape).map((i) => {
+      ${Object.keys(parEtape).length ? `<details class="config__variantes" open><summary>Variantes d’hébergement</summary>${Object.keys(parEtape).map((i) => {
         const base = H[p.etapes[i].hotel_id], choisi = (etat.variantes[p.id] || {})[i] || '';
         return `<p class="etape-titre">${esc(p.etapes[i].lieu)}</p><div class="choix">
           <label><input type="radio" name="var-${p.id}-${i}" value="" ${!choisi ? 'checked' : ''}><span>Comme proposé<span class="detail-choix">${esc(base.nom)}, ${esc(minuscule1(base.chambre))}</span></span><span class="prix-choix">inclus</span></label>
-          ${parEtape[i].map((o) => { const h = H[o.hotel_id]; return `<label><input type="radio" name="var-${p.id}-${i}" value="${o.hotel_id}" ${choisi === o.hotel_id ? 'checked' : ''}><span>${esc(o.libelle)}<span class="detail-choix">${h.surface_m2}${NBSP}m² · ${esc(h.annulation.split(/[,(]/)[0].trim())}${h.respecte_regle_avis ? '' : ' · <b class="peu-avis">peu d\'avis</b>'}</span></span><span class="prix-choix">${o.surcout < 0 ? 'économie de ' + eur(-o.surcout) : eurSigne(o.surcout)}</span></label>`; }).join('')}
+          ${parEtape[i].map((o) => { const h = H[o.hotel_id]; return `<label><input type="radio" name="var-${p.id}-${i}" value="${o.hotel_id}" ${choisi === o.hotel_id ? 'checked' : ''}><span>${esc(o.libelle)}<span class="detail-choix">${h.surface_m2}${NBSP}m² · ${esc(h.annulation.split(/[,(]/)[0].trim())}${h.respecte_regle_avis ? '' : ' · <b class="peu-avis">peu d’avis</b>'}</span></span><span class="prix-choix">${o.surcout < 0 ? 'économie de ' + eur(-o.surcout) : eurSigne(o.surcout)}</span></label>`; }).join('')}
         </div>`;
       }).join('')}</details>` : ''}
     </div>`;
@@ -538,6 +544,24 @@
       majDependances(p, true);
     }));
   }
+
+  /* jauge : les deux libellés de repère ne doivent ni se toucher ni sortir du cadre */
+  function placerReperes() {
+    const j = $('#config .jauge'); if (!j) return;
+    const sp = $$('.jauge__repere span', j); if (sp.length !== 2) return;
+    const [a, b] = sp;
+    a.classList.remove('gauche'); b.classList.remove('apres');
+    const jr = j.getBoundingClientRect(); if (!jr.width) return;
+    if (b.getBoundingClientRect().left - a.getBoundingClientRect().right < 10) {
+      a.classList.add('gauche');
+      if (!b.classList.contains('droite')) b.classList.add('apres');
+    }
+    // garde-fou : rester dans le cadre de la jauge
+    if (a.getBoundingClientRect().left < jr.left) a.classList.remove('gauche');
+    if (b.getBoundingClientRect().right > jr.right) { b.classList.remove('apres'); b.classList.add('droite'); }
+  }
+  addEventListener('resize', () => placerReperes(), { passive: true });
+  if (document.fonts) document.fonts.ready.then(() => placerReperes());
 
   let totalAffiche = null;
   function majTotal(p, anime) {
@@ -558,6 +582,7 @@
         <div class="jauge__repere" style="left:${w(8500)}%"><span class="${w(8500) > 85 ? 'droite' : ''}">${eur(8500)}</span></div>
       </div>
       <p class="petit">${ecart65 <= 0 ? eur(-ecart65) + ' sous' : eur(ecart65) + ' au-dessus de'} ${ecart65 <= 0 ? 'le niveau de ' : ''}${eur(6500)}.</p>`;
+    placerReperes();
     // effet de l'escale
     const ef = $('#effet-escale');
     if (e === 'sans') ef.innerHTML = `<p class="config__avis">${esc(eo.pourquoi)}</p>`;
@@ -571,7 +596,7 @@
           ${e === 'sans_allonger' ? `<li>Nuits retirées aux Philippines : <span class="num">${eur(-v.economie_philippines)}</span></li>` : ''}
         </ul>
         <p style="margin:8px 0 0">Surcoût : <strong class="num">${v.surcout < 0 ? 'économie de ' + eur(-v.surcout) : eurSigne(v.surcout)}</strong>${pastille(v.statut, eo.methode)}</p>
-        ${e === 'sans_allonger' && (etat.variantes[p.id] || {})[p.etapes.length - 1] ? '<p class="petit" style="margin:6px 0 0">Les nuits retirées sont chiffrées sur l\'hébergement de base de la seconde étape.</p>' : ''}
+        ${e === 'sans_allonger' && (etat.variantes[p.id] || {})[p.etapes.length - 1] ? '<p class="petit" style="margin:6px 0 0">Les nuits retirées sont chiffrées sur l’hébergement de base de la seconde étape.</p>' : ''}
       </div><p class="config__avis">${esc(eo.pourquoi)}</p>`;
     }
     const el = $('#montant-total');
@@ -646,7 +671,7 @@
       s += q.entree
         ? `<rect x="${px - 5 * sw}" y="${py - 5 * sw}" width="${10 * sw}" height="${10 * sw}" fill="#1E2A2F" stroke="#fff" stroke-width="${1.2 * sw}" transform="rotate(45 ${px} ${py})"/>`
         : `<circle cx="${px}" cy="${py}" r="${rr}" fill="#C8553D" stroke="#fff" stroke-width="${2 * sw}"/><text x="${px}" y="${py + fs * .36}" font-size="${fs * .9}" font-weight="700" fill="#fff" text-anchor="middle" font-family="Instrument Sans, system-ui, sans-serif">${q.n}</text>`;
-      s += `<g class="carte-etiquette" data-i="${i}"><text font-size="${fs * 1.12}" font-weight="600" fill="#1E2A2F" ${police} stroke-width="${3.5 * sw}">${esc(q.nom)}</text><text font-size="${fs * .88}" fill="#4A5559" ${police} stroke-width="${3.5 * sw}">${esc(q.sous)}</text></g>`;
+      s += `<g class="carte-etiquette" data-i="${i}"><text font-size="${fs * 1.12}" font-weight="600" fill="#1E2A2F" ${police} stroke-width="${3.5 * sw}">${escA(q.nom)}</text><text font-size="${fs * .88}" fill="#4A5559" ${police} stroke-width="${3.5 * sw}">${escA(q.sous)}</text></g>`;
     });
     s += `<g class="carte-iles">${iles.filter(([n]) => n !== 'Cebu').map(([n, la, lo]) => { const [ix, iy] = pr([la, lo]); return `<text data-x="${ix}" data-y="${iy}" font-size="${fs * .85}" font-style="italic" fill="#8A7551" text-anchor="middle" font-family="Fraunces, Georgia, serif">${n}</text>`; }).join('')}</g>`;
     s += `<text class="carte-hk" font-size="${fs * .9}" fill="#4A5559" font-family="Instrument Sans, system-ui, sans-serif" paint-order="stroke" stroke="#DCEAE8" stroke-width="${3 * sw}">↖ Hong Kong, Paris</text>`;
@@ -745,7 +770,7 @@
   function rendreJours(p) {
     const n = {}; p.jours.forEach((j) => { n[j.type] = (n[j.type] || 0) + 1; });
     const e = etat.escale[p.id], eo = p.escale_option;
-    const bandeau = e === 'sans' ? '' : `<div class="bandeau-escale anime-entree"><b>Avec l'escale à ${esc(eo.ville)} (${e === 'allongee' ? 'en allongeant' : 'sans allonger'}) :</b> ${esc((e === 'allongee' ? eo.version_allongee : eo.version_sans_allonger).effet)} Le jour par jour ci-dessous reste celui du programme sans escale.<ul>${D.escales.retenue.programme_2_jours.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>`;
+    const bandeau = e === 'sans' ? '' : `<div class="bandeau-escale anime-entree"><b>Avec l’escale à ${esc(eo.ville)} (${e === 'allongee' ? 'en allongeant' : 'sans allonger'}) :</b> ${esc((e === 'allongee' ? eo.version_allongee : eo.version_sans_allonger).effet)} Le jour par jour ci-dessous reste celui du programme sans escale.<ul>${D.escales.retenue.programme_2_jours.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>`;
     $('#jours').innerHTML = `${bandeau}
       <div class="rythme" role="img" aria-label="Rythme des ${p.jours.length} jours : ${Object.keys(TYPES).filter((t) => n[t]).map((t) => `${n[t]} ${TYPES[t].toLowerCase()}`).join(', ')}">${p.jours.map((j) => `<i class="t-${j.type}" title="J${j.jour} : ${esc(TYPES[j.type])}"></i>`).join('')}</div>
       <div class="rythme-legende">${Object.keys(TYPES).filter((t) => n[t]).map((t) => `<span><i class="t-${t}"></i>${n[t]} ${n[t] > 1 ? { repos: 'jours de repos', sortie: 'sorties', wow: 'moments à part', vol: 'jours de trajet' }[t] : { repos: 'jour de repos', sortie: 'sortie', wow: 'moment à part', vol: 'jour de trajet' }[t]}</span>`).join('')}</div>
@@ -770,13 +795,13 @@
   function ficheHotel(h, etape, variante, reduite) {
     const ph = photoLieuHotel(h, etape);
     return `<article class="hotel">
-      ${ph ? `<figure class="hotel__photo"><img src="${ph.fichier_800}" srcset="${ph.fichier_800} 800w, ${ph.fichier} ${ph.largeur}w" sizes="(min-width: 1000px) 640px, 100vw" width="${ph.largeur}" height="${ph.hauteur}" alt="${esc(ph.legende)}" loading="lazy" decoding="async"><figcaption>Photo du lieu, pas de l'hôtel : ${esc(ph.legende)} — ${lien(ph.page_commons, esc(ph.auteur))}, ${lien(ph.url_licence, esc(ph.licence))}</figcaption></figure>` : ''}
+      ${ph ? `<figure class="hotel__photo"><img src="${ph.fichier_800}" srcset="${ph.fichier_800} 800w, ${ph.fichier} ${ph.largeur}w" sizes="(min-width: 1000px) 640px, 100vw" width="${ph.largeur}" height="${ph.hauteur}" alt="${escA(ph.legende)}" loading="lazy" decoding="async"><figcaption>Photo du lieu, pas de l’hôtel : ${esc(ph.legende)} — ${lien(ph.page_commons, esc(ph.auteur))}, ${lien(ph.url_licence, esc(ph.licence))}</figcaption></figure>` : ''}
       <div class="hotel__corps">
         <span class="hotel__etape">${esc(etape.lieu)} · ${etape.nuits} nuits, du ${dateCourte(etape.du)} au ${dateCourte(etape.au)}</span>
         ${reduite ? `<p class="hotel__escale">${reduite}</p>` : ''}
         <h4>${esc(h.nom)}${variante ? '<span class="variante-tag">Variante</span>' : ''}</h4>
         <p class="hotel__lieu">${esc(h.lieu)}</p>
-        <div class="note-avis"><b>${virgule(h.note_booking)}/10</b><span>${nombre(h.nombre_avis)} avis sur Booking</span>${h.respecte_regle_avis ? '' : '<span class="peu-avis">Peu d\'avis : en dessous de votre règle</span>'}</div>
+        <div class="note-avis"><b>${virgule(h.note_booking)}/10</b><span>${nombre(h.nombre_avis)} avis sur Booking</span>${h.respecte_regle_avis ? '' : '<span class="peu-avis">Peu d’avis : en dessous de votre règle</span>'}</div>
         <p class="hotel__chambre">${esc(h.chambre)}, ${h.surface_m2}${NBSP}m²</p>
         <ul class="puces">${(h.atouts_chambre || []).map((a) => `<li>${esc(a)}</li>`).join('')}</ul>
         <dl class="hotel__prix">
@@ -789,7 +814,7 @@
           ${variante ? `<div><dt>Surcoût de la variante : </dt><dd class="num">${variante.surcout < 0 ? 'économie de ' + eur(-variante.surcout) : eurSigne(variante.surcout)}</dd></div>` : ''}
         </dl>
         ${h.remarque ? `<p class="petit lecture">${esc(h.remarque)}</p>` : ''}
-        <div class="hotel__liens">${lienFleche(h.url_booking, 'Voir sur Booking (dates pré-remplies)')}${lienFleche(h.url_officiel, 'Site de l\'hôtel')}</div>
+        <div class="hotel__liens">${lienFleche(h.url_booking, 'Voir sur Booking (dates pré-remplies)')}${lienFleche(h.url_officiel, 'Site de l’hôtel')}</div>
       </div>
     </article>`;
   }
@@ -813,7 +838,7 @@
     p.etapes.forEach((e, i) => { const ph = photoLieuHotel(hotelEtape(p, i).h, e); if (ph) exclus.add(ph.id); });
     const ordre = { experience: 0, ambiance: 1, etape: 2 };
     const choix = PH.filter((x) => lieux.has(x.lieu) && !exclus.has(x.id) && x.usage !== 'hero').sort((a, b) => (ordre[a.usage] ?? 3) - (ordre[b.usage] ?? 3)).slice(0, 7);
-    $('#galerie').innerHTML = choix.map((ph, i) => `<figure><img src="${ph.fichier_800}" srcset="${ph.fichier_800} 800w, ${ph.fichier} ${ph.largeur}w" sizes="${i === 0 ? '(min-width: 1000px) 700px, 100vw' : '(min-width: 1000px) 240px, (min-width: 760px) 33vw, 50vw'}" width="${ph.largeur}" height="${ph.hauteur}" alt="${esc(ph.legende)}" loading="lazy" decoding="async"><figcaption>${esc(ph.legende)}<em>${lien(ph.page_commons, esc(ph.auteur))}, ${lien(ph.url_licence, esc(ph.licence))}</em></figcaption></figure>`).join('');
+    $('#galerie').innerHTML = choix.map((ph, i) => `<figure><img src="${ph.fichier_800}" srcset="${ph.fichier_800} 800w, ${ph.fichier} ${ph.largeur}w" sizes="${i === 0 ? '(min-width: 1000px) 700px, 100vw' : '(min-width: 1000px) 240px, (min-width: 760px) 33vw, 50vw'}" width="${ph.largeur}" height="${ph.hauteur}" alt="${escA(ph.legende)}" loading="lazy" decoding="async"><figcaption>${esc(ph.legende)}<em>${lien(ph.page_commons, esc(ph.auteur))}, ${lien(ph.url_licence, esc(ph.licence))}</em></figcaption></figure>`).join('');
   }
 
   function rendreBudget(p) {
@@ -832,10 +857,10 @@
       <div>
         ${groupes}
         <div class="budget__total"><b>Total pour deux</b><span class="montant num" data-total-budget="${c.total}">${eur(c.total)}</span>
-          <p>${pct(c.part)} de ce montant repose sur des prix observés le ${dateNum(D.meta.date_observation)} ; le reste est estimé (méthode au toucher de chaque pastille). Taux : 1${NBSP}€ = ${virgule(D.meta.taux_change.EUR_PHP)} pesos.</p></div>
+          <p>${pct(c.part)} de ce montant repose sur des prix observés le ${dateNum(D.meta.date_observation)} ; le reste est estimé (méthode au toucher de chaque pastille). Taux : <span class="insecable">1${NBSP}€ = ${virgule(D.meta.taux_change.EUR_PHP)} pesos</span>.</p></div>
       </div>
       <div class="encart">
-        <h4>Où va l'argent</h4>
+        <h4>Où va l’argent</h4>
         <div class="repartition" role="img" aria-label="Répartition du budget par poste">${pos.map((po) => `<i style="width:${(c.sous[po] / somme * 100).toFixed(2)}%;background:${COULEURS[po]}"></i>`).join('')}</div>
         <ul class="repartition-legende">${pos.map((po) => `<li><i style="background:${COULEURS[po]}"></i><span>${esc(POSTES[po])}</span><span class="pct">${pct(c.sous[po] / somme)}</span><span class="m">${eur(c.sous[po])}</span></li>`).join('')}</ul>
         <p class="petit" style="margin-top:14px">${esc(D.meta.hypotheses.find((h) => h.startsWith('Budget tout compris')) || '')}</p>
@@ -851,7 +876,7 @@
       </div>
       <div class="bilan bilan--vp">
         <div><h4>Face à Voyage Privé</h4><p>À base comparable (vols, hôtels, transferts) : <strong class="num">${eur(c.base_comparable)}</strong> contre <span class="num">${eur(c.prix_vp_2)}</span>, soit <strong class="num">${eurSigne(c.ecart_base_comparable)}</strong>, pour ${c.nuits_programme} nuits au lieu de ${c.nuits_vp} et ${c.etapes_programme} étapes au lieu de ${c.etapes_vp}.</p><p class="petit">${esc(c.methode)}</p></div>
-        <div><h4>Ce qu'on perd</h4><ul class="liste-filet moins">${c.perdu.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        <div><h4>Ce qu’on perd</h4><ul class="liste-filet moins">${c.perdu.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
       </div>`;
   }
 
@@ -870,7 +895,7 @@
         <label>Programme B<select id="comp-b">${options}</select></label>
       </div>
       <div class="comp" id="comp">
-        ${ligne('Programme', (p) => `${p.recommande ? '<small>Notre recommandation</small>' : ''}${esc(p.nom)}`, 'comp__entete')}
+        ${ligne('Programme', (p) => `${p.recommande ? '<small>Notre recommandation</small>' : '<small aria-hidden="true">&nbsp;</small>'}${esc(p.nom)}`, 'comp__entete')}
         ${ligne('Total pour deux', (p) => { const t = totalBase(p), part = p.budget.lignes.filter((l) => l.statut === 'observé').reduce((a, l) => a + l.montant, 0) / t; return `<span class="montant">${eur(t)}</span><br><span class="petit">${pct(part)} observé · sans variante ni escale</span>`; })}
         ${ligne(`Écart à ${eur(8500)}`, (p) => `<span class="num ${p.budget.ecart_vs_8500 <= 0 ? 'oui' : ''}">${eurSigne(p.budget.ecart_vs_8500)}</span>`)}
         ${ligne('Nuits par étape', (p) => p.etapes.map((e) => `${e.nuits} nuits à ${esc(lieuCourt(e.lieu))}`).join('<br>'))}
@@ -907,13 +932,13 @@
       <p class="chapeau">${esc(r.pourquoi)}</p>
       <div class="escale-grille">
         <div>
-          <h3 class="bloc__titre">Ce que coûte l'escale</h3>
-          <p>Billet avec arrêt à ${esc(r.ville)} : <strong class="num">${lien(mv.url, eur(mv.prix_2_adultes))}</strong> pour deux${pastille(mv.statut, `${mv.source}, ${mv.compagnie} : ${mv.trajet}`)}, soit <span class="num">${eurSigne(mv.ecart_vs_aller_retour_simple)}</span> par rapport à l'aller-retour simple. ${esc(mv.note)}</p>
+          <h3 class="bloc__titre">Ce que coûte l’escale</h3>
+          <p>Billet avec arrêt à ${esc(r.ville)} : <strong class="num">${lien(mv.url, eur(mv.prix_2_adultes))}</strong> pour deux${pastille(mv.statut, `${mv.source}, ${mv.compagnie} : ${mv.trajet}`)}, soit <span class="num">${eurSigne(mv.ecart_vs_aller_retour_simple)}</span> par rapport à l’aller-retour simple. ${esc(mv.note)}</p>
           <ul class="cout-escale">
             <li><span>Hôtel, 2 nuits</span><b class="num">${eur(cf.hotel_2_nuits)}</b></li>
             <li><span>Frais sur place (repas, transports, visites)</span><b class="num">${eur(cf.frais_sur_place)}</b></li>
             <li><span>Marge sur le billet</span><b class="num">${eur(cf.supplement_vol_estime)}</b></li>
-            <li class="total"><span>Coût fixe de l'escale${pastille(cf.statut, cf.methode)}</span><b class="num">${eur(cf.total)}</b></li>
+            <li class="total"><span>Coût fixe de l’escale${pastille(cf.statut, cf.methode)}</span><b class="num">${eur(cf.total)}</b></li>
           </ul>
           <p class="petit">${esc(r.aller_ou_retour)}</p>
         </div>
@@ -932,7 +957,7 @@
       <div class="escale-grille">
         <div>
           <h3 class="bloc__titre">Où dormir</h3>
-          <div class="hotels-hk">${r.hotels.map((id) => { const h = H[id]; return `<div class="hotel-hk"><h4>${esc(h.nom)}</h4><p class="petit">${esc(h.lieu)} · ${virgule(h.note_booking)}/10, ${nombre(h.nombre_avis)} avis</p><p>${esc(h.chambre)}, ${h.surface_m2}${NBSP}m²</p><p class="num">${eur(h.prix_total_sejour)} les ${h.nuits} nuits${pastille(h.statut_prix, h.methode_prix, `dates cherchées : ${dateCourte(h.dates_cherchees[0])} → ${dateCourte(h.dates_cherchees[1])}`)}</p>${h.remarque ? `<p class="petit">${esc(h.remarque)}</p>` : ''}<div class="hotel__liens">${lienFleche(h.url_booking, 'Voir sur Booking')}${lienFleche(h.url_officiel, 'Site de l\'hôtel')}</div></div>`; }).join('')}</div>
+          <div class="hotels-hk">${r.hotels.map((id) => { const h = H[id]; return `<div class="hotel-hk"><h4>${esc(h.nom)}</h4><p class="petit">${esc(h.lieu)} · ${virgule(h.note_booking)}/10, ${nombre(h.nombre_avis)} avis</p><p>${esc(h.chambre)}, ${h.surface_m2}${NBSP}m²</p><p class="num">${eur(h.prix_total_sejour)} les ${h.nuits} nuits${pastille(h.statut_prix, h.methode_prix, `dates cherchées : ${dateCourte(h.dates_cherchees[0])} → ${dateCourte(h.dates_cherchees[1])}`)}</p>${h.remarque ? `<p class="petit">${esc(h.remarque)}</p>` : ''}<div class="hotel__liens">${lienFleche(h.url_booking, 'Voir sur Booking')}${lienFleche(h.url_officiel, 'Site de l’hôtel')}</div></div>`; }).join('')}</div>
         </div>
         <div>
           <h3 class="bloc__titre">Deux jours sur place</h3>
@@ -999,7 +1024,7 @@
           </dl>
           <p class="petit" style="margin-top:14px">Touchez une pastille pour lire la méthode et la date du relevé.</p>
           <h3 class="bloc__titre" style="margin-top:32px">Taux de change</h3>
-          <ul class="liste-filet"><li>1${NBSP}€ = ${virgule(t.EUR_PHP)} pesos philippins (${esc(t.source_php)})</li><li>1${NBSP}€ = ${virgule(t.EUR_USD)} dollars américains (${esc(t.source_usd)})</li></ul>
+          <ul class="liste-filet"><li><span class="insecable">1${NBSP}€ = ${virgule(t.EUR_PHP)} pesos</span> philippins (${esc(t.source_php)})</li><li><span class="insecable">1${NBSP}€ = ${virgule(t.EUR_USD)} dollars</span> américains (${esc(t.source_usd)})</li></ul>
           <h3 class="bloc__titre" style="margin-top:32px">Hypothèses</h3>
           <ul class="liste-filet">${m.hypotheses.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
         </div>
@@ -1009,13 +1034,13 @@
           <h3 class="bloc__titre" style="margin-top:32px">Crédits photos</h3>
           <ul class="credits">${PH.map((x) => `<li>${esc(x.legende)} — ${lien(x.page_commons, esc(x.auteur))}, ${lien(x.url_licence, esc(x.licence))}, via Wikimedia Commons</li>`).join('')}</ul>
           <p class="petit" style="margin-top:10px">${esc('Photos vérifiées une à une' + (remplacees.some((x) => /Alona/.test(x.legende)) ? ' ; celle de la plage d’Alona a été remplacée par une autre vue du même lieu.' : '.'))}</p>
-          <p class="petit" style="margin-top:10px">Contours de la carte : Natural Earth (domaine public), simplifiés. Aucune image ne vient de Voyage Privé ni d'un site d'hôtel.</p>
+          <p class="petit" style="margin-top:10px">Contours de la carte : Natural Earth (domaine public), simplifiés. Aucune image ne vient de Voyage Privé ni d’un site d’hôtel.</p>
         </div>
       </div>
       <details class="depliant" style="margin-top:32px"><summary>Les ${D.sources.length} sources consultées</summary>
         <ol class="sources-liste">${D.sources.map((s) => `<li>${lien(s.url, esc(s.titre))} <span>· consulté le ${dateNum(s.consulte_le)}</span></li>`).join('')}</ol>
       </details>`;
-    $('#pied-texte').innerHTML = `Dossier préparé le ${dateLongue(m.date_observation)}. Les prix « observés » ont été lus ce jour-là et bougeront ; les estimations sont à faire confirmer. Aucune réservation n'a été faite, aucun compte créé. Page privée, non référencée.`;
+    $('#pied-texte').innerHTML = `Dossier préparé le ${dateLongue(m.date_observation)}. Les prix « observés » ont été lus ce jour-là et bougeront ; les estimations sont à faire confirmer. Aucune réservation n’a été faite, aucun compte créé. Page privée, non référencée.`;
   }
 
   /* ------------------------------------------------------------------ Interactions communes */
@@ -1076,6 +1101,7 @@
   function brancherNavigation() {
     const liens = $$('.sommaire a');
     const cibles = liens.map((a) => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+    const ouverture = document.getElementById('haut'); if (ouverture) cibles.unshift(ouverture);
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((ents) => {
         ents.forEach((en) => {
@@ -1085,6 +1111,7 @@
             a.setAttribute('aria-current', on ? 'true' : 'false');
             if (on) { const nav = a.closest('.sommaire'); const x = a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2; nav.scrollTo({ left: x, behavior: mouvementReduit() ? 'auto' : 'smooth' }); }
           });
+          if (en.target === ouverture) $('.sommaire').scrollTo({ left: 0, behavior: mouvementReduit() ? 'auto' : 'smooth' });
         });
       }, { rootMargin: '-45% 0px -50% 0px' });
       cibles.forEach((c) => io.observe(c));
@@ -1108,6 +1135,6 @@
   else {   // repli : le bloc intégré est absent ou illisible
     fetch('assets/donnees.json').then((r) => r.json()).then((j) => { D = j; return fetch('assets/photos.json').then((r) => r.json()).catch(() => []); })
       .then((p) => { PH = p || []; demarrer(); })
-      .catch(() => { document.getElementById('contenu').insertAdjacentHTML('afterbegin', '<p class="sans-js">Les données du dossier n\'ont pas pu être lues.</p>'); });
+      .catch(() => { document.getElementById('contenu').insertAdjacentHTML('afterbegin', '<p class="sans-js">Les données du dossier n’ont pas pu être lues.</p>'); });
   }
 })();
