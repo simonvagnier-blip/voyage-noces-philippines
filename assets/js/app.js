@@ -153,6 +153,9 @@
       rendreFrisePrix(); rendreCarte(P[etat.prog]); appliquerComparateur();
     }, 150));
     document.documentElement.dataset.pret = '1';
+    // Version 2 : le configurateur « À la carte » (configurateur.js) réutilise ces outils, pour une typographie et des pastilles identiques.
+    window.NOCES = { D, PH, H, P, esc, escA, escUrl, typo, eur, eurSigne, nombre, pct, virgule, dateLongue, dateSansJour, dateCourte, dateNum, versDate, duree, majuscule, minuscule1, lien, lienFleche, pastille, photo, mouvementReduit, MOIS, JOURS, NBSP, FINE };
+    document.dispatchEvent(new CustomEvent('noces:pret'));
   }
   const debounce = (f, t) => { let h; return (...a) => { clearTimeout(h); h = setTimeout(() => f(...a), t); }; };
 
@@ -449,7 +452,11 @@
             <div><dt>Hébergement phare</dt><dd>${esc(phare.nom)} — ${esc(minuscule1(phare.chambre))}, ${phare.surface_m2}${NBSP}m²</dd></div>
             <div><dt>Le moment à part</dt><dd>${esc(p.moment_wow)}</dd></div>
           </dl>
-          <a class="bouton ${p.recommande ? 'bouton--lagon' : 'bouton--trait'}" href="#detail" data-prog="${p.id}">Voir le détail</a>
+          <div class="carte-prog__actions">
+            <a class="bouton ${p.recommande ? 'bouton--lagon' : 'bouton--trait'}" href="#detail" data-prog="${p.id}">Voir le détail</a>
+            <a class="bouton bouton--trait" href="#a-la-carte" data-partir="${p.id}">Partir de ce programme</a>
+            <p class="carte-prog__version" data-version="${p.id}" hidden></p>
+          </div>
         </div>
       </article>`;
     }).join('');
