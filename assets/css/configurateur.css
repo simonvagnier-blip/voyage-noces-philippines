@@ -24,6 +24,8 @@
 .cfg-pas { width: 100%; min-height: 52px; display: grid; justify-items: center; align-content: center; gap: 2px; padding: 4px 2px; border: 0; border-bottom: 3px solid var(--sable); background: transparent; color: var(--encre-2); font: 600 .75rem/1.15 var(--texte); cursor: pointer; text-align: center; }
 .cfg-pas__n { width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--sable-clair); color: var(--encre); font-size: .75rem; }
 .cfg-pas__t { position: relative; }
+.cfg-pas__court { display: none; }
+@media (max-width: 419.98px) { .cfg-pas__long { display: none; } .cfg-pas__court { display: inline; } }
 .cfg-pas__r { display: none; font-weight: 400; font-size: .75rem; color: var(--encre-2); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cfg-pas.fait { border-bottom-color: #9ED0CC; color: var(--encre); }
 .cfg-pas.on { border-bottom-color: var(--lagon); color: var(--lagon-fonce); }
@@ -44,7 +46,7 @@
 .cfg-ok { color: var(--lagon-fonce); font-weight: 600; }
 .cfg-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--filet); }
 .cfg-nav .bouton { min-width: 0; padding: 0 16px; }
-.lien-bouton { background: none; border: 0; padding: 0 2px; font: inherit; color: var(--lagon-fonce); text-decoration: underline; text-underline-offset: .18em; cursor: pointer; min-height: 32px; }
+.lien-bouton { background: none; border: 0; padding: 0 2px; font: inherit; color: var(--lagon-fonce); text-decoration: underline; text-underline-offset: .18em; cursor: pointer; min-height: 44px; }
 .tag { display: inline-block; vertical-align: middle; margin-left: 8px; font: 600 .7rem/1 var(--texte); letter-spacing: .06em; text-transform: uppercase; padding: 4px 7px; border-radius: 999px; background: var(--lagon); color: #fff; }
 .tag--corail { background: var(--corail); }
 
@@ -111,8 +113,11 @@ button.cal-j.on .cal-j__aff { color: #DDE7E4; }
 .stepper output { min-width: 62px; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
 .stepper output small { font-weight: 400; color: var(--encre-2); }
 .iti-ordre { grid-area: ord; display: inline-flex; justify-self: end; }
-.iti-ordre button { width: 40px; font-size: 1.05rem; color: var(--encre-2); }
+.iti-ordre button { width: 44px; font-size: 1.05rem; color: var(--encre-2); }
 @media (min-width: 700px) { .iti-etape { grid-template-columns: 36px minmax(0, 1fr) auto auto; grid-template-areas: "n nom st ord"; } }
+/* téléphones étroits : les boutons ↑ ↓ × font 44 px ; le compteur part du bord gauche de la carte pour leur laisser la place */
+@media (max-width: 419.98px) { .iti-etape { grid-template-areas: "n nom nom" "st st ord"; column-gap: 4px; } .stepper { margin-left: 8px; } }
+@media (max-width: 339.98px) { .iti-etape { grid-template-areas: "n nom nom" "st st st" "ord ord ord"; } }
 .carte--cfg { margin: 6px 0 0; min-height: 120px; }
 .carte--cfg text { pointer-events: none; }
 .etapes-grille { display: grid; gap: 14px; }
@@ -141,7 +146,7 @@ button.cal-j.on .cal-j__aff { color: #DDE7E4; }
 .filtre { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border: 1px solid var(--filet); border-radius: 999px; background: #fff; font-size: .86rem; cursor: pointer; max-width: 100%; }
 .filtre input { width: 18px; height: 18px; accent-color: var(--lagon); margin: 0; flex: none; }
 .filtre:has(input:checked) { border-color: var(--lagon); background: #F2F8F7; }
-.filtre select { font: inherit; border: 0; background: transparent; min-height: 40px; color: var(--lagon-fonce); font-weight: 600; }
+.filtre select { font: inherit; border: 0; background: transparent; min-height: 44px; min-width: 64px; color: var(--lagon-fonce); font-weight: 600; }
 .hotels-cfg { display: grid; gap: 14px; }
 .hotel-cfg { background: #fff; border: 1px solid var(--filet); border-radius: var(--rayon); overflow: hidden; display: grid; }
 .hotel-cfg.on { border: 2px solid var(--lagon); }
@@ -224,8 +229,8 @@ button.cal-j.on .cal-j__aff { color: #DDE7E4; }
 .jauge-cfg__piste { position: absolute; left: 0; right: 0; top: 18px; height: 10px; background: var(--sable-clair); border-radius: 5px; }
 .jauge-cfg__rempli { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--lagon), #2C9AA0); transition: width 200ms ease-out; }
 .jauge-cfg__rempli.depasse { background: linear-gradient(90deg, var(--lagon) 0, var(--lagon) var(--seuil), var(--corail) var(--seuil)); }
-.jauge-cfg__piste i { position: absolute; top: -5px; width: 1px; height: 20px; background: var(--encre); }
-.jauge-cfg__lib { position: absolute; transform: translateX(-50%); font-size: .72rem; color: var(--encre-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.jauge-cfg__piste i { position: absolute; top: -3px; width: 1px; height: 16px; background: var(--encre); }
+.jauge-cfg__lib { position: absolute; transform: translateX(-50%); font-size: .72rem; line-height: 14px; color: var(--encre-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .jauge-cfg__lib.haut { top: 0; } .jauge-cfg__lib.bas { top: 33px; }
 
 /* barre fixe (téléphone et tablette) */
@@ -278,3 +283,6 @@ body:has(.cfg-barre:not([hidden])) .barre-total { display: none !important; }
 .lien-fleche-interne::after { content: "→"; font-weight: 400; transition: transform var(--duree); }
 .lien-fleche-interne:hover::after { transform: translateX(3px); }
 @media (min-width: 1000px) { .carte-prog__actions { align-self: start; margin-top: 8px; } .carte-prog__actions .bouton { margin-top: 0; } }
+/* dates moins chères proposées sous la note du 1er mars : vraies cibles tactiles */
+.dates-alt { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.dates-alt .lien-bouton { min-width: 44px; padding: 0 14px; border: 1px solid var(--lagon); border-radius: 999px; background: #fff; text-decoration: none; font-weight: 600; }

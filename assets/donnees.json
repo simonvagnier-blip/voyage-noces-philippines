@@ -15374,7 +15374,7 @@
     "hotels": [],
     "hotel_par_defaut": null,
     "resume": "Possible avec les vols Singapore Airlines relevés (Paris → Singapour → Cebu). Marina Bay, jardins, cuisine de rue.",
-    "impact_vol": "Billet avec arrêt à Singapour non relevé ; hôtels non relevés (le navigateur a échoué sur Booking). À chiffrer avant de proposer.",
+    "impact_vol": "Billet avec arrêt et hôtels non relevés : pas de prix affiché.",
     "statut": "non relevé"
    },
    {

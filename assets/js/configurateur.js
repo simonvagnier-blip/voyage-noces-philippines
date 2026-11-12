@@ -34,6 +34,10 @@
     const plusJours = (s, n) => { const d = versDate(s.slice(0, 10)); d.setDate(d.getDate() + n); return iso(d); };
     const heure = (s) => s.slice(11, 16).replace(':', NBSP + 'h' + NBSP).replace(/h\u00a000$/, 'h');
     const copie = (o) => JSON.parse(JSON.stringify(o));
+    /* durée en heures décimales → « 7 h », « 4 h 30 » (format du reste du site) */
+    const heures = (x) => { const t = Math.round(x * 60), h = Math.floor(t / 60), mn = t % 60; return mn ? `${h}${NBSP}h${NBSP}${String(mn).padStart(2, '0')}` : `${h}${NBSP}h`; };
+    /* « au Sur-mesure », « au Grand jeu », « à L’Essentiel » */
+    const aNom = (nom) => (/^Le /.test(nom) ? 'au ' + nom.slice(3) : /^Les /.test(nom) ? 'aux ' + nom.slice(4) : 'à ' + nom);
     /* round() de Python : arrondi au pair sur les demis exacts (1 168,5 → 1 168) */
     const arrondi = (x) => { const f = Math.floor(x), r = x - f; return r === 0.5 ? (f % 2 === 0 ? f : f + 1) : Math.round(x); };
 
@@ -62,7 +66,7 @@
         if (!l) { al('LIAISON_INCONNUE', `Aucune liaison relevée de ${nomNoeud(a)} à ${nomNoeud(b)}.`); continue; }
         add(l.n_vols ? 'vols_interieurs' : 'transferts', `${nomNoeud(a)} → ${nomNoeud(b)} : ${l.mode}`, l.prix_2, l.statut, `${a}>${b}`, { url: l.url, methode: l.methode });
         nVols += l.n_vols; cebuTaxi += l.transfert_cebu_2;
-        if (l.jour_perdu) al('JOUR_PERDU', `${nomNoeud(a)} → ${nomNoeud(b)} prend la journée (${virgule(l.temps_porte_a_porte_h.toFixed(1))} h porte à porte).`, { de: a, a: b });
+        if (l.jour_perdu) al('JOUR_PERDU', `${nomNoeud(a)} → ${nomNoeud(b)} prend la journée (${heures(l.temps_porte_a_porte_h)} porte à porte).`, { de: a, a: b });
         if (l.alerte) al('LIAISON_FRAGILE', `${nomNoeud(a)} → ${nomNoeud(b)} : ${l.alerte}`);
       }
       if (nVols) add('vols_interieurs', `Bagages en soute sur les vols intérieurs (${nVols} vols × 2 personnes × 20 kg)`, nVols * K.bagage_par_vol_interieur_php / K.taux_php, 'estimation', 'bagages', { methode: C.forfaits.bagages_vols_interieurs.methode });
@@ -108,7 +112,7 @@
         else if (!vol.escales_possibles.includes(x.ville)) al('ESCALE_INCOMPATIBLE', `Le vol choisi ne passe pas par ${v.ville}.`);
         else {
           const { h, c } = CH[x.chambre], p = c.prix_par_mois[mois];
-          add('escale', `${h.nom} — ${c.nom}, ${x.nuits} nuits à ${v.ville}`, p.prix_nuit_2 * x.nuits, p.statut, c.id, { url: h.url_booking, methode: p.methode });
+          add('escale', `${h.nom} — ${c.nom}, ${x.nuits} nuits à ${v.ville}`, p.prix_nuit_2 * x.nuits, p.statut, c.id, { url: urlBooking(h, datesEscale(cfg)), methode: p.methode });
           add('escale', `Sur place à ${v.ville} : repas, transports, visites (${x.nuits} jours)`, v.frais_jour_2 * x.nuits, 'estimation', 'escale_frais', { methode: `${v.frais_jour_2} € par jour pour deux, ordre de grandeur.` });
           add('escale', 'Marge sur le billet avec arrêt', v.supplement_vol_2, 'estimation', 'escale_vol', { methode: v.impact_vol });
         }
@@ -126,6 +130,8 @@
       const o = VOL[cfg.vol].o; let d = plusJours(o.arrivee_sur_place, cfg.escale ? cfg.escale.nuits : 0);
       return cfg.etapes.map((e) => { const du = d; d = plusJours(d, e.nuits); return { du, au: d }; });
     }
+    /* nuits d’escale : de l’arrivée à la ville d’escale (jour où l’on serait arrivé à Cebu) au jour du vol vers Cebu */
+    const datesEscale = (cfg) => { if (!cfg.escale) return null; const du = VOL[cfg.vol].o.arrivee_sur_place.slice(0, 10); return { du, au: plusJours(du, cfg.escale.nuits) }; };
     const urlBooking = (h, dt) => (h.url_booking_modele && dt ? h.url_booking_modele.replace('{arrivee}', dt.du).replace('{depart}', dt.au) : h.url_booking);
     const chambreEscale = (v) => HOT[ESC[v].hotel_par_defaut].chambres[0].id;
     const decal = (cfg) => (cfg.escale && cfg.escale.mode === 'allonge' ? cfg.escale.nuits : 0);
@@ -135,8 +141,9 @@
     const depuisPreset = (id) => { const p = PRESET[id]; return { date_depart: p.date_depart, vol: p.vol, etapes: copie(p.etapes), moments: copie(p.moments || []), repas_par_jour_2: p.repas_par_jour_2, transfert_paris: p.transfert_paris, transferts_sur_place: p.transferts_sur_place, escale: p.escale ? copie(p.escale) : null }; };
     const b64 = (s) => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     const deb64 = (s) => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
-    function encoder(cfg) {
+    function encoder(cfg, base) {
       const o = { d: cfg.date_depart, v: cfg.vol, e: cfg.etapes.map((e) => [e.etape, e.nuits, e.chambre, e.excursions || []]), m: cfg.moments || [], r: cfg.repas_par_jour_2, tp: cfg.transfert_paris, ts: cfg.transferts_sur_place, x: cfg.escale ? [cfg.escale.ville, cfg.escale.nuits, cfg.escale.mode, cfg.escale.chambre || ''] : 0 };
+      if (base && base !== RECO && PRESET[base]) o.b = base;
       return 'v1.' + b64(JSON.stringify(o));
     }
     function decoder(code) {
@@ -154,6 +161,8 @@
         return { date_depart: o.d, vol: o.v, etapes, moments: o.m, repas_par_jour_2: o.r, transfert_paris: o.tp, transferts_sur_place: o.ts, escale };
       } catch (e) { return null; }
     }
+    /* programme de comparaison porté par le lien (champ b, facultatif) ; absent ou inconnu → programme recommandé */
+    const baseDuCode = (code) => { try { const o = JSON.parse(deb64(code.slice(3))); return o && PRESET[o.b] ? o.b : RECO; } catch (e) { return RECO; } };
     const egal = (a, b) => encoder(a) === encoder(b);
     const presetIdentique = (cfg) => K.presets.find((p) => egal(cfg, depuisPreset(p.id)));
 
@@ -164,20 +173,15 @@
       const h = location.hash.match(/^#cfg=(.*)$/);
       if (h) {
         const c = decoder(h[1]);
-        if (c) { cfg = c; ui.base = devinerBase(c); ui.depuisLien = true; return; }
+        if (c) { cfg = c; ui.base = baseDe(c, h[1]); ui.depuisLien = true; return; }
         ui.message = 'Ce lien de configuration est illisible ou d’une autre version : voici le programme recommandé.';
         cfg = depuisPreset(RECO); ui.base = RECO; return;
       }
-      try { const m = localStorage.getItem(CLE); const c = m && decoder(m); if (c) { cfg = c; ui.base = devinerBase(c); return; } } catch (e) { /* stockage indisponible */ }
+      try { const m = localStorage.getItem(CLE); const c = m && decoder(m); if (c) { cfg = c; ui.base = baseDe(c, m); return; } } catch (e) { /* stockage indisponible */ }
       cfg = depuisPreset(RECO); ui.base = RECO;
     }
-    function devinerBase(c) {
-      const exact = presetIdentique(c); if (exact) return exact.id;
-      const sig = (x) => x.etapes.map((e) => e.etape).join('+');
-      let best = RECO, sc = -1;
-      K.presets.forEach((p) => { let s = sig(p) === sig(c) ? 2 : 0; p.etapes.forEach((e, i) => { if (c.etapes[i] && c.etapes[i].chambre === e.chambre) s += 1; }); if (Math.abs(p.repas_par_jour_2 - c.repas_par_jour_2) < 6) s += .5; if (s > sc) { sc = s; best = p.id; } });
-      return best;
-    }
+    /* repère de comparaison d’une configuration venue d’un lien ou de la mémoire : le programme exact s’il l’est, sinon celui porté par le lien, sinon le recommandé */
+    function baseDe(c, code) { const exact = presetIdentique(c); return exact ? exact.id : code ? baseDuCode(code) : RECO; }
     ui.moisCal = () => null;
 
     /* ------------------------------------------------------------ actions sur la configuration */
@@ -323,11 +327,11 @@
       if (opts.focus) { const el = racine.querySelector(`[data-k="${CSS.escape(opts.focus)}"]`); if (el) el.focus({ preventScroll: true }); }
     }
     function memoriser() {
-      const code = encoder(cfg);
+      const code = encoder(cfg, ui.base);
       try { localStorage.setItem(CLE, code); } catch (e) { /* navigation privée */ }
       if (location.hash === '' || location.hash.startsWith('#cfg=') || ui.depuisLien) { history.replaceState(null, '', '#cfg=' + code); ui.depuisLien = false; }
     }
-    const lienPartage = () => location.href.split('#')[0] + '#cfg=' + encoder(cfg);
+    const lienPartage = () => location.href.split('#')[0] + '#cfg=' + encoder(cfg, ui.base);
 
     function rendrePresets() {
       const actuel = presetIdentique(cfg);
@@ -342,7 +346,7 @@
       $('#cfg-progres').innerHTML = TITRES.map((t, i) => {
         const n = i + 1, on = ui.etape === n;
         const resume = [dateCourte(cfg.date_depart), cfg.etapes.map((e) => ET[e.etape].nom).join(', '), cfg.etapes.map((e) => CH[e.chambre].h.nom).join(', '), `${R.lignes.filter((l) => l.poste === 'experiences').length} choix`, eur(R.total)][i];
-        return `<li><button type="button" class="cfg-pas ${on ? 'on' : ''} ${n < ui.etape ? 'fait' : ''}" data-pas="${n}" ${on ? 'aria-current="step"' : ''} data-k="pas-${n}"><span class="cfg-pas__n">${n}</span><span class="cfg-pas__t">${t}${n === 5 && nb ? `<i class="cfg-pas__alerte" aria-label="${nb} alerte${nb > 1 ? 's' : ''} bloquante${nb > 1 ? 's' : ''}">${nb}</i>` : ''}</span><span class="cfg-pas__r">${resume}</span></button></li>`;
+        return `<li><button type="button" class="cfg-pas ${on ? 'on' : ''} ${n < ui.etape ? 'fait' : ''}" data-pas="${n}" ${on ? 'aria-current="step"' : ''} data-k="pas-${n}"><span class="cfg-pas__n">${n}</span><span class="cfg-pas__t">${n === 5 ? '<span class="cfg-pas__long">Récapitulatif</span><span class="cfg-pas__court">Récap</span>' : t}${n === 5 && nb ? `<i class="cfg-pas__alerte" aria-label="${nb} alerte${nb > 1 ? 's' : ''} bloquante${nb > 1 ? 's' : ''}">${nb}</i>` : ''}</span><span class="cfg-pas__r">${resume}</span></button></li>`;
       }).join('');
     }
     function rendreEtape() {
@@ -392,7 +396,7 @@
           <p class="petit"><b>Vacances scolaires françaises :</b> ${vac}</p>
         </div>` : ''}
         <h4 class="cfg-sous">Les vols du ${dateLongue(cfg.date_depart)}</h4>
-        ${cfg.date_depart === '2027-03-01' ? `<p class="cfg-note"><b>À savoir sur cette date.</b> ${esc(ref.lecture)} Relevé du matin : ${eur(ref.prix_matin)} ; de l’après-midi : ${eur(ref.prix_apres_midi)} (${eurSigne(ref.ecart)}). Dates moins chères relevées : <button type="button" class="lien-bouton" data-date="2027-03-05" data-k="alt-0305">5 mars</button>, <button type="button" class="lien-bouton" data-date="2027-04-21" data-k="alt-0421">21 avril</button>.</p>` : ''}
+        ${cfg.date_depart === '2027-03-01' ? `<p class="cfg-note"><b>À savoir sur cette date.</b> ${esc(ref.lecture)} Relevé du matin : ${eur(ref.prix_matin)} ; de l’après-midi : ${eur(ref.prix_apres_midi)} (${eurSigne(ref.ecart)}). Dates moins chères relevées : <span class="dates-alt"><button type="button" class="lien-bouton" data-date="2027-03-05" data-k="alt-0305">5 mars</button><button type="button" class="lien-bouton" data-date="2027-04-21" data-k="alt-0421">21 avril</button></span></p>` : ''}
         <div class="vols-choix" role="radiogroup" aria-label="Vol">${opts.map((o) => carteVol(o)).join('')}</div>`;
     }
     function vacancesDuMois(m) {
@@ -412,8 +416,8 @@
         <span class="vol-opt__corps">
           <span class="vol-opt__type">${esc(TYPES_VOL[o.type] || o.type)}${o.cabine !== 'Économique' ? ` · ${esc(o.cabine)}` : ''}</span>
           <span class="vol-opt__cie">${esc(o.compagnies.join(', '))} · via ${esc(o.via_aller.join(', '))}</span>
-          <span class="vol-opt__h">Aller ${dateCourte(o.depart_paris)} ${heure(o.depart_paris)} → Cebu ${dateCourte(o.arrivee_sur_place)} ${heure(o.arrivee_sur_place)} (${N.duree(o.duree_aller)})</span>
-          <span class="vol-opt__h">Retour ${dateCourte(o.depart_retour)} ${heure(o.depart_retour)} → Paris ${dateCourte(o.arrivee_paris)} ${heure(o.arrivee_paris)} (${N.duree(o.duree_retour)})</span>
+          <span class="vol-opt__h">Aller ${dateCourte(o.depart_paris.slice(0, 10))} ${heure(o.depart_paris)} → Cebu ${dateCourte(o.arrivee_sur_place.slice(0, 10))} ${heure(o.arrivee_sur_place)} (${N.duree(o.duree_aller)})</span>
+          <span class="vol-opt__h">Retour ${dateCourte(o.depart_retour.slice(0, 10))} ${heure(o.depart_retour)} → Paris ${dateCourte(o.arrivee_paris.slice(0, 10))} ${heure(o.arrivee_paris)} (${N.duree(o.duree_retour)})</span>
           <span class="vol-opt__h">${o.jours_porte_a_porte} jours porte à porte, ${o.nuits_sur_place} nuits sur place · ${o.bagage_soute_inclus ? 'bagage en soute compris' : '<b class="peu-avis">sans bagage en soute</b>'}${o.arrivee_avant_midi ? '' : ' · arrivée après midi'}${o.escales_possibles.includes('hong-kong') ? ' · escale à Hong' + NBSP + 'Kong possible' : ''}</span>
           ${o.note ? `<span class="vol-opt__note">${esc(o.note)}</span>` : ''}
         </span>
@@ -427,7 +431,7 @@
       const somme = et.reduce((a, e) => a + e.nuits, 0), ok = somme === cible;
       const ids = et.map((e) => e.etape), mo = et.length > 1 ? meilleurOrdre(ids) : ids;
       const peutMieux = mo.join() !== ids.join() && coutOrdre(mo) < coutOrdre(ids);
-      const liaison = (a, b) => { const l = LIA[a + '>' + b]; if (!l) return ''; return `<li class="iti-lia ${l.jour_perdu ? 'perdu' : ''}"><span>${esc(majuscule(l.mode))} · ${virgule(l.temps_porte_a_porte_h)}${NBSP}h porte à porte · ${eur(l.prix_2)}${pastille(l.statut, l.methode)}</span>${l.jour_perdu ? '<b class="tag tag--corail">journée de liaison</b>' : ''}</li>`; };
+      const liaison = (a, b) => { const l = LIA[a + '>' + b]; if (!l) return ''; return `<li class="iti-lia ${l.jour_perdu ? 'perdu' : ''}"><span>${esc(majuscule(l.mode))} · ${heures(l.temps_porte_a_porte_h)} porte à porte · ${eur(l.prix_2)}${pastille(l.statut, l.methode)}</span>${l.jour_perdu ? '<b class="tag tag--corail">journée de liaison</b>' : ''}</li>`; };
       let iti = `<li class="iti-bout">Arrivée à Cebu${cfg.escale ? ` (après ${cfg.escale.nuits} nuits à ${esc(ESC[cfg.escale.ville].ville)})` : ''}, ${dateLongue(R.dates[0] ? R.dates[0].du : cfg.date_depart, false)}</li>`;
       let prec = 'cebu';
       et.forEach((e, i) => {
@@ -601,13 +605,13 @@
               <label><input type="radio" name="cfg-esc-m" value="allonge" data-esc-m ${x.mode === 'allonge' ? 'checked' : ''} data-k="escm-a"><span>En allongeant le voyage<span class="detail-choix">${o.jours_porte_a_porte + x.nuits} jours porte à porte, rien ne change aux Philippines</span></span></label>
               <label><input type="radio" name="cfg-esc-m" value="sans_allonger" data-esc-m ${x.mode === 'sans_allonger' ? 'checked' : ''} data-k="escm-s"><span>Sans allonger<span class="detail-choix">${o.jours_porte_a_porte} jours, ${x.nuits} nuits de moins aux Philippines (prises sur la dernière étape)</span></span></label>
             </div>
-            <div class="choix">${hk.hotels.map((id) => HOT[id]).map((h) => h.chambres.map((c) => { const p = c.prix_par_mois[R.mois]; return `<label><input type="radio" name="cfg-esc-c" value="${c.id}" data-esc-c ${x.chambre === c.id ? 'checked' : ''} data-k="escc-${c.id}"><span>${esc(h.nom)} — ${esc(c.nom)}<span class="detail-choix">${h.note_booking ? `${virgule(h.note_booking)}/10, ${nombre(h.nombre_avis)} avis · ` : ''}${c.surface_m2 ? `${c.surface_m2}${NBSP}m² · ` : ''}${lien(h.url_booking, 'Booking')}${h.url_officiel ? ' · ' + lien(h.url_officiel, 'site') : ''}</span></span><span class="prix-choix">${eur(p.prix_nuit_2)}<small> /nuit</small>${statutPrix(p)}</span></label>`; }).join('')).join('')}</div>
+            <div class="choix">${hk.hotels.map((id) => HOT[id]).map((h) => h.chambres.map((c) => { const p = c.prix_par_mois[R.mois]; return `<label><input type="radio" name="cfg-esc-c" value="${c.id}" data-esc-c ${x.chambre === c.id ? 'checked' : ''} data-k="escc-${c.id}"><span>${esc(h.nom)} — ${esc(c.nom)}<span class="detail-choix">${h.note_booking ? `${virgule(h.note_booking)}/10, ${nombre(h.nombre_avis)} avis · ` : ''}${c.surface_m2 ? `${c.surface_m2}${NBSP}m² · ` : ''}${lien(urlBooking(h, datesEscale(cfg)), `Booking, du ${dateCourte(datesEscale(cfg).du)} au ${dateCourte(datesEscale(cfg).au)}`)}${h.url_officiel ? ' · ' + lien(h.url_officiel, 'site') : ''}</span></span><span class="prix-choix">${eur(p.prix_nuit_2)}<small> /nuit</small>${statutPrix(p)}</span></label>`; }).join('')).join('')}</div>
           </div>` : x ? `<p class="cfg-note">${esc(ESC[x.ville].impact_vol)}</p>` : ''}</fieldset>
         </div>
         <div class="cfg-actions">
           <button type="button" class="bouton bouton--lagon" data-action="copier" data-k="copier">Copier le lien de notre voyage</button>
           <button type="button" class="bouton bouton--trait" data-action="imprimer" data-k="imprimer">Imprimer le récapitulatif</button>
-          ${base && !actuel ? `<button type="button" class="bouton bouton--trait" data-preset="${base.id}" data-k="revenir">Revenir à ${esc(base.nom)}</button>` : ''}
+          ${base && !actuel ? `<button type="button" class="bouton bouton--trait" data-preset="${base.id}" data-k="revenir">Revenir ${esc(aNom(base.nom))}</button>` : ''}
           <button type="button" class="bouton bouton--trait" data-preset="${RECO}" data-k="reco">Repartir du programme recommandé</button>
           <p class="cfg-copie" id="cfg-copie" role="status" aria-live="polite"></p>
         </div>`;
@@ -633,7 +637,7 @@
         for (let k = 0; k < x.nuits; k++) { push(d, k === 0 ? 'vol' : 'sortie', k === 0 ? `Arrivée à ${v.ville}` : `${v.ville}`, k === 0 ? `Escale de ${x.nuits} nuits${v.chiffrable && x.chambre ? ` au ${CH[x.chambre].h.nom}` : ''}. ${v.resume}` : v.resume); d = plusJours(d, 1); }
       }
       const dates = R.dates;
-      const libLia = (a, b) => { const l = LIA[a + '>' + b]; return l ? `${majuscule(l.mode)}, ${virgule(l.temps_porte_a_porte_h)}${NBSP}h porte à porte${l.jour_perdu ? ' : la journée y passe' : ''}.` : ''; };
+      const libLia = (a, b) => { const l = LIA[a + '>' + b]; return l ? `${majuscule(l.mode)}, ${heures(l.temps_porte_a_porte_h)} porte à porte${l.jour_perdu ? ' : la journée y passe' : ''}.` : ''; };
       const restes = [];
       et.forEach((e, i) => {
         const etp = ET[e.etape], h = CH[e.chambre].h, dt = dates[i];
@@ -746,7 +750,7 @@
         ${jauge()}
         <p class="petit">${pct(R.part_observee)} en prix relevés, ${pct(1 - R.part_observee)} estimés</p>
         <p class="petit">${R.duree_jours} jours porte à porte : ${dateSansJour(o.depart_paris.slice(0, 10))} → ${dateSansJour(plusJours(o.arrivee_paris, decal(cfg)))}</p>
-        ${!actuel && base ? `<p class="petit">Par rapport à ${esc(base.nom)} : <b>${eurSigne(R.total - base.total_attendu)}</b></p>` : actuel ? `<p class="petit">C’est exactement ${esc(actuel.nom)}.</p>` : ''}
+        ${!actuel && base ? `<p class="petit">Par rapport ${esc(aNom(base.nom))} : <b>${eurSigne(R.total - base.total_attendu)}</b></p>` : actuel ? `<p class="petit">C’est exactement ${esc(actuel.nom)}.</p>` : ''}
         <ul class="cfg-postes">${ordre.map((p) => `<li><i style="background:${COUL[p]}"></i><span>${esc(POSTES[p])}</span><b>${eur(R.sous_totaux[p])}</b></li>`).join('')}</ul>
         <button type="button" class="cfg-alertes-bouton ${nb.bloquant ? 'ko' : ''}" data-pas="5" data-cible="alertes" data-k="res-alertes">${nb.bloquant ? `${nb.bloquant} à corriger · ` : ''}${nb.attention} à savoir · ${nb.info} pour info</button>
         <div class="cfg-resume__actions"><button type="button" class="bouton bouton--lagon" data-action="copier" data-k="res-copier">Copier le lien</button><button type="button" class="bouton bouton--trait" data-action="imprimer" data-k="res-imprimer">Imprimer</button></div>
@@ -761,7 +765,7 @@
       const actuel = presetIdentique(cfg);
       $$('[data-version]').forEach((p) => {
         const id = p.dataset.version;
-        if (ui.base === id && !actuel) { const b = PRESET[id]; p.hidden = false; p.innerHTML = `Votre version : <b>${eur(R.total)}</b> (${eurSigne(R.total - b.total_attendu)} par rapport à ${esc(b.nom.replace(/ :.*$/, ''))})`; }
+        if (ui.base === id && !actuel) { const b = PRESET[id]; p.hidden = false; p.innerHTML = `Votre version : <b>${eur(R.total)}</b> (${eurSigne(R.total - b.total_attendu)} par rapport ${esc(aNom(b.nom.replace(/ :.*$/, '')))})`; }
         else { p.hidden = true; p.textContent = ''; }
       });
     }
@@ -775,7 +779,7 @@
         <p class="imp-sous">Récapitulatif de la configuration « À la carte ». Prix relevés le ${dateNum(D.meta.date_observation)} ; ils bougeront. Aucune réservation n’a été faite.</p>
         <p class="imp-total"><b>${eur(R.total)}</b> pour deux, tout compris (hors assurance) · ${pct(R.part_observee)} en prix relevés · ${R.duree_jours} jours porte à porte · ${ecartTexte(8500)}</p>
         <h2>Vols</h2><p>${esc(o.compagnies.join(', '))} via ${esc(o.via_aller.join(', '))}, ${esc(o.cabine.toLowerCase())} : départ ${dateLongue(o.depart_paris.slice(0, 10))} à ${heure(o.depart_paris)}, retour à Paris ${dateLongue(plusJours(o.arrivee_paris, decal(cfg)))} à ${heure(o.arrivee_paris)}. ${eur(o.prix_2)} (${o.statut}).${url(o.url)}</p>
-        ${x ? `<p>Escale : ${esc(ESC[x.ville].ville)}, ${x.nuits} nuits, ${x.mode === 'allonge' ? 'en allongeant le voyage' : 'sans allonger'}${x.chambre && CH[x.chambre] ? `, ${esc(CH[x.chambre].h.nom)} — ${esc(CH[x.chambre].c.nom)}${url(CH[x.chambre].h.url_booking)}` : ''}</p>` : ''}
+        ${x ? `<p>Escale : ${esc(ESC[x.ville].ville)}, ${x.nuits} nuits, ${x.mode === 'allonge' ? 'en allongeant le voyage' : 'sans allonger'}${x.chambre && CH[x.chambre] ? `, ${esc(CH[x.chambre].h.nom)} — ${esc(CH[x.chambre].c.nom)}${url(urlBooking(CH[x.chambre].h, datesEscale(cfg)))}` : ''}</p>` : ''}
         <h2>Étapes et hôtels</h2><ol>${cfg.etapes.map((e, i) => { const { h, c } = CH[e.chambre], dt = R.dates[i]; return `<li><b>${esc(ET[e.etape].nom)}</b>, ${e.nuits} nuits${dt ? ` (${dateCourte(dt.du)} → ${dateCourte(dt.au)})` : ''} : ${esc(h.nom)} — ${esc(c.nom)}${c.surface_m2 ? `, ${c.surface_m2}${NBSP}m²` : ''}${h.note_booking ? `, ${virgule(h.note_booking)}/10 (${nombre(h.nombre_avis)} avis)` : ''}${url(urlBooking(h, dt))}${e.excursions.length ? `<br>Excursions : ${e.excursions.map((id) => esc(EXC[id].nom)).join(' ; ')}` : ''}</li>`; }).join('')}</ol>
         ${cfg.moments.length ? `<p>Moments : ${cfg.moments.map((id) => esc(EXC[id].nom)).join(' ; ')}.</p>` : ''}
         <h2>Budget poste par poste</h2><table><tbody>${ordre.map((po) => R.lignes.filter((l) => l.poste === po).map((l) => `<tr><td>${esc(POSTES[po])}</td><td>${esc(l.libelle)}${l.url && l.poste !== 'hotels' && l.poste !== 'vols_internationaux' && /^https?:/.test(l.url) ? `<br><span class="url">${esc(l.url)}</span>` : ''}</td><td class="m">${eur(l.montant)}</td><td>${l.statut === 'observé' ? 'relevé' : 'estimé'}</td></tr>`).join('')).join('')}<tr class="t"><td colspan="2">Total</td><td class="m">${eur(R.total)}</td><td></td></tr></tbody></table>
@@ -784,7 +788,15 @@
     }
 
     /* ------------------------------------------------------------ événements */
-    function changer(f, focus) { f(); rendreTout({ focus }); }
+    /* après un rendu, la commande touchée reste à la même hauteur dans la fenêtre (le contenu au-dessus peut grandir ou rétrécir) */
+    const repere = (k) => { if (!k) return null; const el = racine.querySelector(`[data-k="${CSS.escape(k)}"]`); if (!el) return null; const c = el.closest('label') || el; const r = c.getBoundingClientRect(); return r.height ? r.top : null; };
+    function stable(k, rendre) {
+      const avant = repere(k); rendre();
+      const apres = repere(k); if (avant == null || apres == null || Math.abs(apres - avant) < 1) return;
+      const h = document.documentElement, sb = h.style.scrollBehavior; h.style.scrollBehavior = 'auto';
+      window.scrollTo(0, window.scrollY + apres - avant); h.style.scrollBehavior = sb;
+    }
+    function changer(f, focus) { stable(focus, () => { f(); rendreTout({ focus }); }); }
     racine.addEventListener('click', (ev) => {
       const t = ev.target.closest('button, a'); if (!t || !racine.contains(t)) return;
       const k = t.dataset.k;
@@ -796,13 +808,13 @@
       }
       if (t.dataset.preset) { chargerPreset(t.dataset.preset, k); return; }
       if (t.dataset.date) { changer(() => { choisirDate(t.dataset.date); ui.mois = moisDe(t.dataset.date); }, k); return; }
-      if (t.dataset.cal) { ui.mois = t.dataset.cal; rendreTout({ focus: k }); return; }
+      if (t.dataset.cal) { ui.mois = t.dataset.cal; stable(k, () => rendreTout({ focus: k })); return; }
       if (t.dataset.nuits) { const [i, d] = t.dataset.nuits.split(':').map(Number); changer(() => changerNuits(i, d), k); return; }
       if (t.dataset.monter) { changer(() => deplacer(+t.dataset.monter, -1), k); return; }
       if (t.dataset.descendre) { changer(() => deplacer(+t.dataset.descendre, 1), k); return; }
       if (t.dataset.retirerEtape) { changer(() => retirerEtape(+t.dataset.retirerEtape), k); return; }
       if (t.dataset.basculerEtape) { const id = t.dataset.basculerEtape, i = cfg.etapes.findIndex((e) => e.etape === id); changer(() => (i >= 0 ? retirerEtape(i) : ajouterEtape(id)), k); return; }
-      if (t.dataset.ong) { ui.ong = +t.dataset.ong; rendreTout({ focus: k }); return; }
+      if (t.dataset.ong) { ui.ong = +t.dataset.ong; stable(k, () => rendreTout({ focus: k })); return; }
       if (t.dataset.parade) { const avant = ui.etape; changer(() => executerParade(t.dataset.parade), k); if (ui.etape !== avant) $('#cfg-titre-etape').scrollIntoView({ block: 'start' }); return; }
       if (t.dataset.repasVal) { changer(() => { cfg.repas_par_jour_2 = +t.dataset.repasVal; }, k); return; }
       if (t.dataset.action === 'copier') { copier(); return; }
@@ -812,8 +824,8 @@
       const t = ev.target, k = t.dataset.k;
       if (t.name === 'cfg-vol') changer(() => choisirVol(t.value), k);
       else if (t.dataset.chambre != null) changer(() => { cfg.etapes[+t.dataset.chambre].chambre = t.value; }, k);
-      else if (t.dataset.filtre) { ui.filtres[t.dataset.filtre] = t.checked; rendreTout({ focus: k }); }
-      else if (t.dataset.tri != null) { ui.tri = t.value; rendreTout({ focus: k }); }
+      else if (t.dataset.filtre) { ui.filtres[t.dataset.filtre] = t.checked; stable(k, () => rendreTout({ focus: k })); }
+      else if (t.dataset.tri != null) { ui.tri = t.value; stable(k, () => rendreTout({ focus: k })); }
       else if (t.dataset.exc) { const [i, id] = t.dataset.exc.split(':'); changer(() => basculerExcursion(+i, id, t.checked), k); }
       else if (t.dataset.paire) { const [i, g, p] = t.dataset.paire.split(':'); changer(() => { basculerExcursion(+i, g, false); basculerExcursion(+i, p, false); if (t.value) basculerExcursion(+i, t.value, true); }, k); }
       else if (t.dataset.moment) changer(() => { const m = cfg.moments, j = m.indexOf(t.dataset.moment); if (t.checked && j < 0) m.push(t.dataset.moment); if (!t.checked && j >= 0) m.splice(j, 1); }, k);
@@ -835,7 +847,7 @@
       for (let n = 0; n < 14; n++) { d = plusJours(d, pas > 0 ? Math.min(pas, 7) : Math.max(pas, -7)); if (JOUR[d]) { changer(() => { choisirDate(d); ui.mois = moisDe(d); }, 'date-' + d); return; } }
     });
     $('#cfg-barre').addEventListener('click', (ev) => { const t = ev.target.closest('[data-pas]'); if (!t) return; ui.etape = 5; rendreTout(); const c = $('#cfg-alertes') || $('#cfg-titre-etape'); if (c) c.scrollIntoView({ block: 'start' }); });
-    function chargerPreset(id, focus) { cfg = depuisPreset(id); ui.base = id; ui.mois = moisDe(cfg.date_depart); ui.ong = 0; rendreTout({ focus }); }
+    function chargerPreset(id, focus) { stable(focus, () => { cfg = depuisPreset(id); ui.base = id; ui.mois = moisDe(cfg.date_depart); ui.ong = 0; rendreTout({ focus }); }); }
     // « Partir de ce programme » sur les cartes de la section Programmes
     document.addEventListener('click', (ev) => {
       const a = ev.target.closest('[data-partir]'); if (!a) return;
@@ -862,7 +874,8 @@
       const h = location.hash.match(/^#cfg=([\w.-]+)$/), c = h && decoder(h[1]), m = $('#cfg-message');
       if (!c) { m.hidden = false; m.textContent = 'Ce lien de configuration est illisible ou d’une autre version : voici le programme recommandé.'; cfg = depuisPreset(RECO); ui.base = RECO; ui.mois = moisDe(cfg.date_depart); ui.depuisLien = true; rendreTout(); return; }
       m.hidden = true;
-      if (encoder(c) !== encoder(cfg)) { cfg = c; ui.base = devinerBase(c); ui.mois = moisDe(c.date_depart); rendreTout(); }
+      const nb = baseDe(c, h[1]);
+      if (encoder(c) !== encoder(cfg) || nb !== ui.base) { cfg = c; ui.base = nb; ui.mois = moisDe(c.date_depart); rendreTout(); }
     });
     let largeur = innerWidth;
     window.addEventListener('resize', () => { if (Math.abs(innerWidth - largeur) < 2) return; largeur = innerWidth; dessinerCarte(); }, { passive: true });
@@ -898,7 +911,7 @@
     if (venuParLien) { ui.etape = 5; rendreTout(); requestAnimationFrame(() => racine.scrollIntoView({ block: 'start' })); }
     // pour la recette (scripts de contrôle) : lecture seule de l’état et du moteur
     window.ALACARTE = { calculer: (c) => { const r = calculer(c); return { total: r.total, sous_totaux: r.sous_totaux, valide: r.valide, codes: [...new Set(r.alertes.map((a) => a.code))].sort(), duree_jours: r.duree_jours, nuits_philippines: r.nuits_philippines, part_observee: r.part_observee }; },
-      etat: () => copie(cfg), encoder, decoder, charger: (c) => { cfg = copie(c); ui.base = devinerBase(cfg); rendreTout(); }, aller: (n) => { ui.etape = n; rendreTout(); }, resultat: () => ({ total: R.total, alertes: R.alertes.map((a) => a.code) }) };
+      etat: () => copie(cfg), encoder, decoder, charger: (c) => { cfg = copie(c); ui.base = baseDe(cfg, null); rendreTout(); }, aller: (n) => { ui.etape = n; rendreTout(); }, resultat: () => ({ total: R.total, alertes: R.alertes.map((a) => a.code) }) };
     document.documentElement.dataset.alacarte = '1';
   }
 })();
