@@ -1,0 +1,5166 @@
+{
+ "meta": {
+  "titre": "Simon & Sonya — voyage de noces aux Philippines, mars 2027",
+  "voyageurs": "Simon & Sonya",
+  "date_observation": "2026-11-12",
+  "taux_change": {
+   "EUR_PHP": 70.4,
+   "source_php": "BCE, 70,379 PHP pour 1 € le 11/11/2026",
+   "EUR_USD": 1.1214,
+   "source_usd": "BCE, 1,1214 USD pour 1 € le 10/11/2026"
+  },
+  "unite": "Tous les montants sont en euros pour deux personnes, sauf mention contraire.",
+  "statuts": {
+   "observé": "Prix lu sur la source indiquée le 12/11/2026, pour les dates indiquées.",
+   "estimation": "Ordre de grandeur calculé ou supposé ; la méthode est écrite à côté."
+  },
+  "hypotheses": [
+   "Deux adultes, départ de Paris-Charles-de-Gaulle, classe économique.",
+   "« 14 jours porte à porte » = 14 jours écoulés entre le décollage de Paris (lundi 11 h 35) et l'atterrissage à Paris (lundi 7 h 40) : 12 nuits sur place, 2 nuits en vol. En comptant 14 dates de calendrier, il faudrait rentrer un jour plus tôt (une nuit de moins à Panglao).",
+   "Prix d'hôtel : montant affiché par Booking le 12/11/2026 pour les dates de mars, majoré des taxes non comprises indiquées sur la fiche.",
+   "Budget tout compris : vols, vols intérieurs avec bagages, transferts (y compris domicile ⇄ Roissy), hôtels, sorties, déjeuners et dîners. Hors assurance et achats personnels.",
+   "Aucune réservation n'a été faite, aucun compte créé. Aucun code promotionnel n'est pris en compte.",
+   "Depuis le 29/03/2026, il n'y a plus de vol direct Manille → El Nido : l'arrivée par Cebu est la plus simple, d'où le choix de Cathay Pacific via Hong Kong."
+  ],
+  "limites": [
+   "Google Flights et Skyscanner n'ont pas pu être lus (page vide, contrôle anti-robot) : les prix de vols viennent de Kiwi.com et de KAYAK.",
+   "Les outils de calendrier de prix ne contenaient aucune donnée pour Paris → Manille ou Cebu en 2027.",
+   "Les tarifs du spa et du dîner privé n'ont pas été relevés : ce sont des estimations."
+  ]
+ },
+ "offre_reference": {
+  "nom": "Voyage Privé — circuit privé 4*",
+  "url": "https://www.voyage-prive.com/ppl/voyage-philippines-cebu-circuit-prive-en-le-meilleur-des-philippines-plages-paradisiaques-lagons-turquoise-et-jungle-sauvage-avec-sejour-possible-au-aki-hong-kong/87491",
+  "observe_le": "2026-11-12",
+  "nuits_sur_place": 10,
+  "etapes": 4,
+  "prix_2_avec_vols": 4698,
+  "prix_par_personne_avec_vols": 2349,
+  "prix_par_personne_sans_vol": 1508,
+  "prix_barre_par_personne": 3849,
+  "prix_2_avec_hong_kong": 6028,
+  "nuits_avec_hong_kong": 13,
+  "inclus": [
+   "Vols internationaux et intérieurs",
+   "Hôtels 4* en chambre d'entrée de gamme, petit-déjeuner",
+   "Transferts privés, accueil et carte SIM 30 Go",
+   "Un dîner (jour 2)",
+   "El Nido Tour C avec déjeuner",
+   "Rivière souterraine de Sabang"
+  ],
+  "non_inclus": [
+   "Déjeuners et dîners (sauf un)",
+   "Autres excursions",
+   "Pourboires, dépenses sur place"
+  ],
+  "points_faibles": [
+   "5 à 6 heures de route entre El Nido et Sabang",
+   "Quatre étapes en dix nuits",
+   "Chambres d'entrée de gamme, hôtels « ou similaire »",
+   "Trois nuits à Mactan, qui n'a pas les plus belles plages",
+   "Vente flash : dates non visibles sans compte"
+  ],
+  "reserve": "Prix relevé le 12/11/2026, vente flash à durée limitée ; dates et compagnie aérienne non visibles."
+ },
+ "zones": [
+  {
+   "id": "el_nido",
+   "nom": "El Nido (Palawan)"
+  },
+  {
+   "id": "bohol_panglao",
+   "nom": "Bohol / Panglao"
+  },
+  {
+   "id": "boracay",
+   "nom": "Boracay"
+  },
+  {
+   "id": "cebu_siquijor",
+   "nom": "Cebu / Siquijor"
+  },
+  {
+   "id": "coron",
+   "nom": "Coron"
+  }
+ ],
+ "vacances_scolaires_fr": [
+  {
+   "nom": "Vacances d'hiver",
+   "zone_A": "13/02 → 01/03/2027",
+   "zone_B": "20/02 → 08/03/2027",
+   "zone_C": "06/02 → 22/02/2027"
+  },
+  {
+   "nom": "Vacances de printemps",
+   "zone_A": "10/04 → 26/04/2027",
+   "zone_B": "17/04 → 03/05/2027",
+   "zone_C": "03/04 → 19/04/2027"
+  },
+  {
+   "nom": "Vacances d'été",
+   "zone_A": "à partir du 03/07/2027",
+   "zone_B": "à partir du 03/07/2027",
+   "zone_C": "à partir du 03/07/2027"
+  }
+ ],
+ "mois": [
+  {
+   "id": "mars",
+   "nom": "Mars 2027",
+   "vols": {
+    "meilleur_prix": {
+     "id": "v-mars-mnl-0303",
+     "mois": "mars",
+     "aeroport_arrivee": "MNL",
+     "depart_paris": "2027-03-03",
+     "retour_paris": "2027-03-17",
+     "jours_porte_a_porte": 14,
+     "compagnie": "Saudia",
+     "escale_via": "Riyad / Djeddah",
+     "escales_par_trajet": 1,
+     "duree_aller": "20h00",
+     "duree_retour": "21h45",
+     "prix_2_adultes": 1290,
+     "bagage_soute_inclus": false,
+     "critere_confort": false,
+     "source": "Kiwi.com (outil de recherche)",
+     "url": "https://kiwi.com/u/9z5yg3",
+     "observe_le": "2026-11-12",
+     "statut": "observé",
+     "note": "Sans bagage en soute ; trajets de 20 h et plus."
+    },
+    "meilleur_confort_prix": {
+     "id": "v-mars-ceb-0103",
+     "mois": "mars",
+     "aeroport_arrivee": "CEB",
+     "depart_paris": "2027-03-01",
+     "retour_paris": "2027-03-15",
+     "jours_porte_a_porte": 14,
+     "compagnie": "Cathay Pacific",
+     "escale_via": "Hong Kong",
+     "escales_par_trajet": 1,
+     "duree_aller": "16h35",
+     "duree_retour": "19h05",
+     "prix_2_adultes": 2205,
+     "bagage_soute_inclus": true,
+     "critere_confort": true,
+     "source": "Kiwi.com (outil de recherche)",
+     "url": "https://kiwi.com/u/n4r77b",
+     "observe_le": "2026-11-12",
+     "statut": "observé",
+     "note": "Dates exactes de la fenêtre recommandée."
+    },
+    "fourchette_cebu_confort": [
+     1990,
+     2414
+    ],
+    "releves": [
+     {
+      "id": "v-mars-ceb-0103",
+      "mois": "mars",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-03-01",
+      "retour_paris": "2027-03-15",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h35",
+      "duree_retour": "19h05",
+      "prix_2_adultes": 2205,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/n4r77b",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Dates exactes de la fenêtre recommandée."
+     },
+     {
+      "id": "v-mars-ceb-0103b",
+      "mois": "mars",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-03-01",
+      "retour_paris": "2027-03-16",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h35",
+      "duree_retour": "19h05",
+      "prix_2_adultes": 1990,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/v66djn",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Un jour de plus : 215 € de moins."
+     },
+     {
+      "id": "v-mars-ceb-0403",
+      "mois": "mars",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-03-04",
+      "retour_paris": "2027-03-19",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h35",
+      "duree_retour": "19h05",
+      "prix_2_adultes": 2291,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/83n8yt",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-mars-ceb-0903",
+      "mois": "mars",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-03-09",
+      "retour_paris": "2027-03-24",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h35",
+      "duree_retour": "19h05",
+      "prix_2_adultes": 2414,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/fm2ru2y",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-mars-ceb-0803",
+      "mois": "mars",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-03-08",
+      "retour_paris": "2027-03-22",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Singapore Airlines + Cathay Pacific",
+      "escale_via": "Singapour / Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "21h30",
+      "duree_retour": "19h05",
+      "prix_2_adultes": 2993,
+      "bagage_soute_inclus": true,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/bsnyn7b",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Ce lundi-là, le tarif Cathay aller-retour monte à 4 093 € : éviter."
+     },
+     {
+      "id": "v-mars-ceb-2503",
+      "mois": "mars",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-03-25",
+      "retour_paris": "2027-04-09",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h35",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 2315,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/6pwsf2",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Départ en pleine Semaine sainte philippine."
+     },
+     {
+      "id": "v-mars-mnl-0303",
+      "mois": "mars",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-03-03",
+      "retour_paris": "2027-03-17",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Saudia",
+      "escale_via": "Riyad / Djeddah",
+      "escales_par_trajet": 1,
+      "duree_aller": "20h00",
+      "duree_retour": "21h45",
+      "prix_2_adultes": 1290,
+      "bagage_soute_inclus": false,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/9z5yg3",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Sans bagage en soute ; trajets de 20 h et plus."
+     },
+     {
+      "id": "v-mars-mnl-0603",
+      "mois": "mars",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-03-06",
+      "retour_paris": "2027-03-20",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Qatar Airways",
+      "escale_via": "Doha",
+      "escales_par_trajet": 1,
+      "duree_aller": "17h10",
+      "duree_retour": "17h55",
+      "prix_2_adultes": 2025,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/7g3d6xw",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-mars-mnl-0603b",
+      "mois": "mars",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-03-06",
+      "retour_paris": "2027-03-21",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Gulf Air",
+      "escale_via": "Bahreïn",
+      "escales_par_trajet": 1,
+      "duree_aller": "21h00",
+      "duree_retour": "21h20",
+      "prix_2_adultes": 1865,
+      "bagage_soute_inclus": true,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/w6qhh5t",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-mars-mnl-2003",
+      "mois": "mars",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-03-20",
+      "retour_paris": "2027-04-04",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Saudia",
+      "escale_via": "Riyad",
+      "escales_par_trajet": 1,
+      "duree_aller": "20h00",
+      "duree_retour": "21h55",
+      "prix_2_adultes": 1327,
+      "bagage_soute_inclus": false,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/u5pg45",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Sans bagage en soute ; Semaine sainte sur place."
+     }
+    ],
+    "releves_kayak": [
+     {
+      "recherche": "Paris → Cebu, 01/03 → 14/03/2027",
+      "url": "https://www.kayak.fr/flights/PAR-CEB/2027-03-01/2027-03-14/2adults?sort=bestflight_a",
+      "le_moins_cher_par_pers": 749,
+      "detail_moins_cher": "23 h 15 de trajet ; tarif plancher affiché pour SWISS, 2 escales ou plus",
+      "meilleur_choix_par_pers": 999,
+      "detail_meilleur": "21 h 35 de trajet ; tarif plancher affiché pour EVA Air",
+      "plus_rapide_par_pers": 1228,
+      "detail_rapide": "20 h 00 de trajet ; tarif plancher affiché pour Emirates",
+      "source": "KAYAK",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "unite": "euros par personne, aller-retour"
+     },
+     {
+      "recherche": "Paris → Manille, 01/03 → 14/03/2027",
+      "url": "https://www.kayak.fr/flights/PAR-MNL/2027-03-01/2027-03-14/2adults?sort=bestflight_a",
+      "des_1_escale_par_pers": 740,
+      "detail": "Saudia ; 738 € avec 2 escales (SWISS)",
+      "source": "KAYAK",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "unite": "euros par personne, aller-retour"
+     }
+    ]
+   },
+   "meteo": {
+    "el_nido": {
+     "pluie_mm": "7 à 16",
+     "jours_de_pluie": "1",
+     "mer_c": 27,
+     "max_c": 31,
+     "mer_et_vent": "Mer calme, fin de l'amihan (vent de nord-est)",
+     "verdict": "Idéal : sec, lagons limpides",
+     "note_sur_5": 5,
+     "sources": [
+      "meteo_elnido_w2t",
+      "meteo_elnido_ss"
+     ]
+    },
+    "bohol_panglao": {
+     "pluie_mm": "55 à 124 (fourchette janvier-septembre)",
+     "jours_de_pluie": "quelques averses",
+     "mer_c": 28,
+     "max_c": 31,
+     "mer_et_vent": "Mer calme côté sud",
+     "verdict": "Très bon",
+     "note_sur_5": 5,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    },
+    "boracay": {
+     "pluie_mm": "41 à 51",
+     "jours_de_pluie": "5 à 8",
+     "mer_c": 27,
+     "max_c": 31,
+     "mer_et_vent": "White Beach abritée et lisse",
+     "verdict": "Idéal",
+     "note_sur_5": 5,
+     "sources": [
+      "meteo_boracay_w2t",
+      "meteo_boracay_nw"
+     ]
+    },
+    "cebu_siquijor": {
+     "pluie_mm": "comparable à Bohol (non relevé séparément)",
+     "jours_de_pluie": null,
+     "mer_c": 28,
+     "max_c": 31,
+     "mer_et_vent": "Calme",
+     "verdict": "Très bon",
+     "note_sur_5": 5,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    },
+    "coron": {
+     "pluie_mm": "10 à 44 (janvier-avril)",
+     "jours_de_pluie": null,
+     "mer_c": 27,
+     "max_c": 31,
+     "mer_et_vent": "Calme",
+     "verdict": "Idéal",
+     "note_sur_5": 5,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    }
+   },
+   "risque_typhon": "Très faible",
+   "foule": {
+    "niveau_sur_5": 3,
+    "texte": "Calme jusqu'au 19 mars. Du 20 au 28 mars, Semaine sainte : les Philippins voyagent en masse, les prix montent, les ferries sont pleins et certains services s'arrêtent le Vendredi saint.",
+    "evenements": [
+     {
+      "date": "2027-03-25",
+      "nom": "Jeudi saint (férié)"
+     },
+     {
+      "date": "2027-03-26",
+      "nom": "Vendredi saint (férié)"
+     },
+     {
+      "date": "2027-03-27",
+      "nom": "Samedi saint (chômé)"
+     },
+     {
+      "date": "2027-03-28",
+      "nom": "Pâques"
+     }
+    ]
+   },
+   "note_globale_sur_10": 9.5,
+   "verdict": "Le meilleur mois. Partir dans la première quinzaine : temps sec partout, mer calme, et retour avant la Semaine sainte."
+  },
+  {
+   "id": "avril",
+   "nom": "Avril 2027",
+   "vols": {
+    "meilleur_prix": {
+     "id": "v-avr-mnl-0104",
+     "mois": "avril",
+     "aeroport_arrivee": "MNL",
+     "depart_paris": "2027-04-01",
+     "retour_paris": "2027-04-16",
+     "jours_porte_a_porte": 15,
+     "compagnie": "Saudia",
+     "escale_via": "Riyad / Djeddah",
+     "escales_par_trajet": 1,
+     "duree_aller": "20h20",
+     "duree_retour": "20h25",
+     "prix_2_adultes": 1393,
+     "bagage_soute_inclus": false,
+     "critere_confort": false,
+     "source": "Kiwi.com (outil de recherche)",
+     "url": "https://kiwi.com/u/mfkjfr4",
+     "observe_le": "2026-11-12",
+     "statut": "observé",
+     "note": "Sans bagage en soute."
+    },
+    "meilleur_confort_prix": {
+     "id": "v-avr-ceb-2204",
+     "mois": "avril",
+     "aeroport_arrivee": "CEB",
+     "depart_paris": "2027-04-22",
+     "retour_paris": "2027-05-06",
+     "jours_porte_a_porte": 14,
+     "compagnie": "Cathay Pacific",
+     "escale_via": "Hong Kong",
+     "escales_par_trajet": 1,
+     "duree_aller": "16h30",
+     "duree_retour": "18h35",
+     "prix_2_adultes": 2173,
+     "bagage_soute_inclus": true,
+     "critere_confort": true,
+     "source": "Kiwi.com (outil de recherche)",
+     "url": "https://kiwi.com/u/998vfbz",
+     "observe_le": "2026-11-12",
+     "statut": "observé",
+     "note": ""
+    },
+    "fourchette_cebu_confort": [
+     1975,
+     3032
+    ],
+    "releves": [
+     {
+      "id": "v-avr-ceb-2204",
+      "mois": "avril",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-04-22",
+      "retour_paris": "2027-05-06",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 2173,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/998vfbz",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-avr-ceb-2104",
+      "mois": "avril",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-04-21",
+      "retour_paris": "2027-05-06",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 1975,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/58rfphn",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Le moins cher relevé vers Cebu, mais 15 jours."
+     },
+     {
+      "id": "v-avr-ceb-2504",
+      "mois": "avril",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-04-25",
+      "retour_paris": "2027-05-09",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 2309,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/6gygz7",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-avr-ceb-0504",
+      "mois": "avril",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-04-05",
+      "retour_paris": "2027-04-19",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 3032,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/3j4ptu",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Vacances de printemps de la zone C : + 850 € environ."
+     },
+     {
+      "id": "v-avr-ceb-2104b",
+      "mois": "avril",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-04-21",
+      "retour_paris": "2027-05-04",
+      "jours_porte_a_porte": 13,
+      "compagnie": "Singapore Airlines + Cebu Pacific / Thai",
+      "escale_via": "Singapour / Bangkok",
+      "escales_par_trajet": 1,
+      "duree_aller": "21h55",
+      "duree_retour": "21h45",
+      "prix_2_adultes": 2219,
+      "bagage_soute_inclus": false,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/fxds6wg",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Sans bagage en soute, billets combinés."
+     },
+     {
+      "id": "v-avr-mnl-0104",
+      "mois": "avril",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-04-01",
+      "retour_paris": "2027-04-16",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Saudia",
+      "escale_via": "Riyad / Djeddah",
+      "escales_par_trajet": 1,
+      "duree_aller": "20h20",
+      "duree_retour": "20h25",
+      "prix_2_adultes": 1393,
+      "bagage_soute_inclus": false,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/mfkjfr4",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Sans bagage en soute."
+     },
+     {
+      "id": "v-avr-mnl-1304",
+      "mois": "avril",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-04-13",
+      "retour_paris": "2027-04-28",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Air India",
+      "escale_via": "Delhi",
+      "escales_par_trajet": 1,
+      "duree_aller": "18h50",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 1502,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/qjnywn",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-avr-mnl-2904",
+      "mois": "avril",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-04-29",
+      "retour_paris": "2027-05-14",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Air India",
+      "escale_via": "Delhi",
+      "escales_par_trajet": 1,
+      "duree_aller": "18h50",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 1421,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/w46qkx",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-avr-mnl-1004",
+      "mois": "avril",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-04-10",
+      "retour_paris": "2027-04-25",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Turkish Airlines",
+      "escale_via": "Istanbul",
+      "escales_par_trajet": 1,
+      "duree_aller": "20h40",
+      "duree_retour": "18h25",
+      "prix_2_adultes": 2193,
+      "bagage_soute_inclus": true,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/rp5zp3",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Premier jour des vacances de la zone A."
+     }
+    ],
+    "releves_kayak": [
+     {
+      "recherche": "Paris → Cebu, 12/04 → 25/04/2027",
+      "url": "https://www.kayak.fr/flights/PAR-CEB/2027-04-12/2027-04-25/2adults?sort=bestflight_a",
+      "des_1_escale_par_pers": 982,
+      "detail": "Malaysia Airlines ; Qatar 1 132 €, Emirates 1 189 €",
+      "source": "KAYAK",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "unite": "euros par personne, aller-retour"
+     }
+    ]
+   },
+   "meteo": {
+    "el_nido": {
+     "pluie_mm": "23 à 40",
+     "jours_de_pluie": "3",
+     "mer_c": 29,
+     "max_c": 32,
+     "mer_et_vent": "Mer d'huile, chaleur forte",
+     "verdict": "Très bon, plus chaud",
+     "note_sur_5": 5,
+     "sources": [
+      "meteo_elnido_w2t",
+      "meteo_elnido_ss"
+     ]
+    },
+    "bohol_panglao": {
+     "pluie_mm": "55 à 124 (fourchette janvier-septembre)",
+     "jours_de_pluie": "quelques averses",
+     "mer_c": 29,
+     "max_c": 32,
+     "mer_et_vent": "Calme",
+     "verdict": "Très bon, chaud",
+     "note_sur_5": 4,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    },
+    "boracay": {
+     "pluie_mm": "50 à 60",
+     "jours_de_pluie": "4 à 5",
+     "mer_c": 28,
+     "max_c": 32,
+     "mer_et_vent": "Calme ; algues vertes possibles sur White Beach",
+     "verdict": "Très bon",
+     "note_sur_5": 4,
+     "sources": [
+      "meteo_boracay_w2t",
+      "meteo_boracay_nw"
+     ]
+    },
+    "cebu_siquijor": {
+     "pluie_mm": "comparable à Bohol (non relevé séparément)",
+     "jours_de_pluie": null,
+     "mer_c": 29,
+     "max_c": 32,
+     "mer_et_vent": "Calme",
+     "verdict": "Très bon",
+     "note_sur_5": 4,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    },
+    "coron": {
+     "pluie_mm": "10 à 44 (janvier-avril)",
+     "jours_de_pluie": null,
+     "mer_c": 29,
+     "max_c": 32,
+     "mer_et_vent": "Calme",
+     "verdict": "Très bon",
+     "note_sur_5": 5,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    }
+   },
+   "risque_typhon": "Très faible",
+   "foule": {
+    "niveau_sur_5": 5,
+    "texte": "Haute saison intérieure : grandes vacances philippines (avril-mai), pont du 9 avril, et vacances de printemps françaises du 3 avril au 3 mai selon les zones.",
+    "evenements": [
+     {
+      "date": "2027-04-09",
+      "nom": "Araw ng Kagitingan (férié, vendredi)"
+     }
+    ]
+   },
+   "note_globale_sur_10": 7.0,
+   "verdict": "Très beau temps mais c'est le mois le plus fréquenté et le plus chaud ; les vols grimpent au début des vacances françaises (3 032 € le 5 avril)."
+  },
+  {
+   "id": "mai",
+   "nom": "Mai 2027",
+   "vols": {
+    "meilleur_prix": {
+     "id": "v-mai-mnl-1905",
+     "mois": "mai",
+     "aeroport_arrivee": "MNL",
+     "depart_paris": "2027-05-19",
+     "retour_paris": "2027-06-03",
+     "jours_porte_a_porte": 15,
+     "compagnie": "Air India",
+     "escale_via": "Delhi",
+     "escales_par_trajet": 1,
+     "duree_aller": "18h50",
+     "duree_retour": "18h35",
+     "prix_2_adultes": 1303,
+     "bagage_soute_inclus": true,
+     "critere_confort": true,
+     "source": "Kiwi.com (outil de recherche)",
+     "url": "https://kiwi.com/u/cg842c",
+     "observe_le": "2026-11-12",
+     "statut": "observé",
+     "note": ""
+    },
+    "meilleur_confort_prix": {
+     "id": "v-mai-ceb-2105",
+     "mois": "mai",
+     "aeroport_arrivee": "CEB",
+     "depart_paris": "2027-05-21",
+     "retour_paris": "2027-06-04",
+     "jours_porte_a_porte": 14,
+     "compagnie": "Cathay Pacific",
+     "escale_via": "Hong Kong",
+     "escales_par_trajet": 1,
+     "duree_aller": "16h30",
+     "duree_retour": "18h35",
+     "prix_2_adultes": 2239,
+     "bagage_soute_inclus": true,
+     "critere_confort": true,
+     "source": "Kiwi.com (outil de recherche)",
+     "url": "https://kiwi.com/u/qksdqxn",
+     "observe_le": "2026-11-12",
+     "statut": "observé",
+     "note": ""
+    },
+    "fourchette_cebu_confort": [
+     2239,
+     2297
+    ],
+    "releves": [
+     {
+      "id": "v-mai-ceb-1205",
+      "mois": "mai",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-05-12",
+      "retour_paris": "2027-05-25",
+      "jours_porte_a_porte": 13,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 2297,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/j927j7",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Relevé pour un retour à Paris le 25/05 (13 jours). Le retour du 26/05 (14 jours) reste à relever."
+     },
+     {
+      "id": "v-mai-ceb-0705",
+      "mois": "mai",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-05-07",
+      "retour_paris": "2027-05-22",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 2297,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/8kgthu",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-mai-ceb-2105",
+      "mois": "mai",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-05-21",
+      "retour_paris": "2027-06-04",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 2239,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/qksdqxn",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-mai-ceb-0805",
+      "mois": "mai",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-05-08",
+      "retour_paris": "2027-05-21",
+      "jours_porte_a_porte": 13,
+      "compagnie": "Singapore Airlines + China Eastern",
+      "escale_via": "Singapour / Shanghai",
+      "escales_par_trajet": 1,
+      "duree_aller": "21h55",
+      "duree_retour": "22h35",
+      "prix_2_adultes": 2132,
+      "bagage_soute_inclus": false,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/65gpz69",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Sans bagage en soute, billets combinés."
+     },
+     {
+      "id": "v-mai-mnl-1905",
+      "mois": "mai",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-05-19",
+      "retour_paris": "2027-06-03",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Air India",
+      "escale_via": "Delhi",
+      "escales_par_trajet": 1,
+      "duree_aller": "18h50",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 1303,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/cg842c",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-mai-mnl-1005",
+      "mois": "mai",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-05-10",
+      "retour_paris": "2027-05-24",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Air India",
+      "escale_via": "Delhi",
+      "escales_par_trajet": 1,
+      "duree_aller": "18h50",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 1400,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/x89vqw",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-mai-mnl-0805",
+      "mois": "mai",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-05-08",
+      "retour_paris": "2027-05-22",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Singapore Airlines",
+      "escale_via": "Singapour",
+      "escales_par_trajet": 1,
+      "duree_aller": "18h45",
+      "duree_retour": "19h45",
+      "prix_2_adultes": 1884,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/qk9dmuy",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     }
+    ],
+    "releves_kayak": [
+     {
+      "recherche": "Paris → Cebu, 12/05 → 25/05/2027",
+      "url": "https://www.kayak.fr/flights/PAR-CEB/2027-05-12/2027-05-25/2adults?sort=bestflight_a",
+      "des_1_escale_par_pers": 977,
+      "detail": "Malaysia Airlines ; Cathay Pacific 1 033 €, Singapore Airlines 980 €, EVA Air 979 €",
+      "source": "KAYAK",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "unite": "euros par personne, aller-retour"
+     }
+    ]
+   },
+   "meteo": {
+    "el_nido": {
+     "pluie_mm": "159 à 176",
+     "jours_de_pluie": "11",
+     "mer_c": 30,
+     "max_c": 32,
+     "mer_et_vent": "Orages de fin de journée, mer encore praticable avant la mousson",
+     "verdict": "Correct en première quinzaine, incertain ensuite",
+     "note_sur_5": 3,
+     "sources": [
+      "meteo_elnido_w2t",
+      "meteo_elnido_ss"
+     ]
+    },
+    "bohol_panglao": {
+     "pluie_mm": "84 à 106",
+     "jours_de_pluie": "averses courtes",
+     "mer_c": 30,
+     "max_c": 32,
+     "mer_et_vent": "Calme",
+     "verdict": "Bon : Bohol reste peu arrosée",
+     "note_sur_5": 4,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    },
+    "boracay": {
+     "pluie_mm": "191 à 200",
+     "jours_de_pluie": "8 à 10",
+     "mer_c": 30,
+     "max_c": 32,
+     "mer_et_vent": "Bascule des vents en fin de mois",
+     "verdict": "Correct, chaud et lourd",
+     "note_sur_5": 3,
+     "sources": [
+      "meteo_boracay_w2t",
+      "meteo_boracay_nw"
+     ]
+    },
+    "cebu_siquijor": {
+     "pluie_mm": "84 à 106",
+     "jours_de_pluie": null,
+     "mer_c": 30,
+     "max_c": 32,
+     "mer_et_vent": "Calme",
+     "verdict": "Bon",
+     "note_sur_5": 4,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    },
+    "coron": {
+     "pluie_mm": "en hausse nette (non relevé pour mai)",
+     "jours_de_pluie": null,
+     "mer_c": 30,
+     "max_c": 32,
+     "mer_et_vent": "Orages",
+     "verdict": "Incertain",
+     "note_sur_5": 3,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    }
+   },
+   "risque_typhon": "Faible, en hausse en fin de mois",
+   "foule": {
+    "niveau_sur_5": 3,
+    "texte": "Encore les vacances philippines en début de mois (1er mai férié), puis la fréquentation retombe. Côté France : ponts du 1er, du 8, de l'Ascension (6 mai) et de la Pentecôte (17 mai).",
+    "evenements": [
+     {
+      "date": "2027-05-01",
+      "nom": "Fête du Travail (férié, samedi)"
+     },
+     {
+      "date": "2027-05-06",
+      "nom": "Ascension (France)"
+     },
+     {
+      "date": "2027-05-17",
+      "nom": "Lundi de Pentecôte (France)"
+     }
+    ]
+   },
+   "note_globale_sur_10": 7.5,
+   "verdict": "Bon compromis après le 10 mai : moins de monde, vols stables, mais premiers orages à El Nido. À faire en commençant par Palawan."
+  },
+  {
+   "id": "juin",
+   "nom": "Juin 2027",
+   "vols": {
+    "meilleur_prix": {
+     "id": "v-juin-mnl-1406",
+     "mois": "juin",
+     "aeroport_arrivee": "MNL",
+     "depart_paris": "2027-06-14",
+     "retour_paris": "2027-06-28",
+     "jours_porte_a_porte": 14,
+     "compagnie": "Etihad Airways",
+     "escale_via": "Abou Dabi",
+     "escales_par_trajet": 1,
+     "duree_aller": "18h25",
+     "duree_retour": "18h50",
+     "prix_2_adultes": 1493,
+     "bagage_soute_inclus": false,
+     "critere_confort": true,
+     "source": "Kiwi.com (outil de recherche)",
+     "url": "https://kiwi.com/u/jk6rjcm",
+     "observe_le": "2026-11-12",
+     "statut": "observé",
+     "note": "Sans bagage en soute."
+    },
+    "meilleur_confort_prix": {
+     "id": "v-juin-ceb-1806",
+     "mois": "juin",
+     "aeroport_arrivee": "CEB",
+     "depart_paris": "2027-06-18",
+     "retour_paris": "2027-07-02",
+     "jours_porte_a_porte": 14,
+     "compagnie": "Cathay Pacific",
+     "escale_via": "Hong Kong",
+     "escales_par_trajet": 1,
+     "duree_aller": "16h30",
+     "duree_retour": "18h35",
+     "prix_2_adultes": 2221,
+     "bagage_soute_inclus": true,
+     "critere_confort": true,
+     "source": "Kiwi.com (outil de recherche)",
+     "url": "https://kiwi.com/u/y7gv4j",
+     "observe_le": "2026-11-12",
+     "statut": "observé",
+     "note": ""
+    },
+    "fourchette_cebu_confort": [
+     2221,
+     2222
+    ],
+    "releves": [
+     {
+      "id": "v-juin-ceb-1506",
+      "mois": "juin",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-06-15",
+      "retour_paris": "2027-06-30",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 2222,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/juxuq9p",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-juin-ceb-1806",
+      "mois": "juin",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-06-18",
+      "retour_paris": "2027-07-02",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Cathay Pacific",
+      "escale_via": "Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "16h30",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 2221,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/y7gv4j",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-juin-ceb-0706",
+      "mois": "juin",
+      "aeroport_arrivee": "CEB",
+      "depart_paris": "2027-06-07",
+      "retour_paris": "2027-06-21",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Malaysia Airlines + Cathay Pacific",
+      "escale_via": "Kuala Lumpur / Hong Kong",
+      "escales_par_trajet": 1,
+      "duree_aller": "20h05",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 3068,
+      "bagage_soute_inclus": true,
+      "critere_confort": false,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/xgwhjm",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Le tarif Cathay aller-retour dépasse 3 600 € ce jour-là."
+     },
+     {
+      "id": "v-juin-mnl-1406",
+      "mois": "juin",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-06-14",
+      "retour_paris": "2027-06-28",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Etihad Airways",
+      "escale_via": "Abou Dabi",
+      "escales_par_trajet": 1,
+      "duree_aller": "18h25",
+      "duree_retour": "18h50",
+      "prix_2_adultes": 1493,
+      "bagage_soute_inclus": false,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/jk6rjcm",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": "Sans bagage en soute."
+     },
+     {
+      "id": "v-juin-mnl-0206",
+      "mois": "juin",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-06-02",
+      "retour_paris": "2027-06-15",
+      "jours_porte_a_porte": 13,
+      "compagnie": "Qatar Airways",
+      "escale_via": "Doha",
+      "escales_par_trajet": 1,
+      "duree_aller": "17h50",
+      "duree_retour": "17h25",
+      "prix_2_adultes": 1598,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/v4h2mxj",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-juin-mnl-0506",
+      "mois": "juin",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-06-05",
+      "retour_paris": "2027-06-20",
+      "jours_porte_a_porte": 15,
+      "compagnie": "Air India",
+      "escale_via": "Delhi",
+      "escales_par_trajet": 1,
+      "duree_aller": "18h50",
+      "duree_retour": "18h35",
+      "prix_2_adultes": 1611,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/j9gjzhy",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     },
+     {
+      "id": "v-juin-mnl-1206",
+      "mois": "juin",
+      "aeroport_arrivee": "MNL",
+      "depart_paris": "2027-06-12",
+      "retour_paris": "2027-06-26",
+      "jours_porte_a_porte": 14,
+      "compagnie": "Singapore Airlines",
+      "escale_via": "Singapour",
+      "escales_par_trajet": 1,
+      "duree_aller": "18h40",
+      "duree_retour": "19h45",
+      "prix_2_adultes": 1889,
+      "bagage_soute_inclus": true,
+      "critere_confort": true,
+      "source": "Kiwi.com (outil de recherche)",
+      "url": "https://kiwi.com/u/zkn3k9",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "note": ""
+     }
+    ],
+    "releves_kayak": [
+     {
+      "recherche": "Paris → Cebu, 14/06 → 27/06/2027",
+      "url": "https://www.kayak.fr/flights/PAR-CEB/2027-06-14/2027-06-27/2adults?sort=bestflight_a",
+      "des_1_escale_par_pers": 913,
+      "detail": "Singapore Airlines ; EVA Air 1 014 €, Malaysia Airlines 1 078 €",
+      "source": "KAYAK",
+      "observe_le": "2026-11-12",
+      "statut": "observé",
+      "unite": "euros par personne, aller-retour"
+     }
+    ]
+   },
+   "meteo": {
+    "el_nido": {
+     "pluie_mm": "288 à 333",
+     "jours_de_pluie": "18",
+     "mer_c": 30,
+     "max_c": 31,
+     "mer_et_vent": "Habagat installé : houle d'ouest, sorties en mer annulées certains jours",
+     "verdict": "Déconseillé pour un voyage de noces",
+     "note_sur_5": 1,
+     "sources": [
+      "meteo_elnido_w2t",
+      "meteo_elnido_ss"
+     ]
+    },
+    "bohol_panglao": {
+     "pluie_mm": "55 à 124 (fourchette janvier-septembre)",
+     "jours_de_pluie": "averses",
+     "mer_c": 30,
+     "max_c": 31,
+     "mer_et_vent": "Côte sud abritée de la mousson",
+     "verdict": "Acceptable",
+     "note_sur_5": 3,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    },
+    "boracay": {
+     "pluie_mm": "277 à 350",
+     "jours_de_pluie": "15 à 18",
+     "mer_c": 30,
+     "max_c": 31,
+     "mer_et_vent": "White Beach exposée au vent d'ouest, paravents installés",
+     "verdict": "Déconseillé",
+     "note_sur_5": 2,
+     "sources": [
+      "meteo_boracay_w2t",
+      "meteo_boracay_nw"
+     ]
+    },
+    "cebu_siquijor": {
+     "pluie_mm": "comparable à Bohol (non relevé séparément)",
+     "jours_de_pluie": null,
+     "mer_c": 30,
+     "max_c": 31,
+     "mer_et_vent": "Variable",
+     "verdict": "Acceptable",
+     "note_sur_5": 3,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    },
+    "coron": {
+     "pluie_mm": "très forte (772 mm en juillet)",
+     "jours_de_pluie": null,
+     "mer_c": 30,
+     "max_c": 31,
+     "mer_et_vent": "Houle",
+     "verdict": "Déconseillé",
+     "note_sur_5": 1,
+     "sources": [
+      "meteo_ph_goasia"
+     ]
+    }
+   },
+   "risque_typhon": "Modéré : début de saison, surtout au nord et à l'est",
+   "foule": {
+    "niveau_sur_5": 2,
+    "texte": "Basse saison : peu de monde, mais c'est la pluie qui vide les plages. Début officiel de la saison des pluies : 2 juin en 2025, 4 juin en 2026.",
+    "evenements": [
+     {
+      "date": "2027-06-12",
+      "nom": "Fête de l'Indépendance (férié, samedi)"
+     }
+    ]
+   },
+   "note_globale_sur_10": 3.5,
+   "verdict": "À écarter : la mousson du sud-ouest s'installe début juin sur Palawan et Boracay, sans économie réelle sur les vols."
+  }
+ ],
+ "fenetre_recommandee": {
+  "definition_14_jours": "Départ de Paris un lundi en fin de matinée, retour à Paris le lundi deux semaines plus tard à 7 h 40 : 14 jours écoulés, 12 nuits sur place, 2 nuits en vol.",
+  "principale": {
+   "depart": "2027-03-01",
+   "retour": "2027-03-15",
+   "libelle": "Du lundi 1er mars au lundi 15 mars 2027",
+   "vol_reference": "v-mars-ceb-0103",
+   "pourquoi": [
+    "Temps sec et mer calme sur les deux étapes (7 à 16 mm de pluie à El Nido en mars).",
+    "Retour une semaine avant la Semaine sainte philippine (jours fériés du 25 au 28 mars, affluence dès le 20) et hors vacances de printemps françaises.",
+    "Vol Cathay Pacific via Hong Kong relevé à 2 205 € pour deux, bagages compris, 16 h 35 à l'aller.",
+    "Le lundi suivant (8 mars) coûte 800 € de plus : la date compte davantage que le mois."
+   ]
+  },
+  "seconde": {
+   "depart": "2027-05-12",
+   "retour": "2027-05-26",
+   "libelle": "Du mercredi 12 mai au mercredi 26 mai 2027",
+   "vol_reference": "v-mai-ceb-1205",
+   "pourquoi": [
+    "Après les vacances philippines et les vacances de printemps françaises : moins de monde.",
+    "Vol Cathay Pacific relevé à 2 297 € pour deux, pour un retour à Paris le 25 mai (13 jours) ; le retour du 26 mai, qui fait 14 jours, reste à relever.",
+    "Prix d'hôtel quasi identiques à mars (villa avec piscine de l'Amorita : 3 731 € en mai contre 3 786 € en mars, hors taxes).",
+    "Limite : premiers orages à El Nido (11 jours de pluie en mai) ; on garde El Nido en premier."
+   ]
+  },
+  "a_eviter": [
+   {
+    "periode": "20 → 28 mars 2027",
+    "raison": "Semaine sainte : foule, prix, services réduits."
+   },
+   {
+    "periode": "3 → 19 avril 2027",
+    "raison": "Début des vacances françaises et pont philippin du 9 avril : vols à plus de 3 000 €."
+   },
+   {
+    "periode": "Juin 2027",
+    "raison": "Mousson du sud-ouest sur Palawan et Boracay."
+   }
+  ]
+ },
+ "programmes": [
+  {
+   "id": "essentiel",
+   "nom": "L'Essentiel",
+   "niveau": "≈ 6 500 €",
+   "budget_cible": 6500,
+   "recommande": false,
+   "raison_recommandation": "",
+   "resume": "Les lagons d'El Nido puis une semaine de plage à Panglao, dans de bons hôtels bien notés. Le parcours est le même que dans la version recommandée ; on économise sur la chambre et sur deux sorties faites en petit groupe.",
+   "dates": {
+    "depart": "2027-03-01",
+    "retour": "2027-03-15",
+    "nuits_sur_place": 12,
+    "nuits_en_vol": 2,
+    "jours_porte_a_porte": 14
+   },
+   "etapes": [
+    {
+     "lieu": "El Nido (Palawan)",
+     "nuits": 5,
+     "du": "2027-03-02",
+     "au": "2027-03-07",
+     "hotel_id": "colonial",
+     "coord": [
+      11.202,
+      119.416
+     ],
+     "role": "Les lagons et les îles karstiques, en bateau privé."
+    },
+    {
+     "lieu": "Panglao (Bohol)",
+     "nuits": 7,
+     "du": "2027-03-07",
+     "au": "2027-03-14",
+     "hotel_id": "hpc_premier",
+     "coord": [
+      9.549,
+      123.775
+     ],
+     "role": "La semaine de repos : plage, piscine, deux sorties courtes."
+    }
+   ],
+   "hotels": [
+    {
+     "id": "colonial",
+     "nom": "La Colonial Resort",
+     "lieu": "Corong-Corong, El Nido",
+     "note_booking": 9.3,
+     "nombre_avis": 354,
+     "respecte_regle_avis": true,
+     "chambre": "Suite lit king-size, vue piscine",
+     "surface_m2": 52,
+     "atouts_chambre": [
+      "terrasse",
+      "vue piscine",
+      "accès espace bien-être"
+     ],
+     "nuits": 5,
+     "prix_total_sejour": 925,
+     "prix_nuit": 185,
+     "statut_prix": "observé",
+     "methode_prix": "809 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+     "petit_dejeuner_inclus": true,
+     "annulation": "Annulation gratuite (date limite à relire sur Booking)",
+     "url_booking": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+     "url_officiel": null,
+     "dates_cherchees": [
+      "2027-03-02",
+      "2027-03-07"
+     ],
+     "observe_le": "2026-11-12",
+     "remarque": "À Corong-Corong, au sud du bourg d'El Nido (adresse Booking : National Highway Km 264). Distance exacte à la plage et à l'aéroport à vérifier avant de réserver."
+    },
+    {
+     "id": "hpc_premier",
+     "nom": "Henann Premier Coast Resort",
+     "lieu": "Route d'Alona, Panglao (Bohol)",
+     "note_booking": 9.3,
+     "nombre_avis": 506,
+     "respecte_regle_avis": true,
+     "chambre": "Chambre Premier",
+     "surface_m2": 42,
+     "atouts_chambre": [
+      "balcon",
+      "baignoire",
+      "3 piscines"
+     ],
+     "nuits": 7,
+     "prix_total_sejour": 1018,
+     "prix_nuit": 145,
+     "statut_prix": "observé",
+     "methode_prix": "909 € affichés + 12 % de TVA",
+     "petit_dejeuner_inclus": true,
+     "annulation": "Non remboursable",
+     "url_booking": "https://www.booking.com/hotel/ph/henann-premier-coast-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+     "url_officiel": null,
+     "dates_cherchees": [
+      "2027-03-07",
+      "2027-03-14"
+     ],
+     "observe_le": "2026-11-12",
+     "remarque": "Accès à la plage à vérifier dans les avis récents avant de réserver."
+    }
+   ],
+   "jours": [
+    {
+     "jour": 1,
+     "date": "2027-03-01",
+     "titre": "Paris → Hong Kong",
+     "texte": "Départ de Roissy à 11 h 35 sur Cathay Pacific. Nuit en vol.",
+     "type": "vol"
+    },
+    {
+     "jour": 2,
+     "date": "2027-03-02",
+     "titre": "Hong Kong → Cebu → El Nido",
+     "texte": "Arrivée à Cebu à 11 h 10, déjeuner à l'aéroport, vol de 16 h 35 pour El Nido (1 h 45). Installation, dîner à l'hôtel.",
+     "type": "vol"
+    },
+    {
+     "jour": 3,
+     "date": "2027-03-03",
+     "titre": "El Nido, au ralenti",
+     "texte": "Journée sans programme pour absorber le décalage : piscine, massage, coucher de soleil sur la baie.",
+     "type": "repos"
+    },
+    {
+     "jour": 4,
+     "date": "2027-03-04",
+     "titre": "Les lagons, rien que pour vous",
+     "texte": "Tour A en bangka privée. Départ à 7 h 30 pour entrer dans le Big Lagoon avant les groupes, déjeuner sur une plage.",
+     "type": "wow"
+    },
+    {
+     "jour": 5,
+     "date": "2027-03-05",
+     "titre": "Plage de Nacpan",
+     "texte": "Matinée libre. L'après-midi, 4 km de sable à Nacpan (45 min de route) ou coucher de soleil à Las Cabañas.",
+     "type": "repos"
+    },
+    {
+     "jour": 6,
+     "date": "2027-03-06",
+     "titre": "Plages cachées de Matinloc",
+     "texte": "Tour C en petit groupe. Retour vers 16 h, dernier dîner à El Nido.",
+     "type": "sortie"
+    },
+    {
+     "jour": 7,
+     "date": "2027-03-07",
+     "titre": "El Nido → Panglao",
+     "texte": "Matinée à la piscine, vol direct de 13 h 35, arrivée à Bohol-Panglao à 15 h 20. L'hôtel est à 15 minutes.",
+     "type": "vol"
+    },
+    {
+     "jour": 8,
+     "date": "2027-03-08",
+     "titre": "Panglao : rien",
+     "texte": "Piscine, plage, sieste. C'est le début de la semaine de repos.",
+     "type": "repos"
+    },
+    {
+     "jour": 9,
+     "date": "2027-03-09",
+     "titre": "Panglao : spa",
+     "texte": "Matinée à la plage, massage en duo l'après-midi.",
+     "type": "repos"
+    },
+    {
+     "jour": 10,
+     "date": "2027-03-10",
+     "titre": "Balicasag à l'aube",
+     "texte": "Bateau partagé pour Balicasag et Virgin Island. Départ à 6 h, tortues et tombant corallien, retour pour le déjeuner. Après-midi libre.",
+     "type": "sortie"
+    },
+    {
+     "jour": 11,
+     "date": "2027-03-11",
+     "titre": "Panglao : rien, encore",
+     "texte": "Journée blanche. Dîner sur la plage d'Alona.",
+     "type": "repos"
+    },
+    {
+     "jour": 12,
+     "date": "2027-03-12",
+     "titre": "Bohol, côté jungle",
+     "texte": "Excursion en petit groupe. Chocolate Hills, tarsiers au sanctuaire de Corella, déjeuner au fil de la rivière Loboc. Retour vers 16 h.",
+     "type": "sortie"
+    },
+    {
+     "jour": 13,
+     "date": "2027-03-13",
+     "titre": "Dernière soirée",
+     "texte": "Journée libre, puis dîner privé sur la plage.",
+     "type": "wow"
+    },
+    {
+     "jour": 14,
+     "date": "2027-03-14",
+     "titre": "Panglao → Cebu → Hong Kong",
+     "texte": "Matinée tranquille, ferry de 10 h 40 pour Cebu (2 h), déjeuner en ville, taxi pour l'aéroport. Vol Cathay Pacific à 19 h 35.",
+     "type": "vol"
+    },
+    {
+     "jour": 15,
+     "date": "2027-03-15",
+     "titre": "Paris",
+     "texte": "Arrivée à Roissy à 7 h 40.",
+     "type": "vol"
+    }
+   ],
+   "transferts": [
+    {
+     "de": "Paris CDG",
+     "a": "Cebu (CEB)",
+     "mode": "Vol Cathay Pacific via Hong Kong",
+     "duree": "16 h 35",
+     "prix_2": 2205,
+     "note": "Aller-retour ; billet unique, bagages suivis."
+    },
+    {
+     "de": "Cebu",
+     "a": "El Nido (ENI)",
+     "mode": "Vol CebGo direct (ATR)",
+     "duree": "1 h 45",
+     "prix_2": 367,
+     "note": "Billet séparé : 5 h 25 de marge après l'arrivée du vol de Hong Kong."
+    },
+    {
+     "de": "El Nido",
+     "a": "Bohol-Panglao (TAG)",
+     "mode": "Vol CebGo direct",
+     "duree": "1 h 45",
+     "prix_2": 264,
+     "note": "Un seul vol relevé ce jour-là : à réserver tôt."
+    },
+    {
+     "de": "Panglao",
+     "a": "Cebu",
+     "mode": "Taxi (40 min) puis ferry OceanJet Tagbilaran → Cebu",
+     "duree": "2 h de mer",
+     "prix_2": 46,
+     "note": "12 à 13 départs par jour."
+    },
+    {
+     "de": "Port de Cebu",
+     "a": "Aéroport de Mactan",
+     "mode": "Taxi",
+     "duree": "45 à 60 min",
+     "prix_2": null,
+     "note": "Compris dans le forfait transferts."
+    }
+   ],
+   "experiences_incluses": [
+    "Lagons d'El Nido en bangka privée (Tour A : Big Lagoon, Secret Lagoon, Shimizu, 7 Commandos)",
+    "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+    "Tour C en petit groupe (Hidden Beach, Secret Beach, sanctuaire de Matinloc, île Hélicoptère)",
+    "Bohol intérieur en petit groupe : Chocolate Hills, tarsiers, rivière Loboc",
+    "Balicasag et Virgin Island en bateau partagé (tortues, tombant corallien)",
+    "Massage en duo (spa de l'hôtel ou spa local)",
+    "Dîner privé sur la plage au coucher du soleil"
+   ],
+   "moment_wow": "Les lagons d'El Nido en bateau privé, départ avant les groupes.",
+   "budget": {
+    "lignes": [
+     {
+      "poste": "vols_internationaux",
+      "libelle": "Paris ⇄ Cebu, Cathay Pacific via Hong Kong, bagages en soute compris",
+      "montant": 2205,
+      "statut": "observé",
+      "methode": "Kiwi.com, 01/03 → retour le 14/03 au soir, arrivée le 15/03 à 7 h 40, 2 adultes",
+      "url": "https://kiwi.com/u/n4r77b"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Cebu → El Nido, CebGo, 02/03 à 16 h 35",
+      "montant": 367,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/mfypg2u"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "El Nido → Bohol-Panglao, CebGo direct, 07/03 à 13 h 35",
+      "montant": 264,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/utss8m"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Bagages en soute sur les vols intérieurs (2 vols × 2 personnes × 20 kg)",
+      "montant": 57,
+      "statut": "estimation",
+      "methode": "1 000 PHP par bagage de 20 kg acheté en ligne (barème 2026)",
+      "url": "https://baggagelimits.com/cebu-pacific-baggage-allowance/carry-on"
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Ferry rapide OceanJet Tagbilaran → Cebu, classe affaires",
+      "montant": 46,
+      "statut": "observé",
+      "methode": "1 450 PHP par personne (tarif du 21/09/2026) + 10 % de surcharge carburant + taxe de port",
+      "url": "https://suroy.ph/cebu-to-bohol-ferry/"
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Domicile ⇄ Roissy, aller et retour",
+      "montant": 120,
+      "statut": "estimation",
+      "methode": "deux courses en taxi ou VTC à 60 € ; moins en RER",
+      "url": null
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Taxis sur place (aéroports, port de Tagbilaran, port de Cebu → aéroport)",
+      "montant": 65,
+      "statut": "estimation",
+      "methode": "environ 4 600 PHP de courses",
+      "url": null
+     },
+     {
+      "poste": "hotels",
+      "libelle": "La Colonial Resort — Suite lit king-size, vue piscine, 5 nuits",
+      "montant": 925,
+      "statut": "observé",
+      "methode": "809 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+      "url": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "hotels",
+      "libelle": "Henann Premier Coast Resort — Chambre Premier, 7 nuits",
+      "montant": 1018,
+      "statut": "observé",
+      "methode": "909 € affichés + 12 % de TVA",
+      "url": "https://www.booking.com/hotel/ph/henann-premier-coast-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Lagons d'El Nido en bangka privée (Tour A : Big Lagoon, Secret Lagoon, Shimizu, 7 Commandos)",
+      "montant": 227,
+      "statut": "observé",
+      "methode": "16 000 PHP par bateau privé à partir de 2 personnes (El Nido Insights, octobre 2026) ; 13 000 PHP chez Travel-Palawan",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+      "montant": 21,
+      "statut": "observé",
+      "methode": "barème publié, écotaxe valable plusieurs jours",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Tour C en petit groupe (Hidden Beach, Secret Beach, sanctuaire de Matinloc, île Hélicoptère)",
+      "montant": 48,
+      "statut": "observé",
+      "methode": "1 700 PHP par personne, déjeuner compris",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Bohol intérieur en petit groupe : Chocolate Hills, tarsiers, rivière Loboc",
+      "montant": 73,
+      "statut": "observé",
+      "methode": "à partir de 41 USD par personne (GetYourGuide, 1 223 avis, 4,7/5)",
+      "url": "https://www.getyourguide.com/bohol-l614/private-tours-tc221/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Balicasag et Virgin Island en bateau partagé (tortues, tombant corallien)",
+      "montant": 45,
+      "statut": "observé",
+      "methode": "à partir de 20 à 25 USD par personne (GetYourGuide)",
+      "url": "https://www.getyourguide.com/bohol-l614/cruises-boat-tours-tc48/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Massage en duo (spa de l'hôtel ou spa local)",
+      "montant": 60,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+      "url": null
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Dîner privé sur la plage au coucher du soleil",
+      "montant": 120,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+      "url": null
+     },
+     {
+      "poste": "repas",
+      "libelle": "Déjeuners et dîners, 12 jours à 55 € par jour pour deux",
+      "montant": 660,
+      "statut": "estimation",
+      "methode": "restaurants d'hôtel et de plage, boissons simples ; petits-déjeuners compris dans les hôtels",
+      "url": null
+     },
+     {
+      "poste": "divers",
+      "libelle": "eSIM, pourboires, taxes de port et d'aéroport, imprévus",
+      "montant": 130,
+      "statut": "estimation",
+      "methode": "forfait",
+      "url": null
+     }
+    ],
+    "sous_totaux": {
+     "vols_internationaux": 2205,
+     "vols_interieurs": 688,
+     "transferts": 231,
+     "hotels": 1943,
+     "experiences": 594,
+     "repas": 660,
+     "divers": 130
+    },
+    "total": 6451,
+    "ecart_vs_6500": -49,
+    "ecart_vs_8500": -2049,
+    "part_observee": 0.81
+   },
+   "comparaison_vp": {
+    "prix_vp_2": 4698,
+    "nuits_vp": 10,
+    "nuits_programme": 12,
+    "etapes_vp": 4,
+    "etapes_programme": 2,
+    "base_comparable": 4947,
+    "ecart_base_comparable": 249,
+    "methode": "Base comparable = vols, vols intérieurs, transferts sur place et hôtels du programme (sans repas ni excursions), face au prix Voyage Privé qui comprend en plus deux excursions et un dîner.",
+    "mieux": [
+     "2 étapes au lieu de 4, aucune route de plus de 45 minutes",
+     "12 nuits sur place au lieu de 10",
+     "Les lagons en bateau privé plutôt qu'en groupe",
+     "Hôtels nommés et notés, sans « ou similaire »",
+     "Suite de 52 m² avec terrasse à El Nido, chambre de 42 m² avec balcon à Panglao"
+    ],
+    "perdu": [
+     "La rivière souterraine de Sabang",
+     "L'accompagnement d'une agence sur place (vous réservez tout vous-mêmes)",
+     "La garantie d'un forfait en cas d'annulation de vol"
+    ]
+   },
+   "forces": [
+    "Tient dans 6 500 € tout compris, repas et sorties inclus",
+    "Une seule sortie privée, mais la bonne : les lagons",
+    "Hôtels à 9,3/10 avec plusieurs centaines d'avis"
+   ],
+   "faiblesses": [
+    "Pas de piscine privée",
+    "Tarif non remboursable à Panglao",
+    "Trois sorties en groupe"
+   ],
+   "pour_qui": "Si la priorité est de ne pas dépasser 6 500 € sans renoncer au parcours.",
+   "options": [
+    {
+     "libelle": "Vue plage à Panglao (grande chambre, 44 m²)",
+     "surcout": 292,
+     "hotel_id": "hpc_plage"
+    },
+    {
+     "libelle": "Piscine privée : suite king à l'Epic Suites Bohol (80 m², adultes seulement)",
+     "surcout": 274,
+     "hotel_id": "epic"
+    }
+   ],
+   "escale_option": {
+    "ville": "Hong Kong",
+    "placement": "au retour, après les plages",
+    "hotel_id": "icon",
+    "detail_cout": {
+     "hotel_2_nuits": 550,
+     "frais_sur_place": 280,
+     "supplement_vol_estime": 100
+    },
+    "version_sans_allonger": {
+     "libelle": "Sans allonger : 2 nuits à Hong Kong prises sur Panglao",
+     "nuits_philippines_retirees": 2,
+     "duree_totale_jours": 14,
+     "retour_paris": "2027-03-15",
+     "surcout": 530,
+     "economie_philippines": 400,
+     "statut": "estimation",
+     "effet": "Panglao passe de 7 à 5 nuits ; départ de Cebu le 12/03 au soir."
+    },
+    "version_allongee": {
+     "libelle": "En allongeant : + 2 jours, 2 nuits à Hong Kong",
+     "nuits_philippines_retirees": 0,
+     "duree_totale_jours": 16,
+     "retour_paris": "2027-03-17",
+     "surcout": 930,
+     "statut": "estimation",
+     "effet": "Rien ne change aux Philippines ; arrivée à Paris le mercredi 17/03 à 7 h 40."
+    },
+    "recommandation": "allongee",
+    "pourquoi": "Retirer deux nuits de repos pour une grande ville va contre l'idée du voyage (80 % repos). Si vous pouvez prendre deux jours de plus, l'escale au retour vaut la peine ; sinon, mieux vaut s'en passer.",
+    "methode": "Hôtel ICON 2 nuits (550 €, estimation taxes comprises) + 140 € par jour pour deux (repas, métro, Airport Express, tramway du Peak : estimation) + 100 € de marge sur le billet multi-destinations. Relevé KAYAK du 12/11/2026 : Cathay Pacific, Paris → Hong Kong le 01/03, Hong Kong → Cebu le 04/03, Cebu → Paris le 17/03, 2 158 € pour deux, soit 47 € de moins que l'aller-retour simple. Ce relevé place l'escale à l'aller ; le même billet avec l'escale au retour n'a pas été relevé, d'où la marge."
+   }
+  },
+  {
+   "id": "sur_mesure",
+   "nom": "Le Sur-mesure",
+   "niveau": "≈ 8 500 €",
+   "budget_cible": 8500,
+   "recommande": true,
+   "raison_recommandation": "C'est le seul niveau où chaque euro ajouté se voit : la piscine privée pendant toute la semaine de repos et les sorties sans groupe. Au-dessus, on paie surtout l'isolement.",
+   "resume": "Cinq nuits à El Nido pour les lagons, puis sept nuits dans une villa de 127 m² avec piscine privée sur la plage d'Alona. Toutes les sorties sont privées. C'est le programme que nous recommandons.",
+   "dates": {
+    "depart": "2027-03-01",
+    "retour": "2027-03-15",
+    "nuits_sur_place": 12,
+    "nuits_en_vol": 2,
+    "jours_porte_a_porte": 14
+   },
+   "etapes": [
+    {
+     "lieu": "El Nido (Palawan)",
+     "nuits": 5,
+     "du": "2027-03-02",
+     "au": "2027-03-07",
+     "hotel_id": "colonial",
+     "coord": [
+      11.202,
+      119.416
+     ],
+     "role": "Les lagons et les îles karstiques, en bateau privé."
+    },
+    {
+     "lieu": "Panglao (Bohol)",
+     "nuits": 7,
+     "du": "2027-03-07",
+     "au": "2027-03-14",
+     "hotel_id": "henann_villa",
+     "coord": [
+      9.549,
+      123.775
+     ],
+     "role": "La semaine de repos : plage, piscine, deux sorties courtes."
+    }
+   ],
+   "hotels": [
+    {
+     "id": "colonial",
+     "nom": "La Colonial Resort",
+     "lieu": "Corong-Corong, El Nido",
+     "note_booking": 9.3,
+     "nombre_avis": 354,
+     "respecte_regle_avis": true,
+     "chambre": "Suite lit king-size, vue piscine",
+     "surface_m2": 52,
+     "atouts_chambre": [
+      "terrasse",
+      "vue piscine",
+      "accès espace bien-être"
+     ],
+     "nuits": 5,
+     "prix_total_sejour": 925,
+     "prix_nuit": 185,
+     "statut_prix": "observé",
+     "methode_prix": "809 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+     "petit_dejeuner_inclus": true,
+     "annulation": "Annulation gratuite (date limite à relire sur Booking)",
+     "url_booking": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+     "url_officiel": null,
+     "dates_cherchees": [
+      "2027-03-02",
+      "2027-03-07"
+     ],
+     "observe_le": "2026-11-12",
+     "remarque": "À Corong-Corong, au sud du bourg d'El Nido (adresse Booking : National Highway Km 264). Distance exacte à la plage et à l'aéroport à vérifier avant de réserver."
+    },
+    {
+     "id": "henann_villa",
+     "nom": "Henann Resort Alona Beach",
+     "lieu": "Plage d'Alona, Panglao (Bohol)",
+     "note_booking": 9.2,
+     "nombre_avis": 571,
+     "respecte_regle_avis": true,
+     "chambre": "Villa avec piscine",
+     "surface_m2": 127,
+     "atouts_chambre": [
+      "piscine privée",
+      "terrasse avec transats",
+      "baignoire",
+      "resort sur la plage d'Alona"
+     ],
+     "nuits": 7,
+     "prix_total_sejour": 2365,
+     "prix_nuit": 338,
+     "statut_prix": "observé",
+     "methode_prix": "2 112 € affichés + 12 % de TVA",
+     "petit_dejeuner_inclus": true,
+     "annulation": "Non remboursable",
+     "url_booking": "https://www.booking.com/hotel/ph/henann-beach-alona-beach.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+     "url_officiel": "https://www.henann.com/bohol/henannalonabeach/",
+     "dates_cherchees": [
+      "2027-03-07",
+      "2027-03-14"
+     ],
+     "observe_le": "2026-11-12",
+     "remarque": ""
+    }
+   ],
+   "jours": [
+    {
+     "jour": 1,
+     "date": "2027-03-01",
+     "titre": "Paris → Hong Kong",
+     "texte": "Départ de Roissy à 11 h 35 sur Cathay Pacific. Nuit en vol.",
+     "type": "vol"
+    },
+    {
+     "jour": 2,
+     "date": "2027-03-02",
+     "titre": "Hong Kong → Cebu → El Nido",
+     "texte": "Arrivée à Cebu à 11 h 10, déjeuner à l'aéroport, vol de 16 h 35 pour El Nido (1 h 45). Installation, dîner à l'hôtel.",
+     "type": "vol"
+    },
+    {
+     "jour": 3,
+     "date": "2027-03-03",
+     "titre": "El Nido, au ralenti",
+     "texte": "Journée sans programme pour absorber le décalage : piscine, massage, coucher de soleil sur la baie.",
+     "type": "repos"
+    },
+    {
+     "jour": 4,
+     "date": "2027-03-04",
+     "titre": "Les lagons, rien que pour vous",
+     "texte": "Tour A en bangka privée. Départ à 7 h 30 pour entrer dans le Big Lagoon avant les groupes, déjeuner sur une plage.",
+     "type": "wow"
+    },
+    {
+     "jour": 5,
+     "date": "2027-03-05",
+     "titre": "Plage de Nacpan",
+     "texte": "Matinée libre. L'après-midi, 4 km de sable à Nacpan (45 min de route) ou coucher de soleil à Las Cabañas.",
+     "type": "repos"
+    },
+    {
+     "jour": 6,
+     "date": "2027-03-06",
+     "titre": "Plages cachées de Matinloc",
+     "texte": "Tour C en bangka privée. Retour vers 16 h, dernier dîner à El Nido.",
+     "type": "sortie"
+    },
+    {
+     "jour": 7,
+     "date": "2027-03-07",
+     "titre": "El Nido → Panglao",
+     "texte": "Matinée à la piscine, vol direct de 13 h 35, arrivée à Bohol-Panglao à 15 h 20. L'hôtel est à 15 minutes.",
+     "type": "vol"
+    },
+    {
+     "jour": 8,
+     "date": "2027-03-08",
+     "titre": "Panglao : rien",
+     "texte": "Piscine, plage, sieste. C'est le début de la semaine de repos.",
+     "type": "repos"
+    },
+    {
+     "jour": 9,
+     "date": "2027-03-09",
+     "titre": "Panglao : spa",
+     "texte": "Matinée à la plage, rituel spa en duo l'après-midi.",
+     "type": "repos"
+    },
+    {
+     "jour": 10,
+     "date": "2027-03-10",
+     "titre": "Balicasag à l'aube",
+     "texte": "Bateau privé pour Balicasag, dauphins au lever du jour. Départ à 6 h, tortues et tombant corallien, retour pour le déjeuner. Après-midi libre.",
+     "type": "sortie"
+    },
+    {
+     "jour": 11,
+     "date": "2027-03-11",
+     "titre": "Panglao : rien, encore",
+     "texte": "Journée blanche. Dîner sur la plage d'Alona.",
+     "type": "repos"
+    },
+    {
+     "jour": 12,
+     "date": "2027-03-12",
+     "titre": "Bohol, côté jungle",
+     "texte": "Voiture privée avec chauffeur. Chocolate Hills, tarsiers au sanctuaire de Corella, déjeuner au fil de la rivière Loboc. Retour vers 16 h.",
+     "type": "sortie"
+    },
+    {
+     "jour": 13,
+     "date": "2027-03-13",
+     "titre": "Dernière soirée",
+     "texte": "Journée libre, puis dîner privé sur la plage d'Alona.",
+     "type": "wow"
+    },
+    {
+     "jour": 14,
+     "date": "2027-03-14",
+     "titre": "Panglao → Cebu → Hong Kong",
+     "texte": "Matinée tranquille, ferry de 10 h 40 pour Cebu (2 h), déjeuner en ville, taxi pour l'aéroport. Vol Cathay Pacific à 19 h 35.",
+     "type": "vol"
+    },
+    {
+     "jour": 15,
+     "date": "2027-03-15",
+     "titre": "Paris",
+     "texte": "Arrivée à Roissy à 7 h 40.",
+     "type": "vol"
+    }
+   ],
+   "transferts": [
+    {
+     "de": "Paris CDG",
+     "a": "Cebu (CEB)",
+     "mode": "Vol Cathay Pacific via Hong Kong",
+     "duree": "16 h 35",
+     "prix_2": 2205,
+     "note": "Aller-retour ; billet unique, bagages suivis."
+    },
+    {
+     "de": "Cebu",
+     "a": "El Nido (ENI)",
+     "mode": "Vol CebGo direct (ATR)",
+     "duree": "1 h 45",
+     "prix_2": 367,
+     "note": "Billet séparé : 5 h 25 de marge après l'arrivée du vol de Hong Kong."
+    },
+    {
+     "de": "El Nido",
+     "a": "Bohol-Panglao (TAG)",
+     "mode": "Vol CebGo direct",
+     "duree": "1 h 45",
+     "prix_2": 264,
+     "note": "Un seul vol relevé ce jour-là : à réserver tôt."
+    },
+    {
+     "de": "Panglao",
+     "a": "Cebu",
+     "mode": "Taxi (40 min) puis ferry OceanJet Tagbilaran → Cebu",
+     "duree": "2 h de mer",
+     "prix_2": 46,
+     "note": "12 à 13 départs par jour."
+    },
+    {
+     "de": "Port de Cebu",
+     "a": "Aéroport de Mactan",
+     "mode": "Taxi",
+     "duree": "45 à 60 min",
+     "prix_2": null,
+     "note": "Compris dans le forfait transferts."
+    }
+   ],
+   "experiences_incluses": [
+    "Lagons d'El Nido en bangka privée (Tour A : Big Lagoon, Secret Lagoon, Shimizu, 7 Commandos)",
+    "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+    "Tour C en bangka privée (Hidden Beach, Secret Beach, Matinloc)",
+    "Bohol intérieur en voiture privée : Chocolate Hills au couchant, tarsiers, rivière Loboc",
+    "Balicasag en bateau privé, dauphins au lever du jour",
+    "Rituel spa en duo au resort",
+    "Dîner privé sur la plage d'Alona, table dressée pour deux"
+   ],
+   "moment_wow": "Sept nuits avec piscine privée, et les lagons d'El Nido en bateau privé.",
+   "budget": {
+    "lignes": [
+     {
+      "poste": "vols_internationaux",
+      "libelle": "Paris ⇄ Cebu, Cathay Pacific via Hong Kong, bagages en soute compris",
+      "montant": 2205,
+      "statut": "observé",
+      "methode": "Kiwi.com, 01/03 → retour le 14/03 au soir, arrivée le 15/03 à 7 h 40, 2 adultes",
+      "url": "https://kiwi.com/u/n4r77b"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Cebu → El Nido, CebGo, 02/03 à 16 h 35",
+      "montant": 367,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/mfypg2u"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "El Nido → Bohol-Panglao, CebGo direct, 07/03 à 13 h 35",
+      "montant": 264,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/utss8m"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Bagages en soute sur les vols intérieurs (2 vols × 2 personnes × 20 kg)",
+      "montant": 57,
+      "statut": "estimation",
+      "methode": "1 000 PHP par bagage de 20 kg acheté en ligne (barème 2026)",
+      "url": "https://baggagelimits.com/cebu-pacific-baggage-allowance/carry-on"
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Ferry rapide OceanJet Tagbilaran → Cebu, classe affaires",
+      "montant": 46,
+      "statut": "observé",
+      "methode": "1 450 PHP par personne (tarif du 21/09/2026) + 10 % de surcharge carburant + taxe de port",
+      "url": "https://suroy.ph/cebu-to-bohol-ferry/"
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Domicile ⇄ Roissy, aller et retour",
+      "montant": 120,
+      "statut": "estimation",
+      "methode": "deux courses en taxi ou VTC à 60 € ; moins en RER",
+      "url": null
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Taxis sur place (aéroports, port de Tagbilaran, port de Cebu → aéroport)",
+      "montant": 65,
+      "statut": "estimation",
+      "methode": "environ 4 600 PHP de courses",
+      "url": null
+     },
+     {
+      "poste": "hotels",
+      "libelle": "La Colonial Resort — Suite lit king-size, vue piscine, 5 nuits",
+      "montant": 925,
+      "statut": "observé",
+      "methode": "809 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+      "url": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "hotels",
+      "libelle": "Henann Resort Alona Beach — Villa avec piscine, 7 nuits",
+      "montant": 2365,
+      "statut": "observé",
+      "methode": "2 112 € affichés + 12 % de TVA",
+      "url": "https://www.booking.com/hotel/ph/henann-beach-alona-beach.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Lagons d'El Nido en bangka privée (Tour A : Big Lagoon, Secret Lagoon, Shimizu, 7 Commandos)",
+      "montant": 227,
+      "statut": "observé",
+      "methode": "16 000 PHP par bateau privé à partir de 2 personnes (El Nido Insights, octobre 2026) ; 13 000 PHP chez Travel-Palawan",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+      "montant": 21,
+      "statut": "observé",
+      "methode": "barème publié, écotaxe valable plusieurs jours",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Tour C en bangka privée (Hidden Beach, Secret Beach, Matinloc)",
+      "montant": 227,
+      "statut": "observé",
+      "methode": "16 000 PHP par bateau privé",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Bohol intérieur en voiture privée : Chocolate Hills au couchant, tarsiers, rivière Loboc",
+      "montant": 140,
+      "statut": "estimation",
+      "methode": "129 USD par groupe de 2 (GetYourGuide) + 25 € d'entrées et de déjeuner estimés",
+      "url": "https://www.getyourguide.com/bohol-l614/private-tours-tc221/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Balicasag en bateau privé, dauphins au lever du jour",
+      "montant": 97,
+      "statut": "estimation",
+      "methode": "à partir de 109 USD (GetYourGuide) ; à confirmer : prix par groupe ou par personne",
+      "url": "https://www.getyourguide.com/bohol-l614/cruises-boat-tours-tc48/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Rituel spa en duo au resort",
+      "montant": 120,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+      "url": null
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Dîner privé sur la plage d'Alona, table dressée pour deux",
+      "montant": 180,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+      "url": null
+     },
+     {
+      "poste": "repas",
+      "libelle": "Déjeuners et dîners, 12 jours à 65 € par jour pour deux",
+      "montant": 780,
+      "statut": "estimation",
+      "methode": "restaurants d'hôtel et de plage, un ou deux dîners plus soignés ; petits-déjeuners compris",
+      "url": null
+     },
+     {
+      "poste": "divers",
+      "libelle": "eSIM, pourboires, taxes de port et d'aéroport, imprévus",
+      "montant": 150,
+      "statut": "estimation",
+      "methode": "forfait",
+      "url": null
+     }
+    ],
+    "sous_totaux": {
+     "vols_internationaux": 2205,
+     "vols_interieurs": 688,
+     "transferts": 231,
+     "hotels": 3290,
+     "experiences": 1012,
+     "repas": 780,
+     "divers": 150
+    },
+    "total": 8356,
+    "ecart_vs_6500": 1856,
+    "ecart_vs_8500": -144,
+    "part_observee": 0.8
+   },
+   "comparaison_vp": {
+    "prix_vp_2": 4698,
+    "nuits_vp": 10,
+    "nuits_programme": 12,
+    "etapes_vp": 4,
+    "etapes_programme": 2,
+    "base_comparable": 6294,
+    "ecart_base_comparable": 1596,
+    "methode": "Base comparable = vols, vols intérieurs, transferts sur place et hôtels du programme (sans repas ni excursions), face au prix Voyage Privé qui comprend en plus deux excursions et un dîner.",
+    "mieux": [
+     "2 étapes au lieu de 4, aucune route de plus de 45 minutes",
+     "12 nuits sur place au lieu de 10",
+     "Les lagons en bateau privé plutôt qu'en groupe",
+     "Hôtels nommés et notés, sans « ou similaire »",
+     "Sept nuits en villa de 127 m² avec piscine privée, au lieu d'une chambre Deluxe",
+     "Quatre sorties privées au lieu de deux excursions de groupe"
+    ],
+    "perdu": [
+     "La rivière souterraine de Sabang",
+     "L'accompagnement d'une agence sur place (vous réservez tout vous-mêmes)",
+     "La garantie d'un forfait en cas d'annulation de vol"
+    ]
+   },
+   "forces": [
+    "Sept nuits de suite dans la même villa avec piscine privée",
+    "Toutes les sorties en privé, aux heures creuses",
+    "Grand resort sur la plage : restaurants, piscines, animation pour Simon",
+    "Total sous 8 500 €, repas compris"
+   ],
+   "faiblesses": [
+    "Villa en vue jardin, pas en vue mer",
+    "Tarif non remboursable à Panglao : réserver après les vols",
+    "Alona est une plage animée, pas une crique déserte"
+   ],
+   "pour_qui": "Pour vous deux, tel que vous avez décrit le voyage : 80 % de repos, une belle chambre, peu de transports.",
+   "options": [
+    {
+     "libelle": "El Nido en villa avec piscine privée et vue mer (Morgan Villas, 9,7/10)",
+     "surcout": 1643,
+     "hotel_id": "morgan"
+    },
+    {
+     "libelle": "El Nido en studio de 63 m² avec balcon (Piece Lio, 9,5/10, 935 avis)",
+     "surcout": 835,
+     "hotel_id": "piece"
+    },
+    {
+     "libelle": "Panglao à l'Amorita, villa avec piscine sur la falaise (plus calme, annulable)",
+     "surcout": 1856,
+     "hotel_id": "amorita_villa"
+    }
+   ],
+   "escale_option": {
+    "ville": "Hong Kong",
+    "placement": "au retour, après les plages",
+    "hotel_id": "icon",
+    "detail_cout": {
+     "hotel_2_nuits": 550,
+     "frais_sur_place": 280,
+     "supplement_vol_estime": 100
+    },
+    "version_sans_allonger": {
+     "libelle": "Sans allonger : 2 nuits à Hong Kong prises sur Panglao",
+     "nuits_philippines_retirees": 2,
+     "duree_totale_jours": 14,
+     "retour_paris": "2027-03-15",
+     "surcout": 124,
+     "economie_philippines": 806,
+     "statut": "estimation",
+     "effet": "Panglao passe de 7 à 5 nuits ; départ de Cebu le 12/03 au soir."
+    },
+    "version_allongee": {
+     "libelle": "En allongeant : + 2 jours, 2 nuits à Hong Kong",
+     "nuits_philippines_retirees": 0,
+     "duree_totale_jours": 16,
+     "retour_paris": "2027-03-17",
+     "surcout": 930,
+     "statut": "estimation",
+     "effet": "Rien ne change aux Philippines ; arrivée à Paris le mercredi 17/03 à 7 h 40."
+    },
+    "recommandation": "allongee",
+    "pourquoi": "Retirer deux nuits de repos pour une grande ville va contre l'idée du voyage (80 % repos). Si vous pouvez prendre deux jours de plus, l'escale au retour vaut la peine ; sinon, mieux vaut s'en passer.",
+    "methode": "Hôtel ICON 2 nuits (550 €, estimation taxes comprises) + 140 € par jour pour deux (repas, métro, Airport Express, tramway du Peak : estimation) + 100 € de marge sur le billet multi-destinations. Relevé KAYAK du 12/11/2026 : Cathay Pacific, Paris → Hong Kong le 01/03, Hong Kong → Cebu le 04/03, Cebu → Paris le 17/03, 2 158 € pour deux, soit 47 € de moins que l'aller-retour simple. Ce relevé place l'escale à l'aller ; le même billet avec l'escale au retour n'a pas été relevé, d'où la marge."
+   }
+  },
+  {
+   "id": "grand_jeu",
+   "nom": "Le Grand jeu",
+   "niveau": "sans plafond",
+   "budget_cible": null,
+   "recommande": false,
+   "raison_recommandation": "",
+   "resume": "Cinq nuits sur une île privée de la baie de Bacuit, villa posée sur le lagon, puis sept nuits en villa avec piscine sur la falaise d'Alona. On ne voit pas plus de choses : on les voit seuls.",
+   "dates": {
+    "depart": "2027-03-01",
+    "retour": "2027-03-15",
+    "nuits_sur_place": 12,
+    "nuits_en_vol": 2,
+    "jours_porte_a_porte": 14
+   },
+   "etapes": [
+    {
+     "lieu": "El Nido (Palawan)",
+     "nuits": 5,
+     "du": "2027-03-02",
+     "au": "2027-03-07",
+     "hotel_id": "cauayan_lagon",
+     "coord": [
+      11.202,
+      119.416
+     ],
+     "role": "Les lagons et les îles karstiques, en bateau privé."
+    },
+    {
+     "lieu": "Panglao (Bohol)",
+     "nuits": 7,
+     "du": "2027-03-07",
+     "au": "2027-03-14",
+     "hotel_id": "amorita_villa",
+     "coord": [
+      9.549,
+      123.775
+     ],
+     "role": "La semaine de repos : plage, piscine, deux sorties courtes."
+    }
+   ],
+   "hotels": [
+    {
+     "id": "cauayan_lagon",
+     "nom": "Cauayan Boutique Private Island",
+     "lieu": "Île de Cauayan, baie de Bacuit",
+     "note_booking": 9.4,
+     "nombre_avis": 322,
+     "respecte_regle_avis": true,
+     "chambre": "Villa Lagon",
+     "surface_m2": 55,
+     "atouts_chambre": [
+      "île privée",
+      "balcon sur le lagon",
+      "navette bateau depuis Lio incluse"
+     ],
+     "nuits": 5,
+     "prix_total_sejour": 3967,
+     "prix_nuit": 793,
+     "statut_prix": "observé",
+     "methode_prix": "3 468 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+     "petit_dejeuner_inclus": false,
+     "annulation": "Non remboursable",
+     "url_booking": "https://www.booking.com/hotel/ph/cauayan-island-resort.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+     "url_officiel": "https://www.cauayanresort.com/",
+     "dates_cherchees": [
+      "2027-03-02",
+      "2027-03-07"
+     ],
+     "observe_le": "2026-11-12",
+     "remarque": "Petit-déjeuner à 19 € par personne et par jour, compté à part."
+    },
+    {
+     "id": "amorita_villa",
+     "nom": "Amorita Resort",
+     "lieu": "Falaise d'Alona, Panglao (Bohol)",
+     "note_booking": 9.0,
+     "nombre_avis": 361,
+     "respecte_regle_avis": true,
+     "chambre": "Villa avec piscine",
+     "surface_m2": 120,
+     "atouts_chambre": [
+      "piscine privée",
+      "villa entière",
+      "2 piscines à débordement dans le resort"
+     ],
+     "nuits": 7,
+     "prix_total_sejour": 4221,
+     "prix_nuit": 603,
+     "statut_prix": "observé",
+     "methode_prix": "3 786 € affichés + 27 771 PHP de taxes + 2 838 PHP de taxe de séjour",
+     "petit_dejeuner_inclus": true,
+     "annulation": "Annulation gratuite jusqu'à 30 jours avant l'arrivée",
+     "url_booking": "https://www.booking.com/hotel/ph/amorita-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+     "url_officiel": "https://www.amoritaresort.com/",
+     "dates_cherchees": [
+      "2027-03-07",
+      "2027-03-14"
+     ],
+     "observe_le": "2026-11-12",
+     "remarque": "Version vue mer indisponible aux dates de mars ; relevée à 4 236 € hors taxes en mai."
+    }
+   ],
+   "jours": [
+    {
+     "jour": 1,
+     "date": "2027-03-01",
+     "titre": "Paris → Hong Kong",
+     "texte": "Départ de Roissy à 11 h 35 sur Cathay Pacific. Nuit en vol.",
+     "type": "vol"
+    },
+    {
+     "jour": 2,
+     "date": "2027-03-02",
+     "titre": "Hong Kong → Cebu → El Nido",
+     "texte": "Arrivée à Cebu à 11 h 10, déjeuner à l'aéroport, vol de 16 h 35 pour El Nido (1 h 45), puis bateau de l'hôtel jusqu'à l'île. Dîner sur place.",
+     "type": "vol"
+    },
+    {
+     "jour": 3,
+     "date": "2027-03-03",
+     "titre": "El Nido, au ralenti",
+     "texte": "Journée sans programme pour absorber le décalage : la plage de l'île, kayak, massage en fin d'après-midi.",
+     "type": "repos"
+    },
+    {
+     "jour": 4,
+     "date": "2027-03-04",
+     "titre": "Les lagons, rien que pour vous",
+     "texte": "Tour A en vedette rapide privée. Départ à 7 h 30 pour entrer dans le Big Lagoon avant les groupes, déjeuner sur une plage.",
+     "type": "wow"
+    },
+    {
+     "jour": 5,
+     "date": "2027-03-05",
+     "titre": "L'île pour vous",
+     "texte": "Journée sur l'île : snorkeling depuis la plage, kayak, sieste. Le soir, dîner privé sur la plage.",
+     "type": "wow"
+    },
+    {
+     "jour": 6,
+     "date": "2027-03-06",
+     "titre": "Plages cachées de Matinloc",
+     "texte": "Tour C en bangka privée. Retour vers 16 h, dernier dîner à El Nido.",
+     "type": "sortie"
+    },
+    {
+     "jour": 7,
+     "date": "2027-03-07",
+     "titre": "El Nido → Panglao",
+     "texte": "Bateau de l'hôtel jusqu'à Lio, vol direct de 13 h 35, arrivée à Bohol-Panglao à 15 h 20. L'Amorita est à 15 minutes.",
+     "type": "vol"
+    },
+    {
+     "jour": 8,
+     "date": "2027-03-08",
+     "titre": "Panglao : rien",
+     "texte": "Piscine, plage, sieste. C'est le début de la semaine de repos.",
+     "type": "repos"
+    },
+    {
+     "jour": 9,
+     "date": "2027-03-09",
+     "titre": "Panglao : spa",
+     "texte": "Matinée à la plage, rituel de deux heures au spa l'après-midi.",
+     "type": "repos"
+    },
+    {
+     "jour": 10,
+     "date": "2027-03-10",
+     "titre": "Balicasag à l'aube",
+     "texte": "Bateau privé pour Balicasag, dauphins au lever du jour. Départ à 6 h, tortues et tombant corallien, retour pour le déjeuner. Après-midi libre.",
+     "type": "sortie"
+    },
+    {
+     "jour": 11,
+     "date": "2027-03-11",
+     "titre": "Panglao : rien, encore",
+     "texte": "Journée blanche. Dîner sur la plage d'Alona.",
+     "type": "repos"
+    },
+    {
+     "jour": 12,
+     "date": "2027-03-12",
+     "titre": "Bohol, côté jungle",
+     "texte": "Voiture privée avec chauffeur. Chocolate Hills, tarsiers au sanctuaire de Corella, déjeuner au fil de la rivière Loboc. Retour vers 16 h.",
+     "type": "sortie"
+    },
+    {
+     "jour": 13,
+     "date": "2027-03-13",
+     "titre": "Dernière soirée",
+     "texte": "Journée libre, puis dîner à l'Amorita, face à la mer.",
+     "type": "repos"
+    },
+    {
+     "jour": 14,
+     "date": "2027-03-14",
+     "titre": "Panglao → Cebu → Hong Kong",
+     "texte": "Matinée tranquille, ferry de 10 h 40 pour Cebu (2 h), déjeuner en ville, taxi pour l'aéroport. Vol Cathay Pacific à 19 h 35.",
+     "type": "vol"
+    },
+    {
+     "jour": 15,
+     "date": "2027-03-15",
+     "titre": "Paris",
+     "texte": "Arrivée à Roissy à 7 h 40.",
+     "type": "vol"
+    }
+   ],
+   "transferts": [
+    {
+     "de": "Paris CDG",
+     "a": "Cebu (CEB)",
+     "mode": "Vol Cathay Pacific via Hong Kong",
+     "duree": "16 h 35",
+     "prix_2": 2205,
+     "note": "Aller-retour ; billet unique, bagages suivis."
+    },
+    {
+     "de": "Cebu",
+     "a": "El Nido (ENI)",
+     "mode": "Vol CebGo direct (ATR)",
+     "duree": "1 h 45",
+     "prix_2": 367,
+     "note": "Billet séparé : 5 h 25 de marge après l'arrivée du vol de Hong Kong."
+    },
+    {
+     "de": "El Nido",
+     "a": "Bohol-Panglao (TAG)",
+     "mode": "Vol CebGo direct",
+     "duree": "1 h 45",
+     "prix_2": 264,
+     "note": "Un seul vol relevé ce jour-là : à réserver tôt."
+    },
+    {
+     "de": "Panglao",
+     "a": "Cebu",
+     "mode": "Taxi (40 min) puis ferry OceanJet Tagbilaran → Cebu",
+     "duree": "2 h de mer",
+     "prix_2": 46,
+     "note": "12 à 13 départs par jour."
+    },
+    {
+     "de": "Port de Cebu",
+     "a": "Aéroport de Mactan",
+     "mode": "Taxi",
+     "duree": "45 à 60 min",
+     "prix_2": null,
+     "note": "Compris dans le forfait transferts."
+    }
+   ],
+   "experiences_incluses": [
+    "Lagons d'El Nido en vedette rapide privée (Tour A à la carte)",
+    "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+    "Tour C en bangka privée (Hidden Beach, Secret Beach, Matinloc)",
+    "Bohol intérieur en voiture privée : Chocolate Hills au couchant, tarsiers, rivière Loboc",
+    "Balicasag en bateau privé, dauphins au lever du jour",
+    "Rituel spa en duo (Sea Tree Spa de l'Amorita ou équivalent)",
+    "Dîner privé sur un banc de sable ou sur la plage de l'île"
+   ],
+   "moment_wow": "Dîner privé sur la plage de l'île, et cinq nuits au bord du lagon.",
+   "budget": {
+    "lignes": [
+     {
+      "poste": "vols_internationaux",
+      "libelle": "Paris ⇄ Cebu, Cathay Pacific via Hong Kong, bagages en soute compris",
+      "montant": 2205,
+      "statut": "observé",
+      "methode": "Kiwi.com, 01/03 → retour le 14/03 au soir, arrivée le 15/03 à 7 h 40, 2 adultes",
+      "url": "https://kiwi.com/u/n4r77b"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Cebu → El Nido, CebGo, 02/03 à 16 h 35",
+      "montant": 367,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/mfypg2u"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "El Nido → Bohol-Panglao, CebGo direct, 07/03 à 13 h 35",
+      "montant": 264,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/utss8m"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Bagages en soute sur les vols intérieurs (2 vols × 2 personnes × 20 kg)",
+      "montant": 57,
+      "statut": "estimation",
+      "methode": "1 000 PHP par bagage de 20 kg acheté en ligne (barème 2026)",
+      "url": "https://baggagelimits.com/cebu-pacific-baggage-allowance/carry-on"
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Ferry rapide OceanJet Tagbilaran → Cebu, classe affaires",
+      "montant": 46,
+      "statut": "observé",
+      "methode": "1 450 PHP par personne (tarif du 21/09/2026) + 10 % de surcharge carburant + taxe de port",
+      "url": "https://suroy.ph/cebu-to-bohol-ferry/"
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Domicile ⇄ Roissy, aller et retour",
+      "montant": 120,
+      "statut": "estimation",
+      "methode": "deux courses en taxi ou VTC à 60 € ; moins en RER",
+      "url": null
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Taxis sur place (Panglao, port de Tagbilaran, port de Cebu → aéroport)",
+      "montant": 50,
+      "statut": "estimation",
+      "methode": "environ 3 500 PHP ; la navette bateau de Cauayan est comprise",
+      "url": null
+     },
+     {
+      "poste": "hotels",
+      "libelle": "Cauayan Boutique Private Island — Villa Lagon, 5 nuits",
+      "montant": 3967,
+      "statut": "observé",
+      "methode": "3 468 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+      "url": "https://www.booking.com/hotel/ph/cauayan-island-resort.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "hotels",
+      "libelle": "Petits-déjeuners à Cauayan (19 € par personne et par jour, 5 jours)",
+      "montant": 190,
+      "statut": "observé",
+      "methode": "tarif affiché sur Booking",
+      "url": "https://www.booking.com/hotel/ph/cauayan-island-resort.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "hotels",
+      "libelle": "Amorita Resort — Villa avec piscine, 7 nuits",
+      "montant": 4221,
+      "statut": "observé",
+      "methode": "3 786 € affichés + 27 771 PHP de taxes + 2 838 PHP de taxe de séjour",
+      "url": "https://www.booking.com/hotel/ph/amorita-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Lagons d'El Nido en vedette rapide privée (Tour A à la carte)",
+      "montant": 369,
+      "statut": "observé",
+      "methode": "26 000 PHP par vedette privée à partir de 2 personnes (El Nido Insights)",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+      "montant": 21,
+      "statut": "observé",
+      "methode": "barème publié, écotaxe valable plusieurs jours",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Tour C en bangka privée (Hidden Beach, Secret Beach, Matinloc)",
+      "montant": 227,
+      "statut": "observé",
+      "methode": "16 000 PHP par bateau privé",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Bohol intérieur en voiture privée : Chocolate Hills au couchant, tarsiers, rivière Loboc",
+      "montant": 140,
+      "statut": "estimation",
+      "methode": "129 USD par groupe de 2 (GetYourGuide) + 25 € d'entrées et de déjeuner estimés",
+      "url": "https://www.getyourguide.com/bohol-l614/private-tours-tc221/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Balicasag en bateau privé, dauphins au lever du jour",
+      "montant": 97,
+      "statut": "estimation",
+      "methode": "à partir de 109 USD (GetYourGuide) ; à confirmer : prix par groupe ou par personne",
+      "url": "https://www.getyourguide.com/bohol-l614/cruises-boat-tours-tc48/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Rituel spa en duo (Sea Tree Spa de l'Amorita ou équivalent)",
+      "montant": 180,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+      "url": null
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Dîner privé sur un banc de sable ou sur la plage de l'île",
+      "montant": 300,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé : à demander au resort",
+      "url": null
+     },
+     {
+      "poste": "repas",
+      "libelle": "Déjeuners et dîners, 12 jours à 110 € par jour pour deux",
+      "montant": 1320,
+      "statut": "estimation",
+      "methode": "restaurant unique sur l'île à El Nido, tables de l'Amorita à Panglao ; estimation large",
+      "url": null
+     },
+     {
+      "poste": "divers",
+      "libelle": "eSIM, pourboires, taxes de port et d'aéroport, imprévus",
+      "montant": 220,
+      "statut": "estimation",
+      "methode": "forfait",
+      "url": null
+     }
+    ],
+    "sous_totaux": {
+     "vols_internationaux": 2205,
+     "vols_interieurs": 688,
+     "transferts": 216,
+     "hotels": 8378,
+     "experiences": 1334,
+     "repas": 1320,
+     "divers": 220
+    },
+    "total": 14361,
+    "ecart_vs_6500": 7861,
+    "ecart_vs_8500": 5861,
+    "part_observee": 0.83
+   },
+   "comparaison_vp": {
+    "prix_vp_2": 4698,
+    "nuits_vp": 10,
+    "nuits_programme": 12,
+    "etapes_vp": 4,
+    "etapes_programme": 2,
+    "base_comparable": 11367,
+    "ecart_base_comparable": 6669,
+    "methode": "Base comparable = vols, vols intérieurs, transferts sur place et hôtels du programme (sans repas ni excursions), face au prix Voyage Privé qui comprend en plus deux excursions et un dîner.",
+    "mieux": [
+     "2 étapes au lieu de 4, aucune route de plus de 45 minutes",
+     "12 nuits sur place au lieu de 10",
+     "Les lagons en bateau privé plutôt qu'en groupe",
+     "Hôtels nommés et notés, sans « ou similaire »",
+     "Une île privée au milieu de la baie au lieu d'un hôtel en ville",
+     "Villa de 120 m² avec piscine à Panglao, annulable jusqu'à 30 jours avant"
+    ],
+    "perdu": [
+     "La rivière souterraine de Sabang",
+     "L'accompagnement d'une agence sur place (vous réservez tout vous-mêmes)",
+     "La garantie d'un forfait en cas d'annulation de vol"
+    ]
+   },
+   "forces": [
+    "Île privée : on part en bateau depuis le ponton de l'hôtel",
+    "Amorita annulable sans frais jusqu'à 30 jours avant",
+    "Vedette rapide : plus de lagons, moins de trajet"
+   ],
+   "faiblesses": [
+    "Près de 6 000 € de plus que le Sur-mesure pour le même parcours",
+    "Sur l'île, un seul restaurant et des prix d'île",
+    "Villa Lagon non remboursable"
+   ],
+   "pour_qui": "Si le budget n'est pas le sujet et que l'isolement compte plus que l'animation.",
+   "options": [
+    {
+     "libelle": "Version plus mesurée : villa avec piscine privée et vue mer au Morgan Villas (9,7/10, 564 avis) à la place de l'île privée",
+     "surcout": -1589,
+     "hotel_id": "morgan"
+    },
+    {
+     "libelle": "Villa de 220 m² avec piscine privée à Cauayan",
+     "surcout": 3214,
+     "hotel_id": "cauayan_piscine"
+    },
+    {
+     "libelle": "Pangulasian, l'île-resort de référence (Beach Villa, 89 m²)",
+     "surcout": 3822,
+     "hotel_id": "pangulasian"
+    }
+   ],
+   "escale_option": {
+    "ville": "Hong Kong",
+    "placement": "au retour, après les plages",
+    "hotel_id": "icon",
+    "detail_cout": {
+     "hotel_2_nuits": 550,
+     "frais_sur_place": 280,
+     "supplement_vol_estime": 100
+    },
+    "version_sans_allonger": {
+     "libelle": "Sans allonger : 2 nuits à Hong Kong prises sur Panglao",
+     "nuits_philippines_retirees": 2,
+     "duree_totale_jours": 14,
+     "retour_paris": "2027-03-15",
+     "surcout": -496,
+     "economie_philippines": 1426,
+     "statut": "estimation",
+     "effet": "Panglao passe de 7 à 5 nuits ; départ de Cebu le 12/03 au soir."
+    },
+    "version_allongee": {
+     "libelle": "En allongeant : + 2 jours, 2 nuits à Hong Kong",
+     "nuits_philippines_retirees": 0,
+     "duree_totale_jours": 16,
+     "retour_paris": "2027-03-17",
+     "surcout": 930,
+     "statut": "estimation",
+     "effet": "Rien ne change aux Philippines ; arrivée à Paris le mercredi 17/03 à 7 h 40."
+    },
+    "recommandation": "allongee",
+    "pourquoi": "Retirer deux nuits de repos pour une grande ville va contre l'idée du voyage (80 % repos). Si vous pouvez prendre deux jours de plus, l'escale au retour vaut la peine ; sinon, mieux vaut s'en passer.",
+    "methode": "Hôtel ICON 2 nuits (550 €, estimation taxes comprises) + 140 € par jour pour deux (repas, métro, Airport Express, tramway du Peak : estimation) + 100 € de marge sur le billet multi-destinations. Relevé KAYAK du 12/11/2026 : Cathay Pacific, Paris → Hong Kong le 01/03, Hong Kong → Cebu le 04/03, Cebu → Paris le 17/03, 2 158 € pour deux, soit 47 € de moins que l'aller-retour simple. Ce relevé place l'escale à l'aller ; le même billet avec l'escale au retour n'a pas été relevé, d'où la marge."
+   }
+  },
+  {
+   "id": "palawan_boracay",
+   "nom": "L'Alternative : El Nido et Boracay",
+   "niveau": "≈ 8 500 €",
+   "budget_cible": 8500,
+   "recommande": false,
+   "raison_recommandation": "",
+   "resume": "Même début à El Nido, puis sept nuits à Boracay au lieu de Panglao : la plus belle plage du pays, plus d'animation, moins de nature. Une suite avec bassin privé dans une crique à l'écart.",
+   "dates": {
+    "depart": "2027-03-01",
+    "retour": "2027-03-15",
+    "nuits_sur_place": 12,
+    "nuits_en_vol": 2,
+    "jours_porte_a_porte": 14
+   },
+   "etapes": [
+    {
+     "lieu": "El Nido (Palawan)",
+     "nuits": 5,
+     "du": "2027-03-02",
+     "au": "2027-03-07",
+     "hotel_id": "colonial",
+     "coord": [
+      11.202,
+      119.416
+     ],
+     "role": "Les lagons et les îles karstiques, en bateau privé."
+    },
+    {
+     "lieu": "Boracay",
+     "nuits": 7,
+     "du": "2027-03-07",
+     "au": "2027-03-14",
+     "hotel_id": "crimson_bassin",
+     "coord": [
+      11.985,
+      121.917
+     ],
+     "role": "La grande plage de sable blanc, les couchers de soleil et l'animation."
+    }
+   ],
+   "hotels": [
+    {
+     "id": "colonial",
+     "nom": "La Colonial Resort",
+     "lieu": "Corong-Corong, El Nido",
+     "note_booking": 9.3,
+     "nombre_avis": 354,
+     "respecte_regle_avis": true,
+     "chambre": "Suite lit king-size, vue piscine",
+     "surface_m2": 52,
+     "atouts_chambre": [
+      "terrasse",
+      "vue piscine",
+      "accès espace bien-être"
+     ],
+     "nuits": 5,
+     "prix_total_sejour": 925,
+     "prix_nuit": 185,
+     "statut_prix": "observé",
+     "methode_prix": "809 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+     "petit_dejeuner_inclus": true,
+     "annulation": "Annulation gratuite (date limite à relire sur Booking)",
+     "url_booking": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+     "url_officiel": null,
+     "dates_cherchees": [
+      "2027-03-02",
+      "2027-03-07"
+     ],
+     "observe_le": "2026-11-12",
+     "remarque": "À Corong-Corong, au sud du bourg d'El Nido (adresse Booking : National Highway Km 264). Distance exacte à la plage et à l'aéroport à vérifier avant de réserver."
+    },
+    {
+     "id": "crimson_bassin",
+     "nom": "Crimson Resort and Spa Boracay",
+     "lieu": "Station Zero, Boracay",
+     "note_booking": 9.4,
+     "nombre_avis": 575,
+     "respecte_regle_avis": true,
+     "chambre": "Suite avec bassin privé",
+     "surface_m2": 55,
+     "atouts_chambre": [
+      "bassin privé",
+      "plage privée"
+     ],
+     "nuits": 7,
+     "prix_total_sejour": 2557,
+     "prix_nuit": 365,
+     "statut_prix": "estimation",
+     "methode_prix": "2 331 € affichés + taxes estimées à 9,7 % (taux constaté sur la première chambre de la page)",
+     "petit_dejeuner_inclus": true,
+     "annulation": "Non remboursable",
+     "url_booking": "https://www.booking.com/hotel/ph/crimson-resort-and-spa-boracay.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+     "url_officiel": "https://www.crimsonhotel.com/boracay",
+     "dates_cherchees": [
+      "2027-03-07",
+      "2027-03-14"
+     ],
+     "observe_le": "2026-11-12",
+     "remarque": ""
+    }
+   ],
+   "jours": [
+    {
+     "jour": 1,
+     "date": "2027-03-01",
+     "titre": "Paris → Hong Kong",
+     "texte": "Départ de Roissy à 11 h 35 sur Cathay Pacific. Nuit en vol.",
+     "type": "vol"
+    },
+    {
+     "jour": 2,
+     "date": "2027-03-02",
+     "titre": "Hong Kong → Cebu → El Nido",
+     "texte": "Arrivée à Cebu à 11 h 10, déjeuner à l'aéroport, vol de 16 h 35 pour El Nido (1 h 45). Installation, dîner à l'hôtel.",
+     "type": "vol"
+    },
+    {
+     "jour": 3,
+     "date": "2027-03-03",
+     "titre": "El Nido, au ralenti",
+     "texte": "Journée sans programme pour absorber le décalage : piscine, massage, coucher de soleil sur la baie.",
+     "type": "repos"
+    },
+    {
+     "jour": 4,
+     "date": "2027-03-04",
+     "titre": "Les lagons, rien que pour vous",
+     "texte": "Tour A en bangka privée. Départ à 7 h 30 pour entrer dans le Big Lagoon avant les groupes, déjeuner sur une plage.",
+     "type": "wow"
+    },
+    {
+     "jour": 5,
+     "date": "2027-03-05",
+     "titre": "Plage de Nacpan",
+     "texte": "Matinée libre. L'après-midi, 4 km de sable à Nacpan (45 min de route) ou coucher de soleil à Las Cabañas.",
+     "type": "repos"
+    },
+    {
+     "jour": 6,
+     "date": "2027-03-06",
+     "titre": "Plages cachées de Matinloc",
+     "texte": "Tour C en bangka privée. Retour vers 16 h, dernier dîner à El Nido.",
+     "type": "sortie"
+    },
+    {
+     "jour": 7,
+     "date": "2027-03-07",
+     "titre": "El Nido → Boracay",
+     "texte": "Vol direct de 14 h 05 pour Caticlan (1 h 05), bateau de l'hôtel jusqu'à Boracay. Premier coucher de soleil sur la plage.",
+     "type": "vol"
+    },
+    {
+     "jour": 8,
+     "date": "2027-03-08",
+     "titre": "Boracay : la plage",
+     "texte": "White Beach le matin, piscine l'après-midi.",
+     "type": "repos"
+    },
+    {
+     "jour": 9,
+     "date": "2027-03-09",
+     "titre": "Boracay : spa",
+     "texte": "Matinée libre, rituel spa en duo l'après-midi.",
+     "type": "repos"
+    },
+    {
+     "jour": 10,
+     "date": "2027-03-10",
+     "titre": "Le tour de l'île",
+     "texte": "Bateau privé jusqu'à Puka Beach, snorkeling, retour pour le déjeuner.",
+     "type": "sortie"
+    },
+    {
+     "jour": 11,
+     "date": "2027-03-11",
+     "titre": "Boracay : rien",
+     "texte": "Journée blanche. Dîner les pieds dans le sable à Station 1.",
+     "type": "repos"
+    },
+    {
+     "jour": 12,
+     "date": "2027-03-12",
+     "titre": "Voile au couchant",
+     "texte": "Journée libre, puis sortie en paraw privatisé au coucher du soleil.",
+     "type": "wow"
+    },
+    {
+     "jour": 13,
+     "date": "2027-03-13",
+     "titre": "Dernière soirée",
+     "texte": "Plage, puis dîner privé au resort.",
+     "type": "repos"
+    },
+    {
+     "jour": 14,
+     "date": "2027-03-14",
+     "titre": "Boracay → Cebu → Hong Kong",
+     "texte": "Bateau pour Caticlan, vol de 11 h 15 pour Cebu (1 h), déjeuner, vol Cathay Pacific à 19 h 35.",
+     "type": "vol"
+    },
+    {
+     "jour": 15,
+     "date": "2027-03-15",
+     "titre": "Paris",
+     "texte": "Arrivée à Roissy à 7 h 40.",
+     "type": "vol"
+    }
+   ],
+   "transferts": [
+    {
+     "de": "Paris CDG",
+     "a": "Cebu (CEB)",
+     "mode": "Vol Cathay Pacific via Hong Kong",
+     "duree": "16 h 35",
+     "prix_2": 2205,
+     "note": "Aller-retour ; billet unique, bagages suivis."
+    },
+    {
+     "de": "Cebu",
+     "a": "El Nido (ENI)",
+     "mode": "Vol CebGo direct (ATR)",
+     "duree": "1 h 45",
+     "prix_2": 367,
+     "note": "Billet séparé : 5 h 25 de marge après l'arrivée du vol de Hong Kong."
+    },
+    {
+     "de": "El Nido",
+     "a": "Caticlan (MPH)",
+     "mode": "Vol CebGo direct",
+     "duree": "1 h 05",
+     "prix_2": 361,
+     "note": "Un seul vol relevé ce jour-là."
+    },
+    {
+     "de": "Caticlan",
+     "a": "Boracay",
+     "mode": "Bateau puis voiturette de l'hôtel",
+     "duree": "30 à 45 min",
+     "prix_2": null,
+     "note": "Compris dans le forfait transferts ; taxes de port et d'environnement en sus."
+    },
+    {
+     "de": "Caticlan",
+     "a": "Cebu",
+     "mode": "Vol Cebu Pacific ou Philippine Airlines",
+     "duree": "1 h",
+     "prix_2": 77,
+     "note": "5 vols relevés le 14/03, de 59 à 87 €."
+    }
+   ],
+   "experiences_incluses": [
+    "Lagons d'El Nido en bangka privée (Tour A : Big Lagoon, Secret Lagoon, Shimizu, 7 Commandos)",
+    "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+    "Tour C en bangka privée (Hidden Beach, Secret Beach, Matinloc)",
+    "Tour de Boracay en bateau privé (Puka Beach, snorkeling)",
+    "Coucher de soleil en paraw (voilier traditionnel) privatisé",
+    "Rituel spa en duo au resort",
+    "Dîner privé au resort, sur la plage de la crique"
+   ],
+   "moment_wow": "Coucher de soleil en voilier privatisé devant White Beach.",
+   "budget": {
+    "lignes": [
+     {
+      "poste": "vols_internationaux",
+      "libelle": "Paris ⇄ Cebu, Cathay Pacific via Hong Kong, bagages en soute compris",
+      "montant": 2205,
+      "statut": "observé",
+      "methode": "Kiwi.com, 01/03 → retour le 14/03 au soir, arrivée le 15/03 à 7 h 40, 2 adultes",
+      "url": "https://kiwi.com/u/n4r77b"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Cebu → El Nido, CebGo, 02/03 à 16 h 35",
+      "montant": 367,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/mfypg2u"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "El Nido → Caticlan (Boracay), CebGo direct, 07/03 à 14 h 05",
+      "montant": 361,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/ykxfwc"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Caticlan → Cebu, Cebu Pacific, 14/03 à 11 h 15",
+      "montant": 77,
+      "statut": "observé",
+      "methode": "Kiwi.com, 2 adultes, bagage cabine seul",
+      "url": "https://kiwi.com/u/4mqspu3"
+     },
+     {
+      "poste": "vols_interieurs",
+      "libelle": "Bagages en soute sur les vols intérieurs (3 vols × 2 personnes × 20 kg)",
+      "montant": 85,
+      "statut": "estimation",
+      "methode": "1 000 PHP par bagage de 20 kg acheté en ligne (barème 2026)",
+      "url": "https://baggagelimits.com/cebu-pacific-baggage-allowance/carry-on"
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Domicile ⇄ Roissy, aller et retour",
+      "montant": 120,
+      "statut": "estimation",
+      "methode": "deux courses en taxi ou VTC à 60 € ; moins en RER",
+      "url": null
+     },
+     {
+      "poste": "transferts",
+      "libelle": "Transferts Caticlan ⇄ Boracay, taxes de port et d'environnement, taxis à El Nido",
+      "montant": 90,
+      "statut": "estimation",
+      "methode": "forfait ; le transfert du resort n'a pas été relevé",
+      "url": null
+     },
+     {
+      "poste": "hotels",
+      "libelle": "La Colonial Resort — Suite lit king-size, vue piscine, 5 nuits",
+      "montant": 925,
+      "statut": "observé",
+      "methode": "809 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+      "url": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "hotels",
+      "libelle": "Crimson Resort and Spa Boracay — Suite avec bassin privé, 7 nuits",
+      "montant": 2557,
+      "statut": "estimation",
+      "methode": "2 331 € affichés + taxes estimées à 9,7 % (taux constaté sur la première chambre de la page)",
+      "url": "https://www.booking.com/hotel/ph/crimson-resort-and-spa-boracay.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Lagons d'El Nido en bangka privée (Tour A : Big Lagoon, Secret Lagoon, Shimizu, 7 Commandos)",
+      "montant": 227,
+      "statut": "observé",
+      "methode": "16 000 PHP par bateau privé à partir de 2 personnes (El Nido Insights, octobre 2026) ; 13 000 PHP chez Travel-Palawan",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+      "montant": 21,
+      "statut": "observé",
+      "methode": "barème publié, écotaxe valable plusieurs jours",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Tour C en bangka privée (Hidden Beach, Secret Beach, Matinloc)",
+      "montant": 227,
+      "statut": "observé",
+      "methode": "16 000 PHP par bateau privé",
+      "url": "https://elnidoinsights.com/el-nido-island-hopping/"
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Tour de Boracay en bateau privé (Puka Beach, snorkeling)",
+      "montant": 120,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé",
+      "url": null
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Coucher de soleil en paraw (voilier traditionnel) privatisé",
+      "montant": 60,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé",
+      "url": null
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Rituel spa en duo au resort",
+      "montant": 120,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+      "url": null
+     },
+     {
+      "poste": "experiences",
+      "libelle": "Dîner privé au resort, sur la plage de la crique",
+      "montant": 180,
+      "statut": "estimation",
+      "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+      "url": null
+     },
+     {
+      "poste": "repas",
+      "libelle": "Déjeuners et dîners, 12 jours à 70 € par jour pour deux",
+      "montant": 840,
+      "statut": "estimation",
+      "methode": "Boracay est un peu plus chère que Panglao",
+      "url": null
+     },
+     {
+      "poste": "divers",
+      "libelle": "eSIM, pourboires, taxes de port et d'aéroport, imprévus",
+      "montant": 150,
+      "statut": "estimation",
+      "methode": "forfait",
+      "url": null
+     }
+    ],
+    "sous_totaux": {
+     "vols_internationaux": 2205,
+     "vols_interieurs": 890,
+     "transferts": 210,
+     "hotels": 3482,
+     "experiences": 955,
+     "repas": 840,
+     "divers": 150
+    },
+    "total": 8732,
+    "ecart_vs_6500": 2232,
+    "ecart_vs_8500": 232,
+    "part_observee": 0.51
+   },
+   "comparaison_vp": {
+    "prix_vp_2": 4698,
+    "nuits_vp": 10,
+    "nuits_programme": 12,
+    "etapes_vp": 4,
+    "etapes_programme": 2,
+    "base_comparable": 6667,
+    "ecart_base_comparable": 1969,
+    "methode": "Base comparable = vols, vols intérieurs, transferts sur place et hôtels du programme (sans repas ni excursions), face au prix Voyage Privé qui comprend en plus deux excursions et un dîner.",
+    "mieux": [
+     "2 étapes au lieu de 4, aucune route de plus de 45 minutes",
+     "12 nuits sur place au lieu de 10",
+     "Les lagons en bateau privé plutôt qu'en groupe",
+     "Hôtels nommés et notés, sans « ou similaire »",
+     "La plage de Boracay au lieu de Mactan"
+    ],
+    "perdu": [
+     "La rivière souterraine de Sabang",
+     "L'accompagnement d'une agence sur place (vous réservez tout vous-mêmes)",
+     "La garantie d'un forfait en cas d'annulation de vol",
+     "Bohol et sa jungle : ce parcours est tout en plages"
+    ]
+   },
+   "forces": [
+    "White Beach, 4 km de sable blanc : la plage que Simon aime",
+    "Resort 5* dans une crique privée, suite avec bassin",
+    "Retour à Cebu en avion (1 h) le dernier jour, sans ferry"
+   ],
+   "faiblesses": [
+    "Pas de jungle ni de Chocolate Hills",
+    "Boracay est très fréquentée, même en mars",
+    "Un vol intérieur de plus",
+    "Taxes du Crimson estimées, à confirmer"
+   ],
+   "pour_qui": "Si vous préférez une grande plage vivante et des restaurants à pied plutôt que le calme de Bohol.",
+   "options": [
+    {
+     "libelle": "Shangri-La Boracay, chambre Deluxe Vista de 63 m² vue mer",
+     "surcout": 2386,
+     "hotel_id": "shangri"
+    }
+   ],
+   "escale_option": {
+    "ville": "Hong Kong",
+    "placement": "au retour, après les plages",
+    "hotel_id": "icon",
+    "detail_cout": {
+     "hotel_2_nuits": 550,
+     "frais_sur_place": 280,
+     "supplement_vol_estime": 100
+    },
+    "version_sans_allonger": {
+     "libelle": "Sans allonger : 2 nuits à Hong Kong prises sur Boracay",
+     "nuits_philippines_retirees": 2,
+     "duree_totale_jours": 14,
+     "retour_paris": "2027-03-15",
+     "surcout": 60,
+     "economie_philippines": 870,
+     "statut": "estimation",
+     "effet": "Boracay passe de 7 à 5 nuits ; départ de Cebu le 12/03 au soir."
+    },
+    "version_allongee": {
+     "libelle": "En allongeant : + 2 jours, 2 nuits à Hong Kong",
+     "nuits_philippines_retirees": 0,
+     "duree_totale_jours": 16,
+     "retour_paris": "2027-03-17",
+     "surcout": 930,
+     "statut": "estimation",
+     "effet": "Rien ne change aux Philippines ; arrivée à Paris le mercredi 17/03 à 7 h 40."
+    },
+    "recommandation": "allongee",
+    "pourquoi": "Retirer deux nuits de repos pour une grande ville va contre l'idée du voyage (80 % repos). Si vous pouvez prendre deux jours de plus, l'escale au retour vaut la peine ; sinon, mieux vaut s'en passer.",
+    "methode": "Hôtel ICON 2 nuits (550 €, estimation taxes comprises) + 140 € par jour pour deux (repas, métro, Airport Express, tramway du Peak : estimation) + 100 € de marge sur le billet multi-destinations. Relevé KAYAK du 12/11/2026 : Cathay Pacific, Paris → Hong Kong le 01/03, Hong Kong → Cebu le 04/03, Cebu → Paris le 17/03, 2 158 € pour deux, soit 47 € de moins que l'aller-retour simple. Ce relevé place l'escale à l'aller ; le même billet avec l'escale au retour n'a pas été relevé, d'où la marge."
+   }
+  }
+ ],
+ "programme_recommande": "sur_mesure",
+ "hotels": [
+  {
+   "id": "colonial",
+   "nom": "La Colonial Resort",
+   "lieu": "Corong-Corong, El Nido",
+   "note_booking": 9.3,
+   "nombre_avis": 354,
+   "respecte_regle_avis": true,
+   "chambre": "Suite lit king-size, vue piscine",
+   "surface_m2": 52,
+   "atouts_chambre": [
+    "terrasse",
+    "vue piscine",
+    "accès espace bien-être"
+   ],
+   "nuits": 5,
+   "prix_total_sejour": 925,
+   "prix_nuit": 185,
+   "statut_prix": "observé",
+   "methode_prix": "809 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Annulation gratuite (date limite à relire sur Booking)",
+   "url_booking": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-02",
+    "2027-03-07"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "À Corong-Corong, au sud du bourg d'El Nido (adresse Booking : National Highway Km 264). Distance exacte à la plage et à l'aéroport à vérifier avant de réserver."
+  },
+  {
+   "id": "piece",
+   "nom": "Piece Lio",
+   "lieu": "Lio, El Nido",
+   "note_booking": 9.5,
+   "nombre_avis": 935,
+   "respecte_regle_avis": true,
+   "chambre": "Studio de luxe avec balcon",
+   "surface_m2": 63,
+   "atouts_chambre": [
+    "balcon",
+    "transferts aéroport inclus"
+   ],
+   "nuits": 5,
+   "prix_total_sejour": 1760,
+   "prix_nuit": 352,
+   "statut_prix": "observé",
+   "methode_prix": "1 574 € affichés + 13 116 PHP de taxes par séjour",
+   "petit_dejeuner_inclus": false,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/piece-lio.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-02",
+    "2027-03-07"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "Petit-déjeuner non mentionné dans le tarif relevé."
+  },
+  {
+   "id": "morgan",
+   "nom": "Morgan Villas",
+   "lieu": "Caalan, El Nido (bord de mer)",
+   "note_booking": 9.7,
+   "nombre_avis": 564,
+   "respecte_regle_avis": true,
+   "chambre": "Villa avec piscine privée, vue mer",
+   "surface_m2": 40,
+   "atouts_chambre": [
+    "piscine privée",
+    "terrasse",
+    "vue mer",
+    "transferts aéroport inclus"
+   ],
+   "nuits": 5,
+   "prix_total_sejour": 2568,
+   "prix_nuit": 514,
+   "statut_prix": "observé",
+   "methode_prix": "2 293 € affichés + 12 % de TVA",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/morgan-villas.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://morganvillas.com/",
+   "dates_cherchees": [
+    "2027-03-02",
+    "2027-03-07"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "La meilleure note de la sélection, avec plus de 500 avis."
+  },
+  {
+   "id": "liolio",
+   "nom": "Lio Lio Suites Private Pools",
+   "lieu": "El Nido",
+   "note_booking": 9.6,
+   "nombre_avis": 59,
+   "respecte_regle_avis": false,
+   "chambre": "Suite avec piscine privée",
+   "surface_m2": 64,
+   "atouts_chambre": [
+    "piscine privée",
+    "terrasse"
+   ],
+   "nuits": 5,
+   "prix_total_sejour": 1961,
+   "prix_nuit": 392,
+   "statut_prix": "observé",
+   "methode_prix": "1 751 € affichés + 12 % de TVA",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Annulation gratuite",
+   "url_booking": "https://www.booking.com/hotel/ph/lio-lio-suites.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-02",
+    "2027-03-07"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "Seulement 59 avis : en dessous de la règle « plusieurs centaines d'avis »."
+  },
+  {
+   "id": "cauayan_lagon",
+   "nom": "Cauayan Boutique Private Island",
+   "lieu": "Île de Cauayan, baie de Bacuit",
+   "note_booking": 9.4,
+   "nombre_avis": 322,
+   "respecte_regle_avis": true,
+   "chambre": "Villa Lagon",
+   "surface_m2": 55,
+   "atouts_chambre": [
+    "île privée",
+    "balcon sur le lagon",
+    "navette bateau depuis Lio incluse"
+   ],
+   "nuits": 5,
+   "prix_total_sejour": 3967,
+   "prix_nuit": 793,
+   "statut_prix": "observé",
+   "methode_prix": "3 468 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+   "petit_dejeuner_inclus": false,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/cauayan-island-resort.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://www.cauayanresort.com/",
+   "dates_cherchees": [
+    "2027-03-02",
+    "2027-03-07"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "Petit-déjeuner à 19 € par personne et par jour, compté à part."
+  },
+  {
+   "id": "cauayan_piscine",
+   "nom": "Cauayan Boutique Private Island",
+   "lieu": "Île de Cauayan, baie de Bacuit",
+   "note_booking": 9.4,
+   "nombre_avis": 322,
+   "respecte_regle_avis": true,
+   "chambre": "Villa Cauayan avec piscine",
+   "surface_m2": 220,
+   "atouts_chambre": [
+    "île privée",
+    "piscine privée",
+    "vue mer",
+    "navette bateau incluse"
+   ],
+   "nuits": 5,
+   "prix_total_sejour": 7181,
+   "prix_nuit": 1436,
+   "statut_prix": "observé",
+   "methode_prix": "6 277 € affichés + 12 % de TVA + 2,4 % de taxe de séjour",
+   "petit_dejeuner_inclus": false,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/cauayan-island-resort.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://www.cauayanresort.com/",
+   "dates_cherchees": [
+    "2027-03-02",
+    "2027-03-07"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "Petit-déjeuner à 19 € par personne et par jour, compté à part."
+  },
+  {
+   "id": "pangulasian",
+   "nom": "Pangulasian Island Resort",
+   "lieu": "Île de Pangulasian, baie de Bacuit",
+   "note_booking": 9.8,
+   "nombre_avis": 81,
+   "respecte_regle_avis": false,
+   "chambre": "Beach Villa, vue océan",
+   "surface_m2": 89,
+   "atouts_chambre": [
+    "île-resort",
+    "villa sur la plage",
+    "vue mer"
+   ],
+   "nuits": 5,
+   "prix_total_sejour": 7979,
+   "prix_nuit": 1596,
+   "statut_prix": "estimation",
+   "methode_prix": "7 283 € affichés + taxes estimées à 9,6 % (taux constaté sur la Canopy Villa : 53 245 PHP pour 7 914 €)",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Annulation gratuite",
+   "url_booking": "https://www.booking.com/hotel/ph/el-nido-resorts-pangulasian-island.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-02",
+    "2027-03-07"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "81 avis seulement : exception assumée, c'est l'île-resort de référence d'El Nido."
+  },
+  {
+   "id": "hpc_premier",
+   "nom": "Henann Premier Coast Resort",
+   "lieu": "Route d'Alona, Panglao (Bohol)",
+   "note_booking": 9.3,
+   "nombre_avis": 506,
+   "respecte_regle_avis": true,
+   "chambre": "Chambre Premier",
+   "surface_m2": 42,
+   "atouts_chambre": [
+    "balcon",
+    "baignoire",
+    "3 piscines"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 1018,
+   "prix_nuit": 145,
+   "statut_prix": "observé",
+   "methode_prix": "909 € affichés + 12 % de TVA",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/henann-premier-coast-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "Accès à la plage à vérifier dans les avis récents avant de réserver."
+  },
+  {
+   "id": "hpc_plage",
+   "nom": "Henann Premier Coast Resort",
+   "lieu": "Route d'Alona, Panglao (Bohol)",
+   "note_booking": 9.3,
+   "nombre_avis": 506,
+   "respecte_regle_avis": true,
+   "chambre": "Grande chambre, vue plage",
+   "surface_m2": 44,
+   "atouts_chambre": [
+    "balcon",
+    "vue mer",
+    "baignoire"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 1310,
+   "prix_nuit": 187,
+   "statut_prix": "observé",
+   "methode_prix": "1 170 € affichés + 12 % de TVA",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/henann-premier-coast-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": ""
+  },
+  {
+   "id": "hpc_suite",
+   "nom": "Henann Premier Coast Resort",
+   "lieu": "Route d'Alona, Panglao (Bohol)",
+   "note_booking": 9.3,
+   "nombre_avis": 506,
+   "respecte_regle_avis": true,
+   "chambre": "Suite junior, vue plage",
+   "surface_m2": 74,
+   "atouts_chambre": [
+    "balcon",
+    "vue mer",
+    "baignoire"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 1523,
+   "prix_nuit": 218,
+   "statut_prix": "observé",
+   "methode_prix": "1 360 € affichés + 12 % de TVA",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/henann-premier-coast-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": ""
+  },
+  {
+   "id": "epic",
+   "nom": "Epic Suites Bohol (réservé aux adultes)",
+   "lieu": "Dauis, île de Panglao",
+   "note_booking": 9.5,
+   "nombre_avis": 500,
+   "respecte_regle_avis": true,
+   "chambre": "Suite king avec piscine privée",
+   "surface_m2": 80,
+   "atouts_chambre": [
+    "piscine privée",
+    "terrasse",
+    "vue mer"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 1292,
+   "prix_nuit": 185,
+   "statut_prix": "observé",
+   "methode_prix": "1 154 € affichés (tarif réduit, 1 930 € barré) + 12 % de TVA",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/private-luxurious-oceanfront-infinity-pool-king-suite-dauis.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "En bord de mer mais sans vraie plage de sable : à vérifier dans les avis."
+  },
+  {
+   "id": "henann_villa",
+   "nom": "Henann Resort Alona Beach",
+   "lieu": "Plage d'Alona, Panglao (Bohol)",
+   "note_booking": 9.2,
+   "nombre_avis": 571,
+   "respecte_regle_avis": true,
+   "chambre": "Villa avec piscine",
+   "surface_m2": 127,
+   "atouts_chambre": [
+    "piscine privée",
+    "terrasse avec transats",
+    "baignoire",
+    "resort sur la plage d'Alona"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 2365,
+   "prix_nuit": 338,
+   "statut_prix": "observé",
+   "methode_prix": "2 112 € affichés + 12 % de TVA",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/henann-beach-alona-beach.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://www.henann.com/bohol/henannalonabeach/",
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": ""
+  },
+  {
+   "id": "henann_piscine",
+   "nom": "Henann Resort Alona Beach",
+   "lieu": "Plage d'Alona, Panglao (Bohol)",
+   "note_booking": 9.2,
+   "nombre_avis": 571,
+   "respecte_regle_avis": true,
+   "chambre": "Chambre Premier avec accès direct à la piscine",
+   "surface_m2": 46,
+   "atouts_chambre": [
+    "accès piscine depuis la terrasse"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 1684,
+   "prix_nuit": 241,
+   "statut_prix": "observé",
+   "methode_prix": "1 504 € affichés + 12 % de TVA",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/henann-beach-alona-beach.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://www.henann.com/bohol/henannalonabeach/",
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": ""
+  },
+  {
+   "id": "amorita_villa",
+   "nom": "Amorita Resort",
+   "lieu": "Falaise d'Alona, Panglao (Bohol)",
+   "note_booking": 9.0,
+   "nombre_avis": 361,
+   "respecte_regle_avis": true,
+   "chambre": "Villa avec piscine",
+   "surface_m2": 120,
+   "atouts_chambre": [
+    "piscine privée",
+    "villa entière",
+    "2 piscines à débordement dans le resort"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 4221,
+   "prix_nuit": 603,
+   "statut_prix": "observé",
+   "methode_prix": "3 786 € affichés + 27 771 PHP de taxes + 2 838 PHP de taxe de séjour",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Annulation gratuite jusqu'à 30 jours avant l'arrivée",
+   "url_booking": "https://www.booking.com/hotel/ph/amorita-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://www.amoritaresort.com/",
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "Version vue mer indisponible aux dates de mars ; relevée à 4 236 € hors taxes en mai."
+  },
+  {
+   "id": "southpalms",
+   "nom": "South Palms Resort Panglao (MGallery)",
+   "lieu": "Plage de Bolod, Panglao (Bohol)",
+   "note_booking": 9.4,
+   "nombre_avis": 145,
+   "respecte_regle_avis": false,
+   "chambre": "Suite junior king avec petite piscine privée",
+   "surface_m2": 78,
+   "atouts_chambre": [
+    "piscine privée",
+    "longue plage privée"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 3127,
+   "prix_nuit": 447,
+   "statut_prix": "observé",
+   "methode_prix": "2 792 € affichés + 12 % de TVA",
+   "petit_dejeuner_inclus": false,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/south-palms-resort-and-spa-panglao-mgallery-collection.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "145 avis depuis le passage sous enseigne MGallery : un peu juste pour la règle des avis."
+  },
+  {
+   "id": "crimson_bassin",
+   "nom": "Crimson Resort and Spa Boracay",
+   "lieu": "Station Zero, Boracay",
+   "note_booking": 9.4,
+   "nombre_avis": 575,
+   "respecte_regle_avis": true,
+   "chambre": "Suite avec bassin privé",
+   "surface_m2": 55,
+   "atouts_chambre": [
+    "bassin privé",
+    "plage privée"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 2557,
+   "prix_nuit": 365,
+   "statut_prix": "estimation",
+   "methode_prix": "2 331 € affichés + taxes estimées à 9,7 % (taux constaté sur la première chambre de la page)",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/crimson-resort-and-spa-boracay.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://www.crimsonhotel.com/boracay",
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": ""
+  },
+  {
+   "id": "shangri",
+   "nom": "Shangri-La Boracay",
+   "lieu": "Yapak, Boracay",
+   "note_booking": 9.5,
+   "nombre_avis": 678,
+   "respecte_regle_avis": true,
+   "chambre": "Deluxe Vista, vue mer",
+   "surface_m2": 63,
+   "atouts_chambre": [
+    "balcon",
+    "vue mer",
+    "navette Caticlan incluse"
+   ],
+   "nuits": 7,
+   "prix_total_sejour": 4943,
+   "prix_nuit": 706,
+   "statut_prix": "observé",
+   "methode_prix": "4 392 € affichés + 12 % de TVA + 0,55 % de taxe de séjour",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/ph/shangri-la-s-boracay-resort-and-spa.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://www.shangri-la.com/boracay/boracayresort/",
+   "dates_cherchees": [
+    "2027-03-07",
+    "2027-03-14"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "Aucune promotion retenue : celle repérée en août 2026 a expiré."
+  },
+  {
+   "id": "icon",
+   "nom": "Hotel ICON",
+   "lieu": "Tsim Sha Tsui Est, Hong Kong",
+   "note_booking": 9.3,
+   "nombre_avis": 2255,
+   "respecte_regle_avis": true,
+   "chambre": "Chambre king ICON 36, vue ville",
+   "surface_m2": 36,
+   "atouts_chambre": [
+    "36 m² (grand pour Hong Kong)",
+    "piscine sur le toit",
+    "petit-déjeuner compris"
+   ],
+   "nuits": 2,
+   "prix_total_sejour": 550,
+   "prix_nuit": 275,
+   "statut_prix": "estimation",
+   "methode_prix": "534 € affichés pour 2 nuits + 3 % de taxe hôtelière supposée (taux lu sur la fiche de l'AKI)",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Non remboursable",
+   "url_booking": "https://www.booking.com/hotel/hk/icon-hong-kong.fr.html?checkin=2027-03-14&checkout=2027-03-16&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": "https://www.hotel-icon.com/",
+   "dates_cherchees": [
+    "2027-03-14",
+    "2027-03-16"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": ""
+  },
+  {
+   "id": "aki",
+   "nom": "AKI Hong Kong (MGallery)",
+   "lieu": "Wan Chai, Hong Kong",
+   "note_booking": 8.7,
+   "nombre_avis": 585,
+   "respecte_regle_avis": true,
+   "chambre": "Chambre king supérieure, vue ville",
+   "surface_m2": 18,
+   "atouts_chambre": [
+    "petit-déjeuner compris",
+    "annulation gratuite"
+   ],
+   "nuits": 2,
+   "prix_total_sejour": 472,
+   "prix_nuit": 236,
+   "statut_prix": "observé",
+   "methode_prix": "458 € affichés pour 2 nuits + 3 % de taxe",
+   "petit_dejeuner_inclus": true,
+   "annulation": "Annulation gratuite",
+   "url_booking": "https://www.booking.com/hotel/hk/aki-hong-kong-mgallery.fr.html?checkin=2027-03-01&checkout=2027-03-03&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "url_officiel": null,
+   "dates_cherchees": [
+    "2027-03-01",
+    "2027-03-03"
+   ],
+   "observe_le": "2026-11-12",
+   "remarque": "L'hôtel de l'offre Voyage Privé : chambres de 16 à 18 m²."
+  }
+ ],
+ "escales": {
+  "retenue": {
+   "ville": "Hong Kong",
+   "pourquoi": "C'est l'escale naturelle du vol Cathay Pacific : aucun détour, billet multi-destinations au prix d'un aller-retour (relevé KAYAK).",
+   "hotels": [
+    "icon",
+    "aki"
+   ],
+   "vol_multi_destinations_observe": {
+    "prix_2_adultes": 2158,
+    "prix_par_personne": 1079,
+    "compagnie": "Cathay Pacific",
+    "trajet": "Paris → Hong Kong le 01/03, Hong Kong → Cebu le 04/03, Cebu → Paris le 17/03/2027",
+    "ecart_vs_aller_retour_simple": -47,
+    "source": "KAYAK",
+    "url": "https://www.kayak.fr/flights/PAR-HKG/2027-03-01/HKG-CEB/2027-03-04/CEB-PAR/2027-03-17/2adults?sort=bestflight_a",
+    "observe_le": "2026-11-12",
+    "statut": "observé",
+    "note": "Escale placée à l'aller dans ce relevé. Au retour, le prix reste à relever."
+   },
+   "aller_ou_retour": "Au retour de préférence : on termine par la ville, valises déjà faites, et la fatigue du vol aller ne mange pas l'escale. À l'aller, elle aide à absorber le décalage horaire mais retarde la plage de deux jours.",
+   "programme_2_jours": [
+    "Soir d'arrivée : promenade de Tsim Sha Tsui face à la baie.",
+    "Jour 1 : tramway du Peak tôt le matin, Central et Sheung Wan, dim sum, Star Ferry au couchant.",
+    "Jour 2 : marché de Mong Kok ou plage de Shek O, piscine de l'hôtel, vol de minuit."
+   ]
+  },
+  "ecartees": [
+   {
+    "ville": "Singapour",
+    "raison": "Impose Singapore Airlines (21 h 30 à 21 h 55 jusqu'à Cebu, relevé à 2 993 € le 08/03) : plus long et plus cher."
+   },
+   {
+    "ville": "Doha, Dubaï, Abou Dabi",
+    "raison": "Ces compagnies desservent Manille, pas El Nido : il faudrait un vol intérieur de plus."
+   }
+  ],
+  "cout_fixe": {
+   "hotel_2_nuits": 550,
+   "frais_sur_place": 280,
+   "supplement_vol_estime": 100,
+   "total": 930,
+   "statut": "estimation",
+   "methode": "Hôtel ICON 2 nuits (550 €, estimation taxes comprises) + 140 € par jour pour deux (repas, métro, Airport Express, tramway du Peak : estimation) + 100 € de marge sur le billet multi-destinations. Relevé KAYAK du 12/11/2026 : Cathay Pacific, Paris → Hong Kong le 01/03, Hong Kong → Cebu le 04/03, Cebu → Paris le 17/03, 2 158 € pour deux, soit 47 € de moins que l'aller-retour simple. Ce relevé place l'escale à l'aller ; le même billet avec l'escale au retour n'a pas été relevé, d'où la marge.",
+   "url_vol": "https://www.kayak.fr/flights/PAR-HKG/2027-03-01/HKG-CEB/2027-03-04/CEB-PAR/2027-03-17/2adults?sort=bestflight_a"
+  }
+ },
+ "experiences": [
+  {
+   "nom": "Lagons d'El Nido en bangka privée (Tour A : Big Lagoon, Secret Lagoon, Shimizu, 7 Commandos)",
+   "lieu": "El Nido",
+   "prix_2": 227,
+   "statut": "observé",
+   "methode": "16 000 PHP par bateau privé à partir de 2 personnes (El Nido Insights, octobre 2026) ; 13 000 PHP chez Travel-Palawan",
+   "url": "https://elnidoinsights.com/el-nido-island-hopping/",
+   "duree": "journée (départ 7 h 30 pour devancer les groupes)",
+   "prive": true,
+   "wow": true,
+   "id": "tour_a_prive",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Lagons d'El Nido en vedette rapide privée (Tour A à la carte)",
+   "lieu": "El Nido",
+   "prix_2": 369,
+   "statut": "observé",
+   "methode": "26 000 PHP par vedette privée à partir de 2 personnes (El Nido Insights)",
+   "url": "https://elnidoinsights.com/el-nido-island-hopping/",
+   "duree": "journée",
+   "prive": true,
+   "wow": true,
+   "id": "tour_a_speedboat",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Taxes d'El Nido : écotaxe (400 PHP/pers.), entrée du Big Lagoon (200 PHP/pers.), kayak (300 PHP)",
+   "lieu": "El Nido",
+   "prix_2": 21,
+   "statut": "observé",
+   "methode": "barème publié, écotaxe valable plusieurs jours",
+   "url": "https://elnidoinsights.com/el-nido-island-hopping/",
+   "duree": "",
+   "prive": false,
+   "wow": false,
+   "id": "taxes_elnido",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Tour C en petit groupe (Hidden Beach, Secret Beach, sanctuaire de Matinloc, île Hélicoptère)",
+   "lieu": "El Nido",
+   "prix_2": 48,
+   "statut": "observé",
+   "methode": "1 700 PHP par personne, déjeuner compris",
+   "url": "https://elnidoinsights.com/el-nido-island-hopping/",
+   "duree": "journée",
+   "prive": false,
+   "wow": false,
+   "id": "tour_c_groupe",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Tour C en bangka privée (Hidden Beach, Secret Beach, Matinloc)",
+   "lieu": "El Nido",
+   "prix_2": 227,
+   "statut": "observé",
+   "methode": "16 000 PHP par bateau privé",
+   "url": "https://elnidoinsights.com/el-nido-island-hopping/",
+   "duree": "journée",
+   "prive": true,
+   "wow": false,
+   "id": "tour_c_prive",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Bohol intérieur en petit groupe : Chocolate Hills, tarsiers, rivière Loboc",
+   "lieu": "Bohol",
+   "prix_2": 73,
+   "statut": "observé",
+   "methode": "à partir de 41 USD par personne (GetYourGuide, 1 223 avis, 4,7/5)",
+   "url": "https://www.getyourguide.com/bohol-l614/private-tours-tc221/",
+   "duree": "7 h",
+   "prive": false,
+   "wow": false,
+   "id": "bohol_groupe",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Bohol intérieur en voiture privée : Chocolate Hills au couchant, tarsiers, rivière Loboc",
+   "lieu": "Bohol",
+   "prix_2": 140,
+   "statut": "estimation",
+   "methode": "129 USD par groupe de 2 (GetYourGuide) + 25 € d'entrées et de déjeuner estimés",
+   "url": "https://www.getyourguide.com/bohol-l614/private-tours-tc221/",
+   "duree": "7 h",
+   "prive": true,
+   "wow": false,
+   "id": "bohol_prive",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Balicasag et Virgin Island en bateau partagé (tortues, tombant corallien)",
+   "lieu": "Panglao",
+   "prix_2": 45,
+   "statut": "observé",
+   "methode": "à partir de 20 à 25 USD par personne (GetYourGuide)",
+   "url": "https://www.getyourguide.com/bohol-l614/cruises-boat-tours-tc48/",
+   "duree": "5 h, départ à l'aube",
+   "prive": false,
+   "wow": false,
+   "id": "balicasag_groupe",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Balicasag en bateau privé, dauphins au lever du jour",
+   "lieu": "Panglao",
+   "prix_2": 97,
+   "statut": "estimation",
+   "methode": "à partir de 109 USD (GetYourGuide) ; à confirmer : prix par groupe ou par personne",
+   "url": "https://www.getyourguide.com/bohol-l614/cruises-boat-tours-tc48/",
+   "duree": "demi-journée",
+   "prive": true,
+   "wow": false,
+   "id": "balicasag_prive",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Massage en duo (spa de l'hôtel ou spa local)",
+   "lieu": "Panglao",
+   "prix_2": 60,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+   "url": null,
+   "duree": "1 h",
+   "prive": true,
+   "wow": false,
+   "id": "spa_local",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Rituel spa en duo au resort",
+   "lieu": "Panglao ou Boracay",
+   "prix_2": 120,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+   "url": null,
+   "duree": "1 h 30",
+   "prive": true,
+   "wow": false,
+   "id": "spa_resort",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Rituel spa en duo (Sea Tree Spa de l'Amorita ou équivalent)",
+   "lieu": "Panglao",
+   "prix_2": 180,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+   "url": null,
+   "duree": "2 h",
+   "prive": true,
+   "wow": false,
+   "id": "spa_luxe",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Dîner privé sur la plage au coucher du soleil",
+   "lieu": "Panglao",
+   "prix_2": 120,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+   "url": null,
+   "duree": "soirée",
+   "prive": true,
+   "wow": true,
+   "id": "diner_plage_1",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Dîner privé sur la plage d'Alona, table dressée pour deux",
+   "lieu": "Panglao",
+   "prix_2": 180,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+   "url": null,
+   "duree": "soirée",
+   "prive": true,
+   "wow": true,
+   "id": "diner_plage_2",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Dîner privé sur un banc de sable ou sur la plage de l'île",
+   "lieu": "El Nido",
+   "prix_2": 300,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé : à demander au resort",
+   "url": null,
+   "duree": "soirée",
+   "prive": true,
+   "wow": true,
+   "id": "diner_plage_3",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Dîner privé au resort, sur la plage de la crique",
+   "lieu": "Boracay",
+   "prix_2": 180,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé : à demander à l'hôtel",
+   "url": null,
+   "duree": "soirée",
+   "prive": true,
+   "wow": false,
+   "id": "diner_boracay",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Coucher de soleil en paraw (voilier traditionnel) privatisé",
+   "lieu": "Boracay",
+   "prix_2": 60,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé",
+   "url": null,
+   "duree": "45 min",
+   "prive": true,
+   "wow": true,
+   "id": "paraw",
+   "observe_le": "2026-11-12"
+  },
+  {
+   "nom": "Tour de Boracay en bateau privé (Puka Beach, snorkeling)",
+   "lieu": "Boracay",
+   "prix_2": 120,
+   "statut": "estimation",
+   "methode": "ordre de grandeur, tarif non relevé",
+   "url": null,
+   "duree": "demi-journée",
+   "prive": true,
+   "wow": false,
+   "id": "boracay_iles",
+   "observe_le": "2026-11-12"
+  }
+ ],
+ "experiences_ecartees": [
+  {
+   "nom": "Requins-baleines d'Oslob (Cebu)",
+   "verdict": "Écarté",
+   "raison": "Les animaux y sont nourris pour rester près du rivage. L'institut LAMAVE relève des cicatrices d'origine humaine sur 95 % des requins identifiés à Oslob, un comportement modifié et un récif dégradé. Même réserve pour Lila et Baclayon, à Bohol.",
+   "url": "https://www.lamave.org/our-programs/whale-sharks",
+   "alternative": "Tortues et tombant de Balicasag ; requins-baleines sauvages à Donsol (hors parcours)."
+  },
+  {
+   "nom": "Rivière souterraine de Sabang (Puerto Princesa)",
+   "verdict": "Écarté",
+   "raison": "Elle impose 5 à 6 heures de route depuis El Nido : c'est le point faible de l'offre de référence.",
+   "url": "https://www.voyage-prive.com/ppl/voyage-philippines-cebu-circuit-prive-en-le-meilleur-des-philippines-plages-paradisiaques-lagons-turquoise-et-jungle-sauvage-avec-sejour-possible-au-aki-hong-kong/87491",
+   "alternative": "Lagons de la baie de Bacuit en bateau privé."
+  },
+  {
+   "nom": "Chutes de Kawasan et canyoning (Cebu sud)",
+   "verdict": "Écarté",
+   "raison": "3 heures de route depuis Mactan dans chaque sens : incompatible avec un voyage en deux étapes.",
+   "url": null,
+   "alternative": "Rivière Loboc et collines de Bohol, à 1 heure de Panglao."
+  }
+ ],
+ "reservation": [
+  {
+   "ordre": 1,
+   "quand": "Maintenant (novembre 2026)",
+   "quoi": "Créer une alerte de prix sur le vol Paris → Cebu du 01/03 au 14/03/2027",
+   "ou": "Google Flights et KAYAK",
+   "url": "https://www.kayak.fr/flights/PAR-CEB/2027-03-01/2027-03-14/2adults?sort=bestflight_a",
+   "annulable": null,
+   "note": "Seuil d'achat : 2 300 € pour deux en Cathay Pacific. Au-delà de 2 600 €, regarder le 12 mai."
+  },
+  {
+   "ordre": 2,
+   "quand": "Maintenant",
+   "quoi": "Bloquer les hôtels annulables sans frais : La Colonial (El Nido) et, si l'option est retenue, l'Amorita (Panglao)",
+   "ou": "Booking",
+   "url": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "annulable": true,
+   "note": "Cela fige le prix sans rien engager."
+  },
+  {
+   "ordre": 3,
+   "quand": "Dès que le prix convient, avant fin décembre 2026",
+   "quoi": "Acheter le vol Cathay Pacific Paris ⇄ Cebu",
+   "ou": "cathaypacific.com de préférence",
+   "url": "https://www.cathaypacific.com/cx/fr_FR.html",
+   "annulable": false,
+   "note": "Acheter directement à la compagnie facilite les changements. Vérifier la franchise bagages du tarif choisi."
+  },
+  {
+   "ordre": 4,
+   "quand": "Le jour même",
+   "quoi": "Acheter les deux vols intérieurs CebGo (Cebu → El Nido le 02/03, El Nido → Panglao le 07/03) avec un bagage de 20 kg chacun",
+   "ou": "cebupacificair.com",
+   "url": "https://www.cebupacificair.com/",
+   "annulable": false,
+   "note": "Le vol El Nido → Panglao est unique dans la journée : s'il a disparu, tout le parcours est à revoir."
+  },
+  {
+   "ordre": 5,
+   "quand": "Juste après les vols",
+   "quoi": "Réserver la villa avec piscine du Henann Alona Beach (non remboursable)",
+   "ou": "Booking ou henann.com",
+   "url": "https://www.booking.com/hotel/ph/henann-beach-alona-beach.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "annulable": false,
+   "note": "Comparer avec le site de l'hôtel avant de payer. Écrire à l'hôtel dans la foulée (voir les demandes ci-dessous)."
+  },
+  {
+   "ordre": 6,
+   "quand": "Janvier 2027",
+   "quoi": "Réserver les sorties privées : bateau à El Nido (04/03 et 06/03), voiture à Bohol, bateau à Balicasag",
+   "ou": "opérateurs locaux ou GetYourGuide (annulation gratuite)",
+   "url": "https://elnidoinsights.com/el-nido-island-hopping/",
+   "annulable": true,
+   "note": "Demander un départ à 7 h 30 à El Nido."
+  },
+  {
+   "ordre": 7,
+   "quand": "Février 2027",
+   "quoi": "Réserver le ferry OceanJet Tagbilaran → Cebu du 14/03 (classe affaires) et demander à l'hôtel le dîner sur la plage et le spa",
+   "ou": "oceanjet.net",
+   "url": "https://www.oceanjet.net/",
+   "annulable": false,
+   "note": "Viser le départ de 10 h 40 ; il en reste d'autres ensuite."
+  },
+  {
+   "ordre": 8,
+   "quand": "72 heures avant le départ",
+   "quoi": "Remplir le formulaire eTravel (gratuit) et garder le QR code",
+   "ou": "etravel.gov.ph",
+   "url": "https://etravel.gov.ph/",
+   "annulable": null,
+   "note": "À refaire avant de quitter les Philippines."
+  }
+ ],
+ "demandes_honeymoon": [
+  "Préciser « voyage de noces » à la réservation et le rappeler par courriel une semaine avant l'arrivée.",
+  "Demander un surclassement selon disponibilité, sans l'exiger : à El Nido, une suite en étage élevé ; à Panglao, la villa la plus éloignée des allées.",
+  "Ni arrivée anticipée ni départ tardif à demander : arrivée vers 19 h le 02/03, départ de l'hôtel vers 9 h 30 le 14/03.",
+  "Demander la décoration du lit et un gâteau : c'est d'usage aux Philippines et souvent offert.",
+  "Faire chiffrer par écrit le dîner privé sur la plage (menu, boissons, taxes et service compris) et le rituel spa en duo.",
+  "Demander le prix du transfert privé hôtel → port de Tagbilaran, et à Cebu, port → aéroport.",
+  "Signaler toute allergie ou préférence alimentaire."
+ ],
+ "formalites": [
+  {
+   "sujet": "Passeport et visa",
+   "texte": "Pas de visa pour un séjour touristique de 30 jours au plus, sur présentation d'un billet de retour. Vérifier que les passeports sont valables six mois après le retour (règle habituelle des compagnies, à confirmer auprès de Cathay Pacific).",
+   "url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/philippines/conseils-aux-voyageurs-entree-sejour",
+   "statut": "observé"
+  },
+  {
+   "sujet": "eTravel",
+   "texte": "Formulaire en ligne obligatoire et gratuit, à remplir dans les 72 heures avant l'arrivée ; le QR code est demandé à l'embarquement et à l'arrivée. À remplir de nouveau avant le départ des Philippines.",
+   "url": "https://etravel.gov.ph/",
+   "statut": "observé"
+  },
+  {
+   "sujet": "Santé",
+   "texte": "Aucun vaccin obligatoire depuis la France. L'Institut Pasteur recommande l'hépatite A, la typhoïde en cas de séjour long ou d'hygiène précaire, et la mise à jour des vaccins courants. Dengue : répulsif et manches longues au crépuscule. Prendre l'avis de votre médecin six semaines avant.",
+   "url": "https://www.pasteur.fr/fr/votre-sante/voyages-et-sante/recommandations-sanitaires-par-pays/philippines",
+   "statut": "observé"
+  },
+  {
+   "sujet": "Argent",
+   "texte": "1 € ≈ 70.4 pesos (taux BCE du 11/11/2026). Les hôtels prennent la carte ; prévoir des espèces pour les bateaux, les taxis et les taxes d'El Nido. Retirer à l'aéroport de Cebu : les distributeurs sont rares à El Nido.",
+   "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-php.en.html",
+   "statut": "observé"
+  },
+  {
+   "sujet": "Téléphone",
+   "texte": "Une eSIM de données achetée avant le départ suffit (une quinzaine d'euros par personne, estimation). Le réseau est faible sur les îles de la baie de Bacuit.",
+   "url": null,
+   "statut": "estimation"
+  },
+  {
+   "sujet": "Pourboires",
+   "texte": "Non obligatoires ; le service est souvent déjà facturé (10 %). L'usage : 100 à 200 pesos pour un chauffeur, 500 pesos par jour pour l'équipage d'un bateau privé.",
+   "url": null,
+   "statut": "estimation"
+  },
+  {
+   "sujet": "Assurance",
+   "texte": "Hors budget, comme demandé. Les billets intérieurs et plusieurs hôtels ne sont pas remboursables : vérifier ce que couvre votre carte bancaire.",
+   "url": null,
+   "statut": "estimation"
+  }
+ ],
+ "risques": [
+  {
+   "risque": "Correspondance du 02/03 à Cebu sur deux billets séparés (5 h 25 de marge)",
+   "parade": "Si le vol de Hong Kong a plus de 3 heures de retard : dormir à Mactan et prendre un vol du lendemain matin (233 € relevés pour celui de 8 h 10 le 02/03). Coût maximal : une nuit perdue à El Nido."
+  },
+  {
+   "risque": "Vol El Nido → Panglao unique dans la journée",
+   "parade": "Réserver tôt. En cas d'annulation : El Nido → Cebu (4 vols par jour) puis ferry pour Bohol."
+  },
+  {
+   "risque": "Prix relevés le 12/11/2026, à quatre mois du départ",
+   "parade": "Les montants « observé » ont été lus ce jour-là ; ils bougent. Les montants « estimation » sont des ordres de grandeur à faire confirmer."
+  },
+  {
+   "risque": "Tarifs d'hôtel non remboursables (Henann, Morgan, Cauayan, Crimson)",
+   "parade": "Ne les payer qu'une fois les vols achetés."
+  }
+ ],
+ "photos": [
+  {
+   "lieu": "el_nido",
+   "usage": "hero",
+   "legende": "Îles calcaires de la baie de Bacuit, El Nido",
+   "titre_commons": "File:Limestone islands in Bacuit Bay, El Nido, Palawan, Philippines.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Limestone_islands_in_Bacuit_Bay%2C_El_Nido%2C_Palawan%2C_Philippines.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Limestone_islands_in_Bacuit_Bay%2C_El_Nido%2C_Palawan%2C_Philippines.jpg/1920px-Limestone_islands_in_Bacuit_Bay%2C_El_Nido%2C_Palawan%2C_Philippines.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ALimestone_islands_in_Bacuit_Bay%2C_El_Nido%2C_Palawan%2C_Philippines.jpg",
+   "auteur": "Vyacheslav Argenberg",
+   "licence": "CC BY 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by/4.0",
+   "largeur": 4000,
+   "hauteur": 2667,
+   "credit": "Vyacheslav Argenberg — CC BY 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "el_nido",
+   "usage": "etape",
+   "legende": "Big Lagoon, El Nido",
+   "titre_commons": "File:Big Lagoon, El Nido, Philippines (36929017682).jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/7/73/Big_Lagoon%2C_El_Nido%2C_Philippines_%2836929017682%29.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Big_Lagoon%2C_El_Nido%2C_Philippines_%2836929017682%29.jpg/1920px-Big_Lagoon%2C_El_Nido%2C_Philippines_%2836929017682%29.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ABig_Lagoon%2C_El_Nido%2C_Philippines_%2836929017682%29.jpg",
+   "auteur": "Fabio Achilli from Milano, Italy",
+   "licence": "CC BY 2.0",
+   "url_licence": "https://creativecommons.org/licenses/by/2.0",
+   "largeur": 4608,
+   "hauteur": 3456,
+   "credit": "Fabio Achilli from Milano, Italy — CC BY 2.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "el_nido",
+   "usage": "experience",
+   "legende": "Small Lagoon, île de Miniloc",
+   "titre_commons": "File:Small Lagoon, El Nido, Philippines (36263906554).jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Small_Lagoon%2C_El_Nido%2C_Philippines_%2836263906554%29.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Small_Lagoon%2C_El_Nido%2C_Philippines_%2836263906554%29.jpg/1920px-Small_Lagoon%2C_El_Nido%2C_Philippines_%2836263906554%29.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ASmall_Lagoon%2C_El_Nido%2C_Philippines_%2836263906554%29.jpg",
+   "auteur": "Fabio Achilli from Milano, Italy",
+   "licence": "CC BY 2.0",
+   "url_licence": "https://creativecommons.org/licenses/by/2.0",
+   "largeur": 4608,
+   "hauteur": 3456,
+   "credit": "Fabio Achilli from Milano, Italy — CC BY 2.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "el_nido",
+   "usage": "ambiance",
+   "legende": "Coucher de soleil sur la baie de Bacuit",
+   "titre_commons": "File:Tropical sunset in Bacuit Bay, El Nido, Palawan, Philippines.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Tropical_sunset_in_Bacuit_Bay%2C_El_Nido%2C_Palawan%2C_Philippines.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Tropical_sunset_in_Bacuit_Bay%2C_El_Nido%2C_Palawan%2C_Philippines.jpg/1920px-Tropical_sunset_in_Bacuit_Bay%2C_El_Nido%2C_Palawan%2C_Philippines.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ATropical_sunset_in_Bacuit_Bay%2C_El_Nido%2C_Palawan%2C_Philippines.jpg",
+   "auteur": "Vyacheslav Argenberg",
+   "licence": "CC BY 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by/4.0",
+   "largeur": 4000,
+   "hauteur": 2667,
+   "credit": "Vyacheslav Argenberg — CC BY 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "el_nido",
+   "usage": "experience",
+   "legende": "Plage de Nacpan",
+   "titre_commons": "File:Nacpan Beach, El Nido, Philippines (36286998483).jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/9/92/Nacpan_Beach%2C_El_Nido%2C_Philippines_%2836286998483%29.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Nacpan_Beach%2C_El_Nido%2C_Philippines_%2836286998483%29.jpg/1920px-Nacpan_Beach%2C_El_Nido%2C_Philippines_%2836286998483%29.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ANacpan_Beach%2C_El_Nido%2C_Philippines_%2836286998483%29.jpg",
+   "auteur": "Fabio Achilli from Milano, Italy",
+   "licence": "CC BY 2.0",
+   "url_licence": "https://creativecommons.org/licenses/by/2.0",
+   "largeur": 4608,
+   "hauteur": 3456,
+   "credit": "Fabio Achilli from Milano, Italy — CC BY 2.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "el_nido",
+   "usage": "etape",
+   "legende": "Plage du bourg d'El Nido et bangkas",
+   "titre_commons": "File:El Nido Town Beach.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/3/30/El_Nido_Town_Beach.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/El_Nido_Town_Beach.jpg/1920px-El_Nido_Town_Beach.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3AEl_Nido_Town_Beach.jpg",
+   "auteur": "Micluna",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 6195,
+   "hauteur": 4130,
+   "credit": "Micluna — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "el_nido",
+   "usage": "ambiance",
+   "legende": "L'île de Cadlao vue des hauteurs d'El Nido",
+   "titre_commons": "File:Cadlao Island view from Canopy Walk.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Cadlao_Island_view_from_Canopy_Walk.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Cadlao_Island_view_from_Canopy_Walk.jpg/1920px-Cadlao_Island_view_from_Canopy_Walk.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ACadlao_Island_view_from_Canopy_Walk.jpg",
+   "auteur": "Micluna",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 4032,
+   "hauteur": 2688,
+   "credit": "Micluna — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "pangulasian",
+   "usage": "hotel",
+   "legende": "Île de Pangulasian",
+   "titre_commons": "File:Pangulasian Island - panoramio.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Pangulasian_Island_-_panoramio.jpg",
+   "url_1600": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Pangulasian_Island_-_panoramio.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3APangulasian_Island_-_panoramio.jpg",
+   "auteur": "Tuderna",
+   "licence": "CC BY 3.0",
+   "url_licence": "https://creativecommons.org/licenses/by/3.0",
+   "largeur": 1752,
+   "hauteur": 1168,
+   "credit": "Tuderna — CC BY 3.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "panglao",
+   "usage": "etape",
+   "legende": "Plage de l'île de Panglao",
+   "titre_commons": "File:Panglao Island Beach.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/6/65/Panglao_Island_Beach.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Panglao_Island_Beach.jpg/1920px-Panglao_Island_Beach.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3APanglao_Island_Beach.jpg",
+   "auteur": "Francisco M. Pajares, Jr.",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 3600,
+   "hauteur": 2400,
+   "credit": "Francisco M. Pajares, Jr. — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "panglao",
+   "usage": "etape",
+   "legende": "Plage d'Alona, Panglao",
+   "titre_commons": "File:Alona Beach, Panglao Island (2052096657).jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/2/20/Alona_Beach%2C_Panglao_Island_%282052096657%29.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Alona_Beach%2C_Panglao_Island_%282052096657%29.jpg/1920px-Alona_Beach%2C_Panglao_Island_%282052096657%29.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3AAlona_Beach%2C_Panglao_Island_%282052096657%29.jpg",
+   "auteur": "yeowatzup",
+   "licence": "CC BY 2.0",
+   "url_licence": "https://creativecommons.org/licenses/by/2.0",
+   "largeur": 2869,
+   "hauteur": 2152,
+   "credit": "yeowatzup — CC BY 2.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "panglao",
+   "usage": "experience",
+   "legende": "Île de Balicasag",
+   "titre_commons": "File:Balicasag Island, Panglao, Bohol 1.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Balicasag_Island%2C_Panglao%2C_Bohol_1.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Balicasag_Island%2C_Panglao%2C_Bohol_1.jpg/1920px-Balicasag_Island%2C_Panglao%2C_Bohol_1.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ABalicasag_Island%2C_Panglao%2C_Bohol_1.jpg",
+   "auteur": "Ric V Obedencio",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 4272,
+   "hauteur": 2848,
+   "credit": "Ric V Obedencio — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "panglao",
+   "usage": "ambiance",
+   "legende": "Banc de sable de Virgin Island",
+   "titre_commons": "File:Beautiful Virgin Island Sunset.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Beautiful_Virgin_Island_Sunset.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Beautiful_Virgin_Island_Sunset.jpg/1920px-Beautiful_Virgin_Island_Sunset.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ABeautiful_Virgin_Island_Sunset.jpg",
+   "auteur": "Southlens62",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 2048,
+   "hauteur": 1365,
+   "credit": "Southlens62 — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "bohol",
+   "usage": "experience",
+   "legende": "Chocolate Hills, Carmen",
+   "titre_commons": "File:Chocolate Hills Carmen Bohol 2019.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/5/54/Chocolate_Hills_Carmen_Bohol_2019.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Chocolate_Hills_Carmen_Bohol_2019.jpg/1920px-Chocolate_Hills_Carmen_Bohol_2019.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3AChocolate_Hills_Carmen_Bohol_2019.jpg",
+   "auteur": "Wolfgang Hägele",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 5184,
+   "hauteur": 3456,
+   "credit": "Wolfgang Hägele — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "bohol",
+   "usage": "experience",
+   "legende": "Tarsier des Philippines, Bohol",
+   "titre_commons": "File:Philippine tarsier (Carlito syrichta fraterculus) Bohol.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Philippine_tarsier_%28Carlito_syrichta_fraterculus%29_Bohol.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Philippine_tarsier_%28Carlito_syrichta_fraterculus%29_Bohol.jpg/1920px-Philippine_tarsier_%28Carlito_syrichta_fraterculus%29_Bohol.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3APhilippine_tarsier_%28Carlito_syrichta_fraterculus%29_Bohol.jpg",
+   "auteur": "Charles J. Sharp",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 6276,
+   "hauteur": 4184,
+   "credit": "Charles J. Sharp — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "bohol",
+   "usage": "experience",
+   "legende": "Rivière Loboc",
+   "titre_commons": "File:Loboc River Bohol 2017 3.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Loboc_River_Bohol_2017_3.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Loboc_River_Bohol_2017_3.jpg/1920px-Loboc_River_Bohol_2017_3.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ALoboc_River_Bohol_2017_3.jpg",
+   "auteur": "Øyvind Holmstad",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 5472,
+   "hauteur": 3648,
+   "credit": "Øyvind Holmstad — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "boracay",
+   "usage": "etape",
+   "legende": "White Beach, Boracay",
+   "titre_commons": "File:\"White Beach\" Boracay, Philippinen.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/e/ed/%22White_Beach%22_Boracay%2C_Philippinen.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/%22White_Beach%22_Boracay%2C_Philippinen.jpg/1920px-%22White_Beach%22_Boracay%2C_Philippinen.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3A%22White_Beach%22_Boracay%2C_Philippinen.jpg",
+   "auteur": "Grunderfam",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 4000,
+   "hauteur": 3000,
+   "credit": "Grunderfam — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "boracay",
+   "usage": "experience",
+   "legende": "Paraws au couchant, Boracay",
+   "titre_commons": "File:Boracay Paraw Sailboats Sunset (79998403).jpeg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Boracay_Paraw_Sailboats_Sunset_%2879998403%29.jpeg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Boracay_Paraw_Sailboats_Sunset_%2879998403%29.jpeg/1920px-Boracay_Paraw_Sailboats_Sunset_%2879998403%29.jpeg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3ABoracay_Paraw_Sailboats_Sunset_%2879998403%29.jpeg",
+   "auteur": "Jomar Hilario",
+   "licence": "CC BY 3.0",
+   "url_licence": "https://creativecommons.org/licenses/by/3.0",
+   "largeur": 2048,
+   "hauteur": 1151,
+   "credit": "Jomar Hilario — CC BY 3.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "hong_kong",
+   "usage": "escale",
+   "legende": "Port Victoria de nuit, Hong Kong",
+   "titre_commons": "File:Hong Kong Harbour Night 2019-06-11.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Hong_Kong_Harbour_Night_2019-06-11.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Hong_Kong_Harbour_Night_2019-06-11.jpg/1920px-Hong_Kong_Harbour_Night_2019-06-11.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3AHong_Kong_Harbour_Night_2019-06-11.jpg",
+   "auteur": "Benh LIEU SONG (Flickr)",
+   "licence": "CC BY-SA 4.0",
+   "url_licence": "https://creativecommons.org/licenses/by-sa/4.0",
+   "largeur": 10439,
+   "hauteur": 4936,
+   "credit": "Benh LIEU SONG (Flickr) — CC BY-SA 4.0, via Wikimedia Commons"
+  },
+  {
+   "lieu": "hong_kong",
+   "usage": "escale",
+   "legende": "Port Victoria, Hong Kong",
+   "titre_commons": "File:International Commerce Centre on Victoria Harbour.jpg",
+   "url_fichier": "https://upload.wikimedia.org/wikipedia/commons/5/51/International_Commerce_Centre_on_Victoria_Harbour.jpg",
+   "url_1600": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/International_Commerce_Centre_on_Victoria_Harbour.jpg/1920px-International_Commerce_Centre_on_Victoria_Harbour.jpg",
+   "page_commons": "https://commons.wikimedia.org/wiki/File%3AInternational_Commerce_Centre_on_Victoria_Harbour.jpg",
+   "auteur": "Wilfredor",
+   "licence": "CC0",
+   "url_licence": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "largeur": 3500,
+   "hauteur": 2045,
+   "credit": "Wilfredor — CC0, via Wikimedia Commons"
+  }
+ ],
+ "sources": [
+  {
+   "id": "vp",
+   "titre": "Voyage Privé — circuit privé « Le meilleur des Philippines »",
+   "url": "https://www.voyage-prive.com/ppl/voyage-philippines-cebu-circuit-prive-en-le-meilleur-des-philippines-plages-paradisiaques-lagons-turquoise-et-jungle-sauvage-avec-sejour-possible-au-aki-hong-kong/87491",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bce",
+   "titre": "BCE — taux de référence euro / peso philippin",
+   "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-php.en.html",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bce_jo",
+   "titre": "Journal officiel de l'UE — taux de change de l'euro du 10/11/2026",
+   "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/HTML/?uri=OJ:C_202605568",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "kiwi",
+   "titre": "Kiwi.com — recherches de vols (outil de prix, 2 adultes)",
+   "url": "https://www.kiwi.com/fr/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "kayak_ceb_mars",
+   "titre": "KAYAK — Paris → Cebu, 01/03 → 14/03/2027, 2 adultes",
+   "url": "https://www.kayak.fr/flights/PAR-CEB/2027-03-01/2027-03-14/2adults?sort=bestflight_a",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "kayak_mnl_mars",
+   "titre": "KAYAK — Paris → Manille, 01/03 → 14/03/2027, 2 adultes",
+   "url": "https://www.kayak.fr/flights/PAR-MNL/2027-03-01/2027-03-14/2adults?sort=bestflight_a",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "kayak_ceb_avril",
+   "titre": "KAYAK — Paris → Cebu, 12/04 → 25/04/2027, 2 adultes",
+   "url": "https://www.kayak.fr/flights/PAR-CEB/2027-04-12/2027-04-25/2adults?sort=bestflight_a",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "kayak_ceb_mai",
+   "titre": "KAYAK — Paris → Cebu, 12/05 → 25/05/2027, 2 adultes",
+   "url": "https://www.kayak.fr/flights/PAR-CEB/2027-05-12/2027-05-25/2adults?sort=bestflight_a",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "kayak_ceb_juin",
+   "titre": "KAYAK — Paris → Cebu, 14/06 → 27/06/2027, 2 adultes",
+   "url": "https://www.kayak.fr/flights/PAR-CEB/2027-06-14/2027-06-27/2adults?sort=bestflight_a",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "kayak_multi_hkg",
+   "titre": "KAYAK — multi-destinations Paris → Hong Kong (01/03) → Cebu (04/03) → Paris (17/03/2027)",
+   "url": "https://www.kayak.fr/flights/PAR-HKG/2027-03-01/HKG-CEB/2027-03-04/CEB-PAR/2027-03-17/2adults?sort=bestflight_a",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "gflights",
+   "titre": "Google Flights (page d'accueil seule chargée : aucun prix relevé)",
+   "url": "https://www.google.com/travel/flights",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "skyscanner",
+   "titre": "Skyscanner (bloqué par un contrôle anti-robot : aucun prix relevé)",
+   "url": "https://www.skyscanner.fr/transport/vols/pari/ceb/270301/270314/?adultsv2=2&cabinclass=economy",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "cathay_stopover",
+   "titre": "Cathay Pacific — escale à Hong Kong (1 à 7 jours, réservation multi-destinations)",
+   "url": "https://flights.cathaypacific.com/en_PH/offers/stopover-in-hong-kong-sh.html",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "edu",
+   "titre": "Ministère de l'Éducation nationale — calendrier scolaire 2026-2027",
+   "url": "https://www.education.gouv.fr/calendrier-scolaire-100148",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "ph_feries",
+   "titre": "Présidence des Philippines — Proclamation n° 1427 : jours fériés 2027",
+   "url": "https://pco.gov.ph/news_releases/pbbm-declares-2027-regular-and-special-holidays/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "ph_feries_txt",
+   "titre": "Cour suprême des Philippines (E-Library) — texte de la Proclamation n° 1427",
+   "url": "https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/7/102791",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "pagasa_2025",
+   "titre": "PAGASA — début de la saison des pluies, 02/06/2025",
+   "url": "https://bagong.pagasa.dost.gov.ph/press-release/181",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "pagasa_sw_2025",
+   "titre": "PAGASA — début de la mousson du sud-ouest, 30/05/2025",
+   "url": "https://bagong.pagasa.dost.gov.ph/press-release/180?page=10",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "pagasa_2026",
+   "titre": "PAGASA — bilan climatique : saison des pluies déclarée le 04/06/2026",
+   "url": "https://pubfiles.pagasa.dost.gov.ph/pagasaweb/files/climate/monthlyclimateassessment/ENSO%20Advisory2%20OS.pdf",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "pagasa_climat",
+   "titre": "PAGASA — avis climatiques (habagat de mai à septembre sur l'ouest du pays)",
+   "url": "https://bagong.pagasa.dost.gov.ph/climate/climate-advisories",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "meteo_elnido_w2t",
+   "titre": "Weather2Travel — climat d'El Nido par mois",
+   "url": "https://www.weather2travel.com/philippines/el-nido/climate/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "meteo_elnido_ss",
+   "titre": "Sunseason — El Nido, normales WorldClim 1970-2000",
+   "url": "https://sunseason.org/philippines/el-nido/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "meteo_boracay_w2t",
+   "titre": "Weather2Travel — climat de Boracay par mois",
+   "url": "https://www.weather2travel.com/philippines/boracay/climate/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "meteo_boracay_nw",
+   "titre": "Nomadweather — Boracay par mois (moyennes 2015-2025)",
+   "url": "https://www.nomadweather.com/guides/boracay-weather-by-month",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "meteo_ph_goasia",
+   "titre": "GoAsia — meilleure période aux Philippines, par zone (Bohol, Cebu, Coron…)",
+   "url": "https://goasia.cc/en/best-time-to-visit/philippines",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_colonial",
+   "titre": "Booking — La Colonial Resort, El Nido, 02 → 07/03/2027",
+   "url": "https://www.booking.com/hotel/ph/la-colonial.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_piece",
+   "titre": "Booking — Piece Lio, El Nido, 02 → 07/03/2027",
+   "url": "https://www.booking.com/hotel/ph/piece-lio.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_morgan",
+   "titre": "Booking — Morgan Villas, El Nido, 02 → 07/03/2027",
+   "url": "https://www.booking.com/hotel/ph/morgan-villas.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_liolio",
+   "titre": "Booking — Lio Lio Suites Private Pools, El Nido, 02 → 07/03/2027",
+   "url": "https://www.booking.com/hotel/ph/lio-lio-suites.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_cauayan",
+   "titre": "Booking — Cauayan Boutique Private Island, El Nido, 02 → 07/03/2027",
+   "url": "https://www.booking.com/hotel/ph/cauayan-island-resort.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_pangulasian",
+   "titre": "Booking — Pangulasian Island Resort, El Nido, 02 → 07/03/2027",
+   "url": "https://www.booking.com/hotel/ph/el-nido-resorts-pangulasian-island.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_seda",
+   "titre": "Booking — Seda Lio, El Nido, 02 → 07/03/2027 (aucun tarif affiché)",
+   "url": "https://www.booking.com/hotel/ph/seda-lio.fr.html?checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_elnido_liste",
+   "titre": "Booking — liste El Nido 4-5*, note ≥ 8, 02 → 07/03/2027",
+   "url": "https://www.booking.com/searchresults.fr.html?ss=El+Nido%2C+Philippines&checkin=2027-03-02&checkout=2027-03-07&group_adults=2&no_rooms=1&selected_currency=EUR&nflt=review_score%3D80%3Bht_id%3D204%3Bht_id%3D206&order=bayesian_review_score",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_hpc",
+   "titre": "Booking — Henann Premier Coast Resort, Panglao, 07 → 14/03/2027",
+   "url": "https://www.booking.com/hotel/ph/henann-premier-coast-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_henann_alona",
+   "titre": "Booking — Henann Resort Alona Beach, Panglao, 07 → 14/03/2027",
+   "url": "https://www.booking.com/hotel/ph/henann-beach-alona-beach.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_amorita",
+   "titre": "Booking — Amorita Resort, Panglao, 07 → 14/03/2027",
+   "url": "https://www.booking.com/hotel/ph/amorita-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_amorita_mai",
+   "titre": "Booking — Amorita Resort, Panglao, 14 → 21/05/2027 (contrôle de saisonnalité)",
+   "url": "https://www.booking.com/hotel/ph/amorita-resort.fr.html?checkin=2027-05-14&checkout=2027-05-21&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_amorita_avril",
+   "titre": "Booking — Amorita Resort, Panglao, 27/04 → 04/05/2027 (contrôle de saisonnalité)",
+   "url": "https://www.booking.com/hotel/ph/amorita-resort.fr.html?checkin=2027-04-27&checkout=2027-05-04&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_epic",
+   "titre": "Booking — Epic Suites Bohol (adultes), Dauis, 07 → 14/03/2027",
+   "url": "https://www.booking.com/hotel/ph/private-luxurious-oceanfront-infinity-pool-king-suite-dauis.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_southpalms",
+   "titre": "Booking — South Palms Resort Panglao MGallery, 07 → 14/03/2027",
+   "url": "https://www.booking.com/hotel/ph/south-palms-resort-and-spa-panglao-mgallery-collection.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_modala",
+   "titre": "Booking — Modala Beach Resort, Panglao, 07 → 14/03/2027",
+   "url": "https://www.booking.com/hotel/ph/modala-beach-resort.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_panglao_liste",
+   "titre": "Booking — liste Panglao 4-5*, note ≥ 8, 08 → 15/03/2027",
+   "url": "https://www.booking.com/searchresults.fr.html?ss=Panglao%2C+Philippines&checkin=2027-03-08&checkout=2027-03-15&group_adults=2&no_rooms=1&selected_currency=EUR&nflt=review_score%3D80%3Bclass%3D4%3Bclass%3D5&order=class",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_crimson",
+   "titre": "Booking — Crimson Resort and Spa Boracay, 07 → 14/03/2027",
+   "url": "https://www.booking.com/hotel/ph/crimson-resort-and-spa-boracay.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_shangri",
+   "titre": "Booking — Shangri-La Boracay, 07 → 14/03/2027",
+   "url": "https://www.booking.com/hotel/ph/shangri-la-s-boracay-resort-and-spa.fr.html?checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_boracay_liste",
+   "titre": "Booking — liste Boracay 5*, note ≥ 8, 07 → 14/03/2027",
+   "url": "https://www.booking.com/searchresults.fr.html?ss=Boracay%2C+Philippines&checkin=2027-03-07&checkout=2027-03-14&group_adults=2&no_rooms=1&selected_currency=EUR&nflt=review_score%3D80%3Bclass%3D5&order=class",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_icon",
+   "titre": "Booking — Hotel ICON, Hong Kong, 14 → 16/03/2027",
+   "url": "https://www.booking.com/hotel/hk/icon-hong-kong.fr.html?checkin=2027-03-14&checkout=2027-03-16&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_aki",
+   "titre": "Booking — AKI Hong Kong MGallery, 01 → 03/03/2027",
+   "url": "https://www.booking.com/hotel/hk/aki-hong-kong-mgallery.fr.html?checkin=2027-03-01&checkout=2027-03-03&group_adults=2&no_rooms=1&selected_currency=EUR",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "bk_hk_liste",
+   "titre": "Booking — liste Hong Kong 4-5*, note ≥ 8, 14 → 16/03/2027",
+   "url": "https://www.booking.com/searchresults.fr.html?ss=Hong+Kong&checkin=2027-03-14&checkout=2027-03-16&group_adults=2&no_rooms=1&selected_currency=EUR&nflt=review_score%3D80%3Bclass%3D5%3Bclass%3D4&order=bayesian_review_score",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "oceanjet_suroy",
+   "titre": "Suroy.ph — ferry Cebu ↔ Bohol : tarifs OceanJet au 21/09/2026",
+   "url": "https://suroy.ph/cebu-to-bohol-ferry/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "oceanjet_travelphil",
+   "titre": "Travelphil — ferry Cebu–Bohol : 12 départs par jour, tarifs lus le 29/09/2026",
+   "url": "https://www.travelphil.com/en/cebu-bohol-ferry/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "oceanjet",
+   "titre": "OceanJet — site officiel (réservation des ferries)",
+   "url": "https://www.oceanjet.net/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "ceb_bagages",
+   "titre": "Baggagelimits — bagages Cebu Pacific / Cebgo 2026 (20 kg prépayé : 1 000 PHP en intérieur)",
+   "url": "https://baggagelimits.com/cebu-pacific-baggage-allowance/carry-on",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "ph_vols_interieurs",
+   "titre": "Philippinestourism.org — vols intérieurs 2026 (plus de vol Manille → El Nido depuis le 29/03/2026)",
+   "url": "https://www.philippinestourism.org/philippines-domestic-flights/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "elnido_insights",
+   "titre": "El Nido Insights — island hopping 2026 : tours A à D, bateaux privés, taxes",
+   "url": "https://elnidoinsights.com/el-nido-island-hopping/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "elnido_paradise",
+   "titre": "El Nido Paradise — Tour A (1 500 PHP/pers. en groupe, taxes en sus)",
+   "url": "https://www.elnidoparadise.com/booking/main-island-hopping-tours/tour-a/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "travel_palawan",
+   "titre": "Travel-Palawan — Tour A en bateau privé (6 500 PHP/pers. à deux)",
+   "url": "https://www.travel-palawan.com/tours/el-nido-tour-a-by-private-boat/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "gyg_bohol_prive",
+   "titre": "GetYourGuide — excursions privées à Bohol",
+   "url": "https://www.getyourguide.com/bohol-l614/private-tours-tc221/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "gyg_bohol_bateau",
+   "titre": "GetYourGuide — sorties en bateau à Bohol (Balicasag, Virgin Island)",
+   "url": "https://www.getyourguide.com/bohol-l614/cruises-boat-tours-tc48/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "lamave",
+   "titre": "LAMAVE — requins-baleines nourris à Oslob : impacts mesurés",
+   "url": "https://www.lamave.org/our-programs/whale-sharks",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "lamave_bohol",
+   "titre": "LAMAVE — position sur le nourrissage des requins-baleines à Bohol (Lila, Baclayon)",
+   "url": "https://www.lamave.org/news/lamave-statement-bohol-whale-shark-tourism-provisioning-lila-baclayon",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "diplo",
+   "titre": "France Diplomatie — Philippines, entrée et séjour (eTravel, visa)",
+   "url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/philippines/conseils-aux-voyageurs-entree-sejour",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "etravel",
+   "titre": "eTravel — formulaire officiel d'entrée aux Philippines (gratuit)",
+   "url": "https://etravel.gov.ph/",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "pasteur",
+   "titre": "Institut Pasteur — recommandations sanitaires Philippines",
+   "url": "https://www.pasteur.fr/fr/votre-sante/voyages-et-sante/recommandations-sanitaires-par-pays/philippines",
+   "consulte_le": "2026-11-12"
+  },
+  {
+   "id": "commons",
+   "titre": "Wikimedia Commons — photos sous licence libre (API interrogée le 12/11/2026)",
+   "url": "https://commons.wikimedia.org/",
+   "consulte_le": "2026-11-12"
+  }
+ ]
+}
