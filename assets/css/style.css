@@ -709,3 +709,9 @@ sup { font-size: .68em; line-height: 0; vertical-align: baseline; position: rela
 }
 /* 5b. comparateur : la mention « Notre recommandation » et sa réserve vide ont la même hauteur (deux lignes sur téléphone) */
 @media (max-width: 999px) { .comp__entete .comp__val small { line-height: 1.3; min-height: 2.6em; } }
+/* revue v2-2, point 7 : comparaison Voyage Privé sous 420 px, libellé au-dessus de la valeur (plus de débordement à 320 px) */
+@media (max-width: 420px) {
+  .vp__col { padding: 18px 16px; min-width: 0; }
+  .vp__col dl > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .vp__col dd { min-width: 0; overflow-wrap: anywhere; }
+}

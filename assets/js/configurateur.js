@@ -35,6 +35,8 @@
     const heure = (s) => s.slice(11, 16).replace(':', NBSP + 'h' + NBSP).replace(/h\u00a000$/, 'h');
     const copie = (o) => JSON.parse(JSON.stringify(o));
     /* durée en heures décimales → « 7 h », « 4 h 30 » (format du reste du site) */
+    const VILLES_AERO = { DMK: 'Bangkok (aéroport Don Mueang)', BKK: 'Bangkok', HKG: 'Hong' + NBSP + 'Kong', TPE: 'Taipei', SIN: 'Singapour', KUL: 'Kuala Lumpur', ICN: 'Séoul', MNL: 'Manille', CEB: 'Cebu', DOH: 'Doha', DXB: 'Dubaï', IST: 'Istanbul' };
+    const vias = (l) => l.map((v) => VILLES_AERO[v] || v).join(', ');
     const heures = (x) => { const t = Math.round(x * 60), h = Math.floor(t / 60), mn = t % 60; return mn ? `${h}${NBSP}h${NBSP}${String(mn).padStart(2, '0')}` : `${h}${NBSP}h`; };
     /* « au Sur-mesure », « au Grand jeu », « à L’Essentiel » */
     const aNom = (nom) => (/^Le /.test(nom) ? 'au ' + nom.slice(3) : /^Les /.test(nom) ? 'aux ' + nom.slice(4) : 'à ' + nom);
@@ -234,12 +236,19 @@
     function appliquerOrdre(ordre) { cfg.etapes = ordre.map((id) => cfg.etapes.find((e) => e.etape === id)); }
     function choisirDate(d) {
       const j = JOUR[d]; if (!j) return;
-      const ancien = VOL[cfg.vol].o.type;
-      const pref = [ancien, 'reference_v1', 'moins_cher_et_meilleur_confort', 'cathay_matin_soir', 'meilleur_confort', 'moins_cher', 'moins_cher_13_jours', 'affaires'];
-      let o = null; for (const t of pref) { o = j.options.find((x) => x.type === t); if (o) break; }
-      cfg.date_depart = d; cfg.vol = (o || j.options[0]).id; equilibrer();
+      // le vol dont le prix figure dans la case ; si l'utilisateur a lui-même coché un type de vol à l'étape 1
+      // (sur cette configuration), ce type est gardé quand il existe à la nouvelle date
+      const perso = ui.typeVol && ui.typeVol.cfg === cfg ? j.options.find((x) => x.type === ui.typeVol.type) : null;
+      const o = perso || volDeLaCase(j);
+      cfg.date_depart = d; cfg.vol = o.id; equilibrer();
     }
     function choisirVol(id) { cfg.vol = id; equilibrer(); }
+    /* prix d'une case du calendrier : le moins cher des vols de 14 jours en économique ;
+       à défaut (4 dates de mai), le moins cher des vols relevés, signalé « aff. » / « 13 j » */
+    function volDeLaCase(j) {
+      const plusBas = (l) => l.reduce((a, x) => (!a || x.prix_2 < a.prix_2 ? x : a), null);
+      return plusBas(j.options.filter((x) => x.cabine === 'Économique' && x.jours_porte_a_porte === 14)) || plusBas(j.options);
+    }
     function basculerExcursion(i, id, on) {
       const xs = cfg.etapes[i].excursions; const k = xs.indexOf(id);
       if (on && k < 0) { xs.push(id); (EXC[id].exige || []).forEach((r) => { if (!xs.includes(r)) xs.push(r); }); }
@@ -361,10 +370,13 @@
     function etape1() {
       const m = moisDe(cfg.date_depart);
       const moisAffiche = ui.mois || m;
-      const prixMin = (j) => Math.min(...j.options.map((o) => o.prix_2));
-      const ecos = Object.values(JOUR).map((j) => j.options.filter((o) => o.cabine === 'Économique').map((o) => o.prix_2)).filter((a) => a.length).map((a) => Math.min(...a)).sort((a, b) => a - b);
+      const prixMin = (j) => volDeLaCase(j).prix_2;
+      const standard = (o) => o.cabine === 'Économique' && o.jours_porte_a_porte === 14;
+      const ecos = Object.values(JOUR).map(volDeLaCase).filter(standard).map((o) => o.prix_2).sort((a, b) => a - b);
       const q = (p) => ecos.filter((x) => x <= p).length / ecos.length;
-      const classe = (j) => { if (!j.options.some((o) => o.cabine === 'Économique')) return 'aff'; const v = q(prixMin(j)); return v <= .2 ? 'p1' : v <= .4 ? 'p2' : v <= .6 ? 'p3' : v <= .8 ? 'p4' : 'p5'; };
+      const classe = (j) => { if (!standard(volDeLaCase(j))) return 'aff'; const v = q(prixMin(j)); return v <= .2 ? 'p1' : v <= .4 ? 'p2' : v <= .6 ? 'p3' : v <= .8 ? 'p4' : 'p5'; };
+      const marque = (j) => { const o = volDeLaCase(j); return [o.cabine !== 'Économique' ? 'aff.' : '', o.jours_porte_a_porte !== 14 ? `${o.jours_porte_a_porte}${NBSP}j` : ''].filter(Boolean); };
+      const marqueLongue = (j) => { const o = volDeLaCase(j); return [o.cabine !== 'Économique' ? 'classe affaires seulement' : '', o.jours_porte_a_porte !== 14 ? `vol de ${o.jours_porte_a_porte} jours` : ''].filter(Boolean).map((x) => ', ' + x).join(''); };
       const idx = MOIS_IDS.indexOf(moisAffiche), premier = new Date(2027, idx + 2, 1), nbj = new Date(2027, idx + 3, 0).getDate();
       const decal = (premier.getDay() + 6) % 7;
       let cases = '';
@@ -374,8 +386,8 @@
         const libelleDate = `${JOURS[versDate(s).getDay()]} ${d === 1 ? '1er' : d} ${moisAffiche}`;
         if (j) {
           const on = s === cfg.date_depart, pm = prixMin(j), c = classe(j);
-          cases += `<button type="button" class="cal-j cal-j--${c} ${on ? 'on' : ''}" data-date="${s}" aria-pressed="${on}" data-k="date-${s}" aria-label="${escA(libelleDate)} : dès ${escA(eur(pm))} pour deux${c === 'aff' ? ', classe affaires seulement' : ''}"><span class="cal-j__n">${d === 1 ? '1<sup>er</sup>' : d}</span><span class="cal-j__p">${nombre(pm)}</span>${c === 'aff' ? '<span class="cal-j__aff">aff.</span>' : ''}</button>`;
-        } else if (nr) cases += `<span class="cal-j cal-j--nr" aria-label="${escA(libelleDate)} : non relevée"><span class="cal-j__n">${d}</span><span class="cal-j__nr">non relevée</span></span>`;
+          cases += `<button type="button" class="cal-j cal-j--${c} ${on ? 'on' : ''}" data-date="${s}" aria-pressed="${on}" data-k="date-${s}" aria-label="${escA(libelleDate)} : ${escA(eur(pm))} pour deux${escA(marqueLongue(j))}"><span class="cal-j__n">${d === 1 ? '1<sup>er</sup>' : d}</span><span class="cal-j__p">${nombre(pm)}</span>${marque(j).map((x) => `<span class="cal-j__aff">${x}</span>`).join('')}</button>`;
+        } else if (nr) cases += `<span class="cal-j cal-j--nr" aria-label="${escA(libelleDate)} : non relevée"><span class="cal-j__n">${d}</span><span class="cal-j__nr">non<br>relevée</span></span>`;
         else cases += `<span class="cal-j cal-j--hors" aria-hidden="true"><span class="cal-j__n">${d}</span></span>`;
       }
       const j = JOUR[cfg.date_depart], vm = D.mois.find((x) => x.id === moisAffiche) || D.mois.find((x) => x.nom.toLowerCase().startsWith(moisAffiche));
@@ -383,7 +395,7 @@
       const ref = C.vols_ecart_reference;
       const opts = j.options.slice().sort((a, b) => a.prix_2 - b.prix_2);
       return `
-        <p class="cfg-intro">Chaque date porte le prix aller-retour le plus bas relevé pour deux, en euros, vers Cebu. Couleur : du moins cher <i class="cal-pt p1"></i> au plus cher <i class="cal-pt p5"></i>. Les dates grisées n’ont pas été relevées : elles ne se choisissent pas.</p>
+        <p class="cfg-intro">Chaque date porte le prix aller-retour le plus bas relevé pour deux, en euros, vers Cebu, en classe économique et sur 14 jours porte à porte : c’est ce vol qui est retenu quand vous touchez la date. Couleur : du moins cher <i class="cal-pt p1"></i> au plus cher <i class="cal-pt p5"></i>. <b class="cal-leg">aff.</b> : classe affaires seulement ; <b class="cal-leg">13${NBSP}j</b> : vol de 13 jours, le seul relevé ce jour-là. Les dates grisées n’ont pas été relevées : elles ne se choisissent pas. Sous le calendrier, tous les vols du jour restent proposés, y compris ceux de 13 jours.</p>
         <div class="cal-mois" role="tablist" aria-label="Mois du calendrier">${MOIS_IDS.map((x) => `<button type="button" role="tab" class="cal-onglet ${x === moisAffiche ? 'on' : ''}" aria-selected="${x === moisAffiche}" data-cal="${x}" data-k="cal-${x}">${majuscule(x)}${moisDe(cfg.date_depart) === x ? '<i aria-hidden="true">●</i>' : ''}</button>`).join('')}</div>
         <div class="cal" role="group" aria-label="Départs de ${escA(moisAffiche)} 2027">
           ${['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'].map((x) => `<span class="cal-tete" aria-hidden="true">${x}</span>`).join('')}
@@ -415,7 +427,7 @@
       return `<label class="vol-opt ${on ? 'on' : ''}"><input type="radio" name="cfg-vol" value="${o.id}" ${on ? 'checked' : ''} data-k="vol-${o.id}">
         <span class="vol-opt__corps">
           <span class="vol-opt__type">${esc(TYPES_VOL[o.type] || o.type)}${o.cabine !== 'Économique' ? ` · ${esc(o.cabine)}` : ''}</span>
-          <span class="vol-opt__cie">${esc(o.compagnies.join(', '))} · via ${esc(o.via_aller.join(', '))}</span>
+          <span class="vol-opt__cie">${esc(o.compagnies.join(', '))} · via ${esc(vias(o.via_aller))}${vias(o.via_retour) !== vias(o.via_aller) ? ` à l’aller, ${esc(vias(o.via_retour))} au retour` : ''}</span>
           <span class="vol-opt__h">Aller ${dateCourte(o.depart_paris.slice(0, 10))} ${heure(o.depart_paris)} → Cebu ${dateCourte(o.arrivee_sur_place.slice(0, 10))} ${heure(o.arrivee_sur_place)} (${N.duree(o.duree_aller)})</span>
           <span class="vol-opt__h">Retour ${dateCourte(o.depart_retour.slice(0, 10))} ${heure(o.depart_retour)} → Paris ${dateCourte(o.arrivee_paris.slice(0, 10))} ${heure(o.arrivee_paris)} (${N.duree(o.duree_retour)})</span>
           <span class="vol-opt__h">${o.jours_porte_a_porte} jours porte à porte, ${o.nuits_sur_place} nuits sur place · ${o.bagage_soute_inclus ? 'bagage en soute compris' : '<b class="peu-avis">sans bagage en soute</b>'}${o.arrivee_avant_midi ? '' : ' · arrivée après midi'}${o.escales_possibles.includes('hong-kong') ? ' · escale à Hong' + NBSP + 'Kong possible' : ''}</span>
@@ -630,7 +642,7 @@
     function joursGeneres() {
       const o = VOL[cfg.vol].o, x = cfg.escale, et = cfg.etapes, J = [];
       const push = (date, type, titre, texte) => J.push({ date, type, titre, texte });
-      push(o.depart_paris.slice(0, 10), 'vol', 'Départ de Paris', `${o.compagnies.join(', ')}, décollage à ${heure(o.depart_paris)}, correspondance à ${o.via_aller.join(', ')}.`);
+      push(o.depart_paris.slice(0, 10), 'vol', 'Départ de Paris', `${o.compagnies.join(', ')}, décollage à ${heure(o.depart_paris)}, correspondance à ${vias(o.via_aller)}.`);
       let d = plusJours(o.depart_paris, 1);
       if (x) {
         const v = ESC[x.ville];
@@ -654,8 +666,14 @@
         });
       });
       const der = et[et.length - 1];
-      if (der) push(plusJours(o.depart_retour, decal(cfg)), 'vol', `${ET[der.etape].nom} → Cebu, vol retour`, `${libLia(der.etape, 'cebu')} Décollage de Cebu à ${heure(o.depart_retour)}, correspondance à ${o.via_retour.join(', ')}.`);
-      push(plusJours(o.arrivee_paris, decal(cfg)), 'vol', 'Arrivée à Paris', `Atterrissage à ${heure(o.arrivee_paris)}.`);
+      const deNuit = +o.depart_retour.slice(11, 13) < 6;
+      if (der && deNuit) {
+        push(plusJours(o.depart_retour, decal(cfg) - 1), 'vol', `${ET[der.etape].nom} → Cebu, avant le vol de nuit`, `${libLia(der.etape, 'cebu')} Dernière nuit à l’hôtel la veille : on le quitte dans la journée, puis longue attente à l’aéroport de Cebu, car le vol décolle cette nuit, à ${heure(o.depart_retour)}.`);
+        push(plusJours(o.depart_retour, decal(cfg)), 'vol', 'Vol de nuit, arrivée à Paris', `Décollage de Cebu à ${heure(o.depart_retour)}, correspondance à ${vias(o.via_retour)}. Atterrissage à Paris à ${heure(o.arrivee_paris)}.`);
+      } else {
+        if (der) push(plusJours(o.depart_retour, decal(cfg)), 'vol', `${ET[der.etape].nom} → Cebu, vol retour`, `${libLia(der.etape, 'cebu')} Décollage de Cebu à ${heure(o.depart_retour)}, correspondance à ${vias(o.via_retour)}.`);
+        push(plusJours(o.arrivee_paris, decal(cfg)), 'vol', 'Arrivée à Paris', `Atterrissage à ${heure(o.arrivee_paris)}.`);
+      }
       const ms = cfg.moments.map((id) => EXC[id]);
       ms.forEach((mm, k) => { const r = restes[restes.length - 1 - (k % Math.max(restes.length, 1))]; if (r != null) { J[r].texte += ` ${mm.nom}.`; J[r].type = J[r].type === 'repos' ? 'repos' : J[r].type; } });
       // fusionner les entrées d’un même jour (vol d’arrivée de l’escale + Paris le même jour, etc.)
@@ -778,7 +796,7 @@
       $('#impression').innerHTML = `<h1>Simon &amp; Sonya — Philippines ${versDate(cfg.date_depart).getFullYear()}</h1>
         <p class="imp-sous">Récapitulatif de la configuration « À la carte ». Prix relevés le ${dateNum(D.meta.date_observation)} ; ils bougeront. Aucune réservation n’a été faite.</p>
         <p class="imp-total"><b>${eur(R.total)}</b> pour deux, tout compris (hors assurance) · ${pct(R.part_observee)} en prix relevés · ${R.duree_jours} jours porte à porte · ${ecartTexte(8500)}</p>
-        <h2>Vols</h2><p>${esc(o.compagnies.join(', '))} via ${esc(o.via_aller.join(', '))}, ${esc(o.cabine.toLowerCase())} : départ ${dateLongue(o.depart_paris.slice(0, 10))} à ${heure(o.depart_paris)}, retour à Paris ${dateLongue(plusJours(o.arrivee_paris, decal(cfg)))} à ${heure(o.arrivee_paris)}. ${eur(o.prix_2)} (${o.statut}).${url(o.url)}</p>
+        <h2>Vols</h2><p>${esc(o.compagnies.join(', '))} via ${esc(vias(o.via_aller))}${vias(o.via_retour) !== vias(o.via_aller) ? ` (retour via ${esc(vias(o.via_retour))})` : ''}, ${esc(o.cabine.toLowerCase())} : départ ${dateLongue(o.depart_paris.slice(0, 10))} à ${heure(o.depart_paris)}, retour à Paris ${dateLongue(plusJours(o.arrivee_paris, decal(cfg)))} à ${heure(o.arrivee_paris)}. ${eur(o.prix_2)} (${o.statut}).${url(o.url)}</p>
         ${x ? `<p>Escale : ${esc(ESC[x.ville].ville)}, ${x.nuits} nuits, ${x.mode === 'allonge' ? 'en allongeant le voyage' : 'sans allonger'}${x.chambre && CH[x.chambre] ? `, ${esc(CH[x.chambre].h.nom)} — ${esc(CH[x.chambre].c.nom)}${url(urlBooking(CH[x.chambre].h, datesEscale(cfg)))}` : ''}</p>` : ''}
         <h2>Étapes et hôtels</h2><ol>${cfg.etapes.map((e, i) => { const { h, c } = CH[e.chambre], dt = R.dates[i]; return `<li><b>${esc(ET[e.etape].nom)}</b>, ${e.nuits} nuits${dt ? ` (${dateCourte(dt.du)} → ${dateCourte(dt.au)})` : ''} : ${esc(h.nom)} — ${esc(c.nom)}${c.surface_m2 ? `, ${c.surface_m2}${NBSP}m²` : ''}${h.note_booking ? `, ${virgule(h.note_booking)}/10 (${nombre(h.nombre_avis)} avis)` : ''}${url(urlBooking(h, dt))}${e.excursions.length ? `<br>Excursions : ${e.excursions.map((id) => esc(EXC[id].nom)).join(' ; ')}` : ''}</li>`; }).join('')}</ol>
         ${cfg.moments.length ? `<p>Moments : ${cfg.moments.map((id) => esc(EXC[id].nom)).join(' ; ')}.</p>` : ''}
@@ -822,7 +840,7 @@
     });
     racine.addEventListener('change', (ev) => {
       const t = ev.target, k = t.dataset.k;
-      if (t.name === 'cfg-vol') changer(() => choisirVol(t.value), k);
+      if (t.name === 'cfg-vol') changer(() => { choisirVol(t.value); ui.typeVol = { cfg, type: VOL[t.value].o.type }; }, k);
       else if (t.dataset.chambre != null) changer(() => { cfg.etapes[+t.dataset.chambre].chambre = t.value; }, k);
       else if (t.dataset.filtre) { ui.filtres[t.dataset.filtre] = t.checked; stable(k, () => rendreTout({ focus: k })); }
       else if (t.dataset.tri != null) { ui.tri = t.value; stable(k, () => rendreTout({ focus: k })); }

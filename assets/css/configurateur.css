@@ -286,3 +286,9 @@ body:has(.cfg-barre:not([hidden])) .barre-total { display: none !important; }
 /* dates moins chères proposées sous la note du 1er mars : vraies cibles tactiles */
 .dates-alt { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .dates-alt .lien-bouton { min-width: 44px; padding: 0 14px; border: 1px solid var(--lagon); border-radius: 999px; background: #fff; text-decoration: none; font-weight: 600; }
+
+/* revue v2-2, point 5 : mentions du calendrier lisibles (≥ 10 px), « non relevée » sur deux lignes */
+.cal-j__aff, .cal-j__nr { font-size: 10px; text-transform: none; letter-spacing: 0; line-height: 1.05; }
+.cal-j__nr { white-space: normal; }
+.cal-j:has(.cal-j__aff + .cal-j__aff) { padding-block: 2px; }
+.cal-leg { font: 600 .82em/1 var(--texte); background: #fff; border: 1px dashed #8A7551; border-radius: 4px; padding: 1px 4px; white-space: nowrap; }
