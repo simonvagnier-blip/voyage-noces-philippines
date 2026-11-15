@@ -749,3 +749,16 @@ sup { font-size: .68em; line-height: 0; vertical-align: baseline; position: rela
 .vpn-vols { margin-top: 18px; padding: 12px 14px; border-left: 3px solid var(--corail); background: var(--papier-2); }
 .methode-v3 { margin: 8px 0 32px; }
 @media print { #astuce-vpn { display: none; } }
+
+/* Revue v3-1 (correction 5) : à 320 px, postes du budget ouverts, la colonne du libellé ne doit pas imposer sa largeur minimale. */
+.poste > summary { grid-template-columns: minmax(0, 1fr) auto 24px; }
+.lignes li { grid-template-columns: minmax(0, 1fr) auto; }
+.poste__nom, .lignes li > span:first-child { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+@media (max-width: 340px) {
+  .poste > summary { gap: 8px; grid-template-columns: minmax(0, 1fr) auto 18px; }
+  .lignes li { gap: 4px 8px; padding-left: 8px; }
+}
+/* La cible tactile élargie de la pastille (::after, −4 px) dépassait le bord droit des lignes du budget à 320 px. */
+/* Le « + » tourné de 45° débordait de sa colonne (sa boîte tournée est plus large) : à l'ouverture, on affiche « × » sans rotation. */
+.poste[open] > summary::after, .depliant[open] > summary::after { content: "×"; transform: none; }
+.l-montant .pastille::after { inset: -12px 0; }

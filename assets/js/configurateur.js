@@ -58,14 +58,16 @@
       const p = c.prix_par_mois[moisDeDate(ci, moisDefaut)];
       return { prix: p['prix_nuit_2_' + mode], statut: p['statut_' + mode], methode: p.methode + (mode === 'france' && p.methode_france ? ` ; ${p.methode_france}` : ''), url: p.url, dates: p.dates_cherchees, releve: false, tarif: p.tarif };
     }
+    const hhmm = (h) => h.replace(/^0/, '').replace(':', NBSP + 'h' + NBSP);
     /* prix d'une liaison le jour du trajet (portage de PRIX_LIAISON, plan-v3) */
     function prixLiaison(l, jour) {
       if (l.prix_par_date && l.prix_par_date.length) {
         const { r, e } = proche(l.prix_par_date, jour, 'date');
         const methode = `Trip.com France, relevé du ${dateNum(D.meta.date_observation)} pour le ${dateCourte(r.date)}${r.depart ? ` (vol de ${r.depart.replace(/^0/, '').replace(':', ' h ')}, ${r.compagnie})` : ''}, le plus proche du trajet du ${dateCourte(jour)} ; 2 adultes, bagage cabine seul`;
-        return { prix: r.prix_2, statut: e <= 7 ? l.statut : 'estimation', methode, url: r.url || l.url, depart: r.depart || null };
+        const autres = (r.vols_directs_du_jour || []).filter((h) => h !== r.depart);
+        return { prix: r.prix_2, statut: e <= 7 ? l.statut : 'estimation', methode, url: r.url || l.url, depart: r.depart || null, autres };
       }
-      return { prix: l.prix_2, statut: l.statut, methode: l.methode, url: l.url, depart: null };
+      return { prix: l.prix_2, statut: l.statut, methode: l.methode, url: l.url, depart: null, autres: [] };
     }
     function hotelComplet(h, ci, moisDefaut) {
       if (h.releve_v3) return (h.fenetres_sans_chambre || []).includes(fenetreProche(ci));
@@ -135,7 +137,7 @@
         const a = chemin[i], b = chemin[i + 1], l = LIA[a + '>' + b];
         if (!l) { al('LIAISON_INCONNUE', `Aucune liaison relevée de ${nomNoeud(a)} à ${nomNoeud(b)}.`); lia.push(null); continue; }
         const jour = jourK(i), pl = prixLiaison(l, jour); lia.push({ ...pl, jour });
-        add(l.n_vols ? 'vols_interieurs' : 'transferts', `${nomNoeud(a)} → ${nomNoeud(b)}, ${dateCourte(jour)} : ${l.mode}${pl.depart ? ` de ${pl.depart.replace(/^0/, '').replace(':', NBSP + 'h' + NBSP)}` : ''}`, pl.prix, pl.statut, `${a}>${b}`, { url: pl.url, methode: pl.methode });
+        add(l.n_vols ? 'vols_interieurs' : 'transferts', `${nomNoeud(a)} → ${nomNoeud(b)}, ${dateCourte(jour)} : ${l.mode}${pl.depart ? ` de ${hhmm(pl.depart)}` : ''}${pl.autres.length === 1 ? ` (autre vol direct relevé ce jour-là : ${hhmm(pl.autres[0])})` : pl.autres.length === 2 ? ` (autres vols directs relevés ce jour-là : ${pl.autres.map(hhmm).join(' et ')})` : ''}`, pl.prix, pl.statut, `${a}>${b}`, { url: pl.url, methode: pl.methode });
         nVols += l.n_vols; cebuTaxi += l.transfert_cebu_2;
         if (l.jour_perdu) al('JOUR_PERDU', `${nomNoeud(a)} → ${nomNoeud(b)} prend la journée (${heures(l.temps_porte_a_porte_h)} porte à porte).`, { de: a, a: b });
         if (l.alerte) al('LIAISON_FRAGILE', `${nomNoeud(a)} → ${nomNoeud(b)} : ${l.alerte}`);
@@ -626,7 +628,7 @@
           <div class="hotel-cfg__corps">
             <h4>${esc(h.nom)}${h === choisi ? '<span class="tag">Votre choix</span>' : ''}</h4>
             <p class="note-avis">${h.note_booking ? `<b>${virgule(h.note_booking)}/10</b><span>${nombre(h.nombre_avis)} avis sur Booking</span>` : '<span>Note non relevée</span>'}${h.respecte_regle_avis ? '' : '<span class="peu-avis">Peu d’avis</span>'}</p>
-            <p class="petit">${esc(majuscule(h.gamme))}${h.plage ? ` · ${esc(minuscule1(h.plage))}` : ''}${h.transfert_aeroport_inclus ? ' · transfert inclus' : ''}${hotelComplet(h, ci, m) ? ` · <b class="peu-avis">aucune chambre affichée à la date relevée la plus proche</b>` : ''}</p>
+            <p class="petit">${esc(majuscule(h.gamme))}${h.plage ? ` · ${esc(minuscule1(h.plage))}` : ''}${h.transfert_aeroport_inclus ? ' · transfert inclus' : ''}${h.releve_v3 === false ? ` · <b class="non-rebal">prix du ${dateCourte(h.observe_le)}, non rebalayé</b>` : ''}${hotelComplet(h, ci, m) ? ` · <b class="peu-avis">aucune chambre affichée à la date relevée la plus proche</b>` : ''}</p>
             ${!h.respecte_regle_avis && h.exception ? `<p class="petit">${esc(h.exception)}</p>` : ''}
             <div class="choix chambres" role="radiogroup" aria-label="Chambres de ${escA(h.nom)}">${h.chambres.map((c) => {
               const p = PX(h, c), on = c.id === e.chambre, ac = alerteChambre(h, c, ci);
@@ -638,7 +640,7 @@
         </article>`;
       }).join('');
       return `<div class="ong-etapes" role="tablist" aria-label="Étape">${cfg.etapes.map((x, k) => `<button type="button" role="tab" class="cal-onglet ${k === i ? 'on' : ''}" aria-selected="${k === i}" data-ong="${k}" data-k="ong-${k}">${esc(ET[x.etape].nom)} <small>${x.nuits} n.</small></button>`).join('')}</div>
-        <p class="cfg-intro">${esc(etp.nom)}, ${e.nuits} nuits${dt ? ` du ${dateLongue(dt.du, false)} au ${dateLongue(dt.au, false)}` : ''}. Prix par nuit pour deux, taxes comprises, ${mode === 'vpn_inde' ? 'relevés sur Booking.com via un VPN placé en Inde' : 'depuis la France (prix Inde corrigé de l’écart mesuré, estimation)'} : pour chaque hôtel rebalayé le ${dateNum(D.meta.date_observation)}, la fenêtre de 5 nuits la plus proche de l’arrivée ; « relevé » si elle tombe à 7 jours au plus. Les autres gardent leur prix du mois. Les liens Booking portent les dates de l’étape.</p>
+        <p class="cfg-intro">${esc(etp.nom)}, ${e.nuits} nuits${dt ? ` du ${dateLongue(dt.du, false)} au ${dateLongue(dt.au, false)}` : ''}. Prix par nuit pour deux, taxes comprises, ${mode === 'vpn_inde' ? 'relevés sur Booking.com via un VPN placé en Inde' : 'depuis la France (prix Inde corrigé de l’écart mesuré, estimation)'} : pour chaque hôtel rebalayé le ${dateNum(D.meta.date_observation)}, la fenêtre de 5 nuits la plus proche de l’arrivée ; « relevé » si elle tombe à 7 jours au plus. Les hôtels marqués « non rebalayé » gardent leur prix du mois relevé depuis la France lors du dossier précédent : même prix dans les deux modes, aucun gain VPN compté, donc à comparer avec prudence : l’écart médian mesuré le ${dateNum(D.astuce_vpn.observe_le)} entre l’Inde et la France est de ${virgule(D.astuce_vpn.par_pays.IN.gain_median_pct)}${NBSP}%. Les liens Booking portent les dates de l’étape.</p>
         <div class="filtres">
           <label class="filtre"><input type="checkbox" data-filtre="seuil" ${f.seuil ? 'checked' : ''} ${aucunAuSeuil ? 'disabled' : ''} data-k="f-seuil"><span>Au seuil d’avis (${virgule(C.seuil_avis.note_min)}/10, ${C.seuil_avis.avis_min} avis)</span></label>
           <label class="filtre"><input type="checkbox" data-filtre="piscine" ${f.piscine ? 'checked' : ''} data-k="f-piscine"><span>Piscine privée</span></label>
@@ -735,6 +737,7 @@
               <label><input type="radio" name="cfg-esc-m" value="sans_allonger" data-esc-m ${x.mode === 'sans_allonger' ? 'checked' : ''} data-k="escm-s"><span>Sans allonger<span class="detail-choix">${o.jours_porte_a_porte} jours, ${x.nuits} nuits de moins aux Philippines (prises sur la dernière étape)</span></span></label>
             </div>
             <div class="choix">${hk.hotels.map((id) => HOT[id]).map((h) => h.chambres.map((c) => { const p = prixChambre(h, c, datesEscale(cfg).du, R.prix_hotels, R.mois); return `<label><input type="radio" name="cfg-esc-c" value="${c.id}" data-esc-c ${x.chambre === c.id ? 'checked' : ''} data-k="escc-${c.id}"><span>${esc(h.nom)} — ${esc(c.nom)}<span class="detail-choix">${h.note_booking ? `${virgule(h.note_booking)}/10, ${nombre(h.nombre_avis)} avis · ` : ''}${c.surface_m2 ? `${c.surface_m2}${NBSP}m² · ` : ''}${lien(urlBooking(h, datesEscale(cfg)), `Booking, du ${dateCourte(datesEscale(cfg).du)} au ${dateCourte(datesEscale(cfg).au)}`)}${h.url_officiel ? ' · ' + lien(h.url_officiel, 'site') : ''}</span></span><span class="prix-choix">${eur(p.prix)}<small> /nuit</small>${statutPrix(p)}</span></label>`; }).join('')).join('')}</div>
+            <p class="cfg-note escale-aller">Dates et prix comptés avec l’escale à l’aller : ${x.nuits} nuits à ${esc(ESC[x.ville].ville)} du ${dateCourte(datesEscale(cfg).du)} au ${dateCourte(datesEscale(cfg).au)}, puis vol vers Cebu ; chaque étape aux Philippines commence ${x.nuits} jours plus tard, et ses prix sont pris à ces dates. La section Escale conseille plutôt de la placer au retour : les étapes garderaient alors les dates sans escale, et les nuits à ${esc(ESC[x.ville].ville)} tomberaient en fin de voyage, à des prix à revérifier.</p>
           </div>` : x ? `<p class="cfg-note">${esc(ESC[x.ville].impact_vol)}</p>` : ''}</fieldset>
         </div>
         <div class="cfg-actions">
@@ -804,7 +807,7 @@
       const intact = presetIdentique(cfg);
       const jours = intact ? D.programmes.find((p) => p.id === intact.programme_v1).jours : joursGeneres();
       const TYPES = { repos: 'Repos', sortie: 'Sortie', wow: 'Moment à part', vol: 'Trajet' };
-      return `${intact ? '<p class="petit">Programme intact : texte rédigé de la version 1.</p>' : '<p class="petit">Généré depuis vos choix : excursions une journée sur deux, le reste plage et piscine.</p>'}
+      return `${intact ? '<p class="petit">Programme intact : texte rédigé à la main pour ce programme.</p>' : '<p class="petit">Généré depuis vos choix : excursions une journée sur deux, le reste plage et piscine.</p>'}
         <div class="rythme" style="grid-template-columns:repeat(${jours.length},1fr)" role="img" aria-label="Rythme des ${jours.length} jours">${jours.map((j) => `<i class="t-${j.type}"></i>`).join('')}</div>
         <ol class="jours jours--cfg" id="cfg-jours">${jours.map((j) => `<li class="jour jour--${j.type}"><div class="jour__num"><small>Jour</small>${j.jour}</div><div class="jour__corps"><div class="jour__date"><span>${majuscule(dateLongue(j.date, false))}</span><span class="jour__type"><i class="t-${j.type}"></i>${esc(TYPES[j.type])}</span></div><h4>${esc(j.titre)}</h4><p>${esc(j.texte)}</p></div></li>`).join('')}</ol>`;
     }

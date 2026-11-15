@@ -42,6 +42,8 @@
   const dateCourte = (iso) => { const d = versDate(iso); return String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0'); };
   const dateNum = (iso) => dateCourte(iso) + '/' + versDate(iso).getFullYear();
   const duree = (s) => String(s || '').replace(/^(\d+)h(\d+)$/, '$1' + NBSP + 'h' + NBSP + '$2');
+  /* durée du retour : « retour 18 h 35 », ou « durée du retour non relevée » quand le relevé n'en donne pas */
+  const dureeRetour = (s) => (/^\d+h\d+$/.test(String(s || '')) ? `retour ${duree(s)}` : 'durée du retour non relevée');
   const majuscule = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   const minuscule1 = (s) => s.charAt(0).toLowerCase() + s.slice(1);
   const lien = (url, texte, cls = '') => (url && /^https?:\/\//.test(url)) ? `<a href="${escUrl(url)}" target="_blank" rel="noopener"${cls ? ` class="${cls}"` : ''}>${texte}</a>` : texte;
@@ -284,7 +286,7 @@
       <p class="vol__ligne">Paris → ${dest} (${esc(v.aeroport_arrivee)}) · ${esc(v.compagnie)}</p>
       <ul>
         <li>Départ ${dateLongue(v.depart_paris, false)}, retour à Paris ${dateLongue(v.retour_paris, false)} (${v.jours_porte_a_porte} jours)</li>
-        <li>Via ${esc(v.escale_via)} · aller ${duree(v.duree_aller)}${v.duree_retour ? `, retour ${duree(v.duree_retour)}` : ', retour : heure non relevée'}</li>
+        <li>Via ${esc(v.escale_via)} · aller ${duree(v.duree_aller)}, ${dureeRetour(v.duree_retour)}</li>
         <li>${v.bagage_soute_inclus ? 'Bagage en soute compris' : '<span class="vol__sans-bagage">Sans bagage en soute</span>'}</li>
       </ul>
       ${v.note ? `<p class="vol__note">${esc(v.note.replace(/\.$/, ''))}.</p>` : ''}
@@ -325,7 +327,7 @@
         <ul class="releves">${releves.map((v) => `<li>
           <span class="r-dates">${dateCourte(v.depart_paris)} → ${dateCourte(v.retour_paris)} · ${v.jours_porte_a_porte} jours</span>
           <span class="r-prix">${lien(v.url, eur(v.prix_2_adultes))}${pastille(v.statut, `${v.source}, 2 adultes, aller-retour`)}</span>
-          <span class="r-detail">${esc(v.compagnie)} via ${esc(v.escale_via)}, vers ${v.aeroport_arrivee === 'CEB' ? 'Cebu' : 'Manille'} · aller ${duree(v.duree_aller)}, retour ${v.duree_retour ? duree(v.duree_retour) : 'heure non relevée'} · ${v.bagage_soute_inclus ? 'bagage en soute compris' : 'sans bagage en soute'}${v.note ? ' · ' + esc(v.note) : ''}</span>
+          <span class="r-detail">${esc(v.compagnie)} via ${esc(v.escale_via)}, vers ${v.aeroport_arrivee === 'CEB' ? 'Cebu' : 'Manille'} · aller ${duree(v.duree_aller)}, ${dureeRetour(v.duree_retour)} · ${v.bagage_soute_inclus ? 'bagage en soute compris' : 'sans bagage en soute'}${v.note ? ' · ' + esc(v.note) : ''}</span>
         </li>`).join('')}</ul>
         ${kayak ? `<p class="sous-titre" style="margin-top:18px">Contre-vérification KAYAK, relevée le ${dateNum(m.vols.releves_kayak[0].observe_le)} (avant la mise à jour)</p><ul class="releves">${kayak}</ul>` : ''}
       </details>
@@ -966,13 +968,14 @@
       <div class="escale-grille">
         <div>
           <h3 class="bloc__titre">Ce que coûte l’escale</h3>
-          <p>Billet avec arrêt à ${esc(r.ville)} : <strong class="num">${lien(mv.url, eur(mv.prix_2_adultes))}</strong> pour deux${pastille(mv.statut, `${mv.source}, ${mv.compagnie} : ${mv.trajet}`)}, soit <span class="num">${eurSigne(mv.ecart_vs_aller_retour_simple)}</span> par rapport à l’aller-retour simple. ${esc(mv.note)}</p>
+          <p>Billet avec arrêt à ${esc(r.ville)} : <strong class="num">${lien(mv.url, eur(mv.prix_2_adultes))}</strong> pour deux${pastille(mv.statut, `${mv.source}, ${mv.compagnie} : ${mv.trajet}`)}, relevé le ${dateNum(mv.observe_le)} pour un départ le ${mv.trajet.match(/\d\d\/\d\d/)[0]}, soit <span class="num">${eur(Math.abs(mv.ecart_vs_aller_retour_simple))}</span> ${mv.ecart_vs_aller_retour_simple < 0 ? 'de moins' : 'de plus'} que l’aller-retour relevé le même jour pour cette date. ${(() => { const ar = vol(D.fenetre_recommandee.principale.vol_reference), d = mv.prix_2_adultes - ar.prix_2_adultes; return d > 0 ? `Face à l’aller-retour simple du ${dateCourte(ar.depart_paris)}, relevé le ${dateNum(D.meta.date_observation)} à <span class="num">${eur(ar.prix_2_adultes)}</span>, ce billet du ${dateNum(mv.observe_le)} serait <span class="num">${eur(d)}</span> plus cher : il reste à relever pour votre date, et la marge de <span class="num">${eur(cf.supplement_vol_estime)}</span> comptée ci-dessous peut ne pas suffire.` : ''; })()} ${esc(mv.note)}</p>
           <ul class="cout-escale">
             <li><span>Hôtel, 2 nuits</span><b class="num">${eur(cf.hotel_2_nuits)}</b></li>
             <li><span>Frais sur place (repas, transports, visites)</span><b class="num">${eur(cf.frais_sur_place)}</b></li>
-            <li><span>Marge sur le billet</span><b class="num">${eur(cf.supplement_vol_estime)}</b></li>
+            <li><span>Marge sur le billet (billet avec arrêt à relever)</span><b class="num">${eur(cf.supplement_vol_estime)}</b></li>
             <li class="total"><span>Coût fixe de l’escale${pastille(cf.statut, cf.methode)}</span><b class="num">${eur(cf.total)}</b></li>
           </ul>
+          <p class="petit">Ce coût suppose un billet avec arrêt à peine plus cher que l’aller-retour simple ; il n’a pas été relevé le ${dateNum(D.meta.date_observation)}. À vérifier sur KAYAK ou Trip.com (multi-destinations) avant de décider.</p>
           <p class="petit">${esc(r.aller_ou_retour)}</p>
         </div>
         <div>
