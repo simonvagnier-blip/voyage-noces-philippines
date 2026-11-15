@@ -292,3 +292,13 @@ body:has(.cfg-barre:not([hidden])) .barre-total { display: none !important; }
 .cal-j__nr { white-space: normal; }
 .cal-j:has(.cal-j__aff + .cal-j__aff) { padding-block: 2px; }
 .cal-leg { font: 600 .82em/1 var(--texte); background: #fff; border: 1px dashed #8A7551; border-radius: 4px; padding: 1px 4px; white-space: nowrap; }
+
+/* v3 : interrupteur « prix des hôtels » */
+.cfg-vpn { margin: 14px 0 6px; padding: 12px 14px; border: 1px solid var(--filet); border-radius: var(--rayon); background: var(--papier-2); }
+.cfg-vpn__titre { font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--encre-2); margin: 0 0 8px; }
+.cfg-vpn__choix { display: inline-flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--lagon); border-radius: 999px; overflow: hidden; max-width: 100%; }
+.cfg-vpn__opt { font: inherit; font-size: .9rem; padding: 9px 14px; min-height: 44px; border: 0; background: transparent; color: var(--lagon-fonce); cursor: pointer; }
+.cfg-vpn__opt.on { background: var(--lagon); color: #fff; font-weight: 600; }
+.cfg-vpn__opt:focus-visible { outline: 2px solid var(--corail); outline-offset: -3px; }
+.cfg-vpn__effet { margin: 8px 0 0; }
+.cfg-vpn__lien { color: var(--lagon-fonce); }

@@ -715,3 +715,37 @@ sup { font-size: .68em; line-height: 0; vertical-align: baseline; position: rela
   .vp__col dl > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .vp__col dd { min-width: 0; overflow-wrap: anywhere; }
 }
+
+/* v3 : mise à jour, variante de fenêtre, tableau des dates, budget, astuce VPN */
+.ouverture__maj { font-size: .88rem; opacity: .92; margin-top: 10px; }
+.ouverture__maj a { color: inherit; }
+.fenetre--alt { margin-top: 16px; }
+.tableau-defile { overflow-x: auto; margin-top: 12px; }
+.comparatif-dates { width: 100%; border-collapse: collapse; font-size: .92rem; font-variant-numeric: tabular-nums; }
+.comparatif-dates th, .comparatif-dates td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--filet); vertical-align: top; }
+.comparatif-dates thead th { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--encre-2); font-weight: 600; }
+.comparatif-dates small { display: block; color: var(--encre-2); font-size: .8rem; font-weight: 400; }
+.comparatif-dates tr.on { background: var(--lagon-pale); }
+@media (max-width: 640px) {
+  .comparatif-dates thead { display: none; }
+  .comparatif-dates tr { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; padding: 10px 0; border-bottom: 1px solid var(--filet); }
+  .comparatif-dates th, .comparatif-dates td { border: 0; padding: 2px 4px; }
+  .comparatif-dates th[scope="row"] { grid-column: 1 / -1; }
+  .comparatif-dates td::before { content: attr(data-l); display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--encre-2); }
+}
+.budget__vpn { margin-top: 10px; font-size: .9rem; }
+.budget__changes { margin-top: 24px; }
+.budget__changes small { display: inline; }
+.vpn-grille { display: grid; gap: 28px; margin-top: 24px; }
+@media (min-width: 900px) { .vpn-grille { grid-template-columns: 1fr 1fr; gap: 48px; } }
+.vpn-prog, .vpn-hotels { list-style: none; padding: 0; margin: 12px 0; }
+.vpn-prog li, .vpn-hotels li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 0; border-bottom: 1px solid var(--filet); }
+.vpn-prog .vpn-gain { grid-column: 2; color: var(--lagon-fonce); font-weight: 600; text-align: right; }
+.vpn-prog .vpn-gain small, .vpn-hotels small { display: block; font-weight: 400; color: var(--encre-2); font-size: .8rem; }
+.vpn-prog .num { text-align: right; }
+.vpn-hotels small { grid-column: 1 / -1; }
+.vpn-etapes { padding-left: 1.3em; margin: 12px 0; }
+.vpn-etapes li { margin: 0 0 10px; }
+.vpn-vols { margin-top: 18px; padding: 12px 14px; border-left: 3px solid var(--corail); background: var(--papier-2); }
+.methode-v3 { margin: 8px 0 32px; }
+@media print { #astuce-vpn { display: none; } }

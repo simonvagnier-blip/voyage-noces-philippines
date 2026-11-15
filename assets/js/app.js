@@ -49,6 +49,11 @@
   const mouvementReduit = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const nomCourt = (p) => majuscule(p.nom.replace(/^(L'|Le |La )/, '').split(' :')[0]);
   const lieuCourt = (lieu) => lieu.split(' (')[0];
+  /* v3 : les libellés de liaisons des données portent les identifiants (« cebu → el-nido : … ») */
+  const nomEtape = (id) => (id === 'cebu' ? 'Cebu' : ((D.carte.etapes.find((e) => e.id === id) || {}).nom || id));
+  const libLigne = (t) => t.replace(/^([a-z-]+) → ([a-z-]+) :/, (m, a, b) => `${nomEtape(a)} → ${nomEtape(b)} :`);
+  const degres = (x) => (x == null ? 'non relevé' : `${x}${NBSP}°C`);
+  const majLe = () => dateNum(D.meta.mis_a_jour_le || D.meta.date_observation);
   const nomMois = (m) => m.nom.split(' ')[0].toLowerCase();                 // « mars », « avril »…
   const deMois = (m) => (/^[aeiouyàâéèêh]/i.test(nomMois(m)) ? 'd’' : 'de ') + nomMois(m);   // « de mars », « d’avril »
 
@@ -143,6 +148,7 @@
     rendreEcartes();
     rendreResa();
     rendreFormalites();
+    rendreVpn();
     rendreMethode();
     brancherBulles();
     brancherNavigation();
@@ -173,6 +179,7 @@
     $('#ouverture-sous').textContent = `Philippines, ${MOIS[d.getMonth()]} ${d.getFullYear()}`;
     const etapes = p.etapes.map((e) => `${e.nuits} nuits à ${lieuCourt(e.lieu)}`).join(' puis ');
     $('#ouverture-phrase').innerHTML = `Notre recommandation : <em>${esc(p.nom)}</em>, ${esc(minuscule1(f.libelle))}. ${esc(majuscule(etapes))}, pour <strong class="num">${eur(totalBase(p))}</strong> à deux, tout compris.`;
+    $('#ouverture-maj').innerHTML = `Mis à jour le ${majLe()} : nouveaux prix des vols et des hôtels, février → mai 2027. Hôtels comptés au prix réservé via un VPN placé en Inde (${eur(p.budget.total_prix_france)} depuis la France) — <a href="#astuce-vpn">pourquoi</a>.`;
     $('[data-ouvrir-reco]').addEventListener('click', () => choisirProg(D.programme_recommande, false));
   }
 
@@ -196,7 +203,8 @@
             <div><dt>Face au plafond de ${eur(8500)}</dt><dd class="num">${ecart <= 0 ? eur(-ecart) + ' en dessous' : eur(ecart) + ' au-dessus'}</dd></div>
             <div><dt>Part de prix observés</dt><dd class="num">${pct(part)}</dd></div>
             <div><dt>Durée</dt><dd>${p.dates.jours_porte_a_porte} jours porte à porte, ${p.dates.nuits_sur_place} nuits sur place</dd></div>
-            <div><dt>Vols</dt><dd>${esc(v.compagnie)} via ${esc(v.escale_via)} : <span class="num">${eur(v.prix_2_adultes)}</span>${pastille(v.statut, `${v.source}, départ le ${dateCourte(v.depart_paris)}, arrivée à Paris le ${dateCourte(v.retour_paris)}, 2 adultes`)}</dd></div>
+            <div><dt>Vols</dt><dd>${esc(v.compagnie)} via ${esc(v.escale_via)} : <span class="num">${eur(v.prix_2_adultes)}</span>${pastille(v.statut, `${v.source}, relevé le ${dateNum(v.observe_le || D.meta.date_observation)}, départ le ${dateCourte(v.depart_paris)}, arrivée à Paris le ${dateCourte(v.retour_paris)}, 2 adultes. ${v.note || ''}`)}</dd></div>
+            <div><dt>Hôtels</dt><dd>Réservés via VPN Inde ; depuis la France : <span class="num">${eur(p.budget.total_prix_france)}</span> au total (${eurSigne(p.budget.economie_vpn)})</dd></div>
           </dl>
         </div>
         <div>
@@ -244,7 +252,8 @@
 
   /* ------------------------------------------------------------------ 3. Quand partir */
   function rendreQuand() {
-    $('#quand-chapeau').innerHTML = `Prix des vols relevés le ${dateSansJour(D.meta.date_observation)} sur Kiwi.com et KAYAK, pour deux adultes, aller-retour depuis Paris. Choisissez un mois : les vols, la météo par zone et la foule se mettent à jour.`;
+    const vs = D.carte.vols_source;
+    $('#quand-chapeau').innerHTML = `Prix des vols relevés le ${dateSansJour(vs.observe_le)} sur ${esc(vs.site)}, une recherche par jour de départ du ${dateCourte(vs.premier_depart)} au ${dateCourte(vs.dernier_depart)} (${vs.nombre_de_dates} dates), pour deux adultes, aller-retour depuis Paris, bagages compris sauf mention. Choisissez un mois : les vols, la météo par zone et la foule se mettent à jour.`;
     const zone = $('#mois-onglets');
     const moisReco = etat.mois;
     zone.innerHTML = D.mois.map((m) => {
@@ -275,17 +284,17 @@
       <p class="vol__ligne">Paris → ${dest} (${esc(v.aeroport_arrivee)}) · ${esc(v.compagnie)}</p>
       <ul>
         <li>Départ ${dateLongue(v.depart_paris, false)}, retour à Paris ${dateLongue(v.retour_paris, false)} (${v.jours_porte_a_porte} jours)</li>
-        <li>Via ${esc(v.escale_via)} · aller ${duree(v.duree_aller)}, retour ${duree(v.duree_retour)}</li>
+        <li>Via ${esc(v.escale_via)} · aller ${duree(v.duree_aller)}${v.duree_retour ? `, retour ${duree(v.duree_retour)}` : ', retour : heure non relevée'}</li>
         <li>${v.bagage_soute_inclus ? 'Bagage en soute compris' : '<span class="vol__sans-bagage">Sans bagage en soute</span>'}</li>
       </ul>
-      ${v.note ? `<p class="vol__note">${esc(v.note)}</p>` : ''}
-      ${lienFleche(v.url, 'Voir ce vol sur Kiwi.com')}
+      ${v.note ? `<p class="vol__note">${esc(v.note.replace(/\.$/, ''))}.</p>` : ''}
+      ${lienFleche(v.url, `Recherche ${v.source.split(' ')[0]} du ${dateCourte(v.depart_paris)}`)}
     </article>`;
   }
   function rendreMois() {
     const m = D.mois.find((x) => x.id === etat.mois);
     const releves = m.vols.releves.slice().sort((a, b) => a.prix_2_adultes - b.prix_2_adultes);
-    const [fmin, fmax] = m.vols.fourchette_cebu_confort;
+    const [fmin, fmax] = m.vols.fourchette_cebu_confort, st = D.carte.vols_stats_par_mois[m.id];
     const zonesParcours = new Set();
     D.programmes.forEach((p) => p.etapes.forEach((e) => { const z = ZONE_DE_LIEU[lieuCourt(e.lieu)]; if (z) zonesParcours.add(z); }));
     const zones = D.zones.slice().sort((a, b) => (zonesParcours.has(b.id) ? 1 : 0) - (zonesParcours.has(a.id) ? 1 : 0));
@@ -310,16 +319,15 @@
         ${carteVol(m.vols.meilleur_prix, 'Le moins cher', false)}
         ${carteVol(m.vols.meilleur_confort_prix, 'Le meilleur compromis', true)}
       </div>
-      <p class="petit" style="margin-top:12px">Vers Cebu, sur les vols confort relevés ce mois-ci (une escale, 20 heures au plus, bagages compris) : de <span class="num">${eur(fmin)}</span> à <span class="num">${eur(fmax)}</span> pour deux.</p>
+      <p class="petit" style="margin-top:12px">Vers Cebu, sur les ${st.une_escale_confort.n} dates relevées ce mois-ci, vols à une escale, bagages compris : de <span class="num">${eur(fmin)}</span> (le ${dateCourte(st.une_escale_confort.date_min)}) à <span class="num">${eur(fmax)}</span> (le ${dateCourte(st.une_escale_confort.date_max)}) pour deux, médiane <span class="num">${eur(st.une_escale_confort.mediane)}</span>. Le moins cher avec bagage, toutes escales : <span class="num">${eur(st.moins_cher_avec_bagage.min)}</span> le ${dateCourte(st.moins_cher_avec_bagage.date_min)}. Chaque date est dans le calendrier du configurateur.</p>
       <details class="depliant">
         <summary>Tous les vols relevés en ${esc(nomMois(m))} (${releves.length})</summary>
         <ul class="releves">${releves.map((v) => `<li>
           <span class="r-dates">${dateCourte(v.depart_paris)} → ${dateCourte(v.retour_paris)} · ${v.jours_porte_a_porte} jours</span>
           <span class="r-prix">${lien(v.url, eur(v.prix_2_adultes))}${pastille(v.statut, `${v.source}, 2 adultes, aller-retour`)}</span>
-          <span class="r-detail">${esc(v.compagnie)} via ${esc(v.escale_via)}, vers ${v.aeroport_arrivee === 'CEB' ? 'Cebu' : 'Manille'} · aller ${duree(v.duree_aller)}, retour ${duree(v.duree_retour)} · ${v.bagage_soute_inclus ? 'bagage en soute compris' : 'sans bagage en soute'}${v.note ? ' · ' + esc(v.note) : ''}</span>
+          <span class="r-detail">${esc(v.compagnie)} via ${esc(v.escale_via)}, vers ${v.aeroport_arrivee === 'CEB' ? 'Cebu' : 'Manille'} · aller ${duree(v.duree_aller)}, retour ${v.duree_retour ? duree(v.duree_retour) : 'heure non relevée'} · ${v.bagage_soute_inclus ? 'bagage en soute compris' : 'sans bagage en soute'}${v.note ? ' · ' + esc(v.note) : ''}</span>
         </li>`).join('')}</ul>
-        <p class="sous-titre" style="margin-top:18px">Contre-vérification KAYAK</p>
-        <ul class="releves">${kayak}</ul>
+        ${kayak ? `<p class="sous-titre" style="margin-top:18px">Contre-vérification KAYAK, relevée le ${dateNum(m.vols.releves_kayak[0].observe_le)} (avant la mise à jour)</p><ul class="releves">${kayak}</ul>` : ''}
       </details>
       <h3 class="sous-titre">La météo, zone par zone</h3>
       <div class="meteo-grille">${zones.map((z) => {
@@ -331,7 +339,7 @@
           <dl>
             <div><dt>Pluie (mm)</dt><dd>${esc(w.pluie_mm)}</dd></div>
             ${w.jours_de_pluie != null ? `<div><dt>Jours de pluie</dt><dd>${esc(w.jours_de_pluie)}</dd></div>` : ''}
-            <div><dt>Mer, air</dt><dd>${w.mer_c}${NBSP}°C, ${w.max_c}${NBSP}°C au plus</dd></div>
+            <div><dt>Mer, air</dt><dd>${w.mer_c == null && w.max_c == null ? 'non relevé' : `mer ${degres(w.mer_c)}, air ${degres(w.max_c)} au plus`}</dd></div>
             <div><dt>Mer et vent</dt><dd>${esc(w.mer_et_vent)}</dd></div>
           </dl>
         </div>`;
@@ -399,11 +407,13 @@
     });
     s += choisi + etiquette + '</svg>';
     fig.innerHTML = `<h3 class="sous-titre">Tous les prix relevés, ${esc(deMois(D.mois[0]))} à ${esc(nomMois(D.mois[D.mois.length - 1]))}</h3>${s}
-      <div class="frise-legende"><span><i style="background:#0F7C82"></i>Vers Cebu, vol confort</span><span><i style="background:#7FB9BC"></i>Vers Cebu, autre</span><span><i style="background:#F7F2E9;border:1.5px solid #4A5559"></i>Vers Manille (un vol intérieur de plus)</span></div>
-      <figcaption>Le jour de départ compte plus que le mois : à quelques jours d’écart, le même trajet peut coûter plusieurs centaines d’euros de plus. Touchez un mois pour l’afficher.</figcaption>`;
+      <div class="frise-legende"><span><i style="background:#0F7C82"></i>Vers Cebu, vol confort</span><span><i style="background:#7FB9BC"></i>Vers Cebu, autre</span>${tous.some((v) => v.aeroport_arrivee !== 'CEB') ? '<span><i style="background:#F7F2E9;border:1.5px solid #4A5559"></i>Vers Manille (un vol intérieur de plus)</span>' : ''}</div>
+      <figcaption>Les vols représentatifs de chaque mois (relevés du ${dateNum(D.carte.vols_source.observe_le)}). Le jour de départ compte plus que le mois : à quelques jours d’écart, le même trajet peut coûter plusieurs centaines d’euros de plus. Touchez un mois pour l’afficher ; les ${D.carte.vols_source.nombre_de_dates} dates sont dans le calendrier du configurateur.</figcaption>`;
     $$('.frise-mois', fig).forEach((gm) => gm.addEventListener('click', () => choisirMois(gm.dataset.mois, false)));
   }
 
+  /* v3 : la comparaison avec l'ancien relevé (Kiwi.com, 12/11) n'est donnée que dans « ce qui a changé » */
+  const sansAncienne = (t) => t.replace(/\s*;\s*le même vol était à [^;.]*sur Kiwi\.com[^;.]*(?=\.?$)/, '');
   function rendreFenetres() {
     const f = D.fenetre_recommandee;
     const vp = vol(f.principale.vol_reference), vs = vol(f.seconde.vol_reference);
@@ -414,7 +424,7 @@
         <div class="fenetre fenetre--principale">
           <p class="surtitre">Fenêtre recommandée</p>
           <h3>${esc(f.principale.libelle)}</h3>
-          <ul class="liste-filet">${f.principale.pourquoi.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>
+          <ul class="liste-filet">${f.principale.pourquoi.map((r) => `<li>${esc(sansAncienne(r))}</li>`).join('')}</ul>
         </div>
         <div class="fenetre">
           <p class="surtitre">Seconde fenêtre</p>
@@ -423,6 +433,18 @@
           ${vs ? `<p class="petit">Vol relevé : ${esc(vs.compagnie)}, <span class="num">${lien(vs.url, eur(vs.prix_2_adultes))}</span>${pastille(vs.statut, `${vs.source}, départ le ${dateCourte(vs.depart_paris)}, arrivée à Paris le ${dateCourte(vs.retour_paris)}, 2 adultes`)}</p>` : ''}
         </div>
       </div>
+      <div class="fenetre fenetre--alt">
+        <p class="surtitre">Variante, même temps sec</p>
+        <h3>${esc(f.alternative_moins_chere_par_temps_sec.libelle)}</h3>
+        <ul class="liste-filet">${f.alternative_moins_chere_par_temps_sec.pourquoi.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>
+      </div>
+      <h3 class="sous-titre">Le total tranche, pas le seul vol</h3>
+      <p class="petit">${esc(f.methode || '')}</p>
+      <div class="tableau-defile"><table class="comparatif-dates">
+        <thead><tr><th scope="col">Départ → retour</th><th scope="col">Vol</th><th scope="col">Vols intérieurs</th><th scope="col">Hôtels</th><th scope="col">Total</th><th scope="col">Écart</th></tr></thead>
+        <tbody>${f.comparaison.map((c) => `<tr class="${c.ecart_vs_recommandee === 0 ? 'on' : ''}"><th scope="row">${dateCourte(c.date_depart)} → ${dateCourte(c.retour_paris)}<small>${esc(c.commentaire)}</small></th><td data-l="Vol">${eur(c.vols_internationaux)}<small>${esc(c.compagnies.join(', '))}</small></td><td data-l="Vols intérieurs">${eur(c.vols_interieurs)}</td><td data-l="Hôtels">${eur(c.hotels)}</td><td data-l="Total"><b>${eur(c.total)}</b></td><td data-l="Écart">${c.ecart_vs_recommandee === 0 ? 'référence' : eurSigne(c.ecart_vs_recommandee)}</td></tr>`).join('')}</tbody>
+      </table></div>
+      <p class="note-bas"><strong>À vérifier en premier.</strong> ${esc(f.point_a_verifier)}</p>
       <h3 class="sous-titre">À éviter</h3>
       <div class="a-eviter">${f.a_eviter.map((a) => `<div><b>${esc(a.periode)}</b>${esc(a.raison)}</div>`).join('')}</div>
       <h3 class="sous-titre">Vacances scolaires françaises 2027</h3>
@@ -856,7 +878,7 @@
       const obs = ls.filter((l) => l.statut === 'observé').length;
       return `<details class="poste" ${po === 'options' ? 'open' : ''} data-poste="${po}">
         <summary><span class="poste__nom">${esc(POSTES[po] || po)}<small>${ls.length} ligne${ls.length > 1 ? 's' : ''} · ${obs === ls.length ? 'tout observé' : obs === 0 ? 'estimation' : obs + ' observée' + (obs > 1 ? 's' : '')}</small></span><span class="poste__total" data-sous-total="${po}">${eur(st)}</span></summary>
-        <ul class="lignes">${ls.map((l) => `<li class="${l.option ? 'l-option' : ''}"><span>${l.url ? lien(l.url, esc(l.libelle)) : esc(l.libelle)}</span><span class="l-montant" data-montant="${l.montant}">${eur(l.montant)}${pastille(l.statut, l.methode)}</span></li>`).join('')}</ul>
+        <ul class="lignes">${ls.map((l) => `<li class="${l.option ? 'l-option' : ''}"><span>${l.url ? lien(l.url, esc(libLigne(l.libelle))) : esc(libLigne(l.libelle))}</span><span class="l-montant" data-montant="${l.montant}">${eur(l.montant)}${pastille(l.statut, l.methode)}</span></li>`).join('')}</ul>
       </details>`;
     }).join('');
     const pos = ordre.filter((po) => c.sous[po] > 0); const somme = pos.reduce((a, po) => a + c.sous[po], 0);
@@ -864,7 +886,8 @@
       <div>
         ${groupes}
         <div class="budget__total"><b>Total pour deux</b><span class="montant num" data-total-budget="${c.total}">${eur(c.total)}</span>
-          <p>${pct(c.part)} de ce montant repose sur des prix observés le ${dateNum(D.meta.date_observation)} ; le reste est estimé (méthode au toucher de chaque pastille). Taux : <span class="insecable">1${NBSP}€ = ${virgule(D.meta.taux_change.EUR_PHP)} pesos</span>.</p></div>
+          <p>${pct(c.part)} de ce montant repose sur des prix observés ; le reste est estimé (méthode, date et source au toucher de chaque pastille). Taux : <span class="insecable">1${NBSP}€ = ${virgule(D.meta.taux_change.EUR_PHP)} pesos</span>.</p>
+          <p class="budget__vpn">Hôtels comptés <b>réservés via un VPN placé en Inde</b>. Réservés depuis la France, le programme de base reviendrait à <b class="num">${eur(p.budget.total_prix_france)}</b> (${eurSigne(p.budget.economie_vpn)})${p.budget.economie_vpn_estimee ? `, dont ${eur(p.budget.economie_vpn_estimee)} estimés` : ''}. <a href="#astuce-vpn">L’astuce du VPN</a> · l’interrupteur du configurateur recalcule tout.</p></div>
       </div>
       <div class="encart">
         <h4>Où va l’argent</h4>
@@ -872,7 +895,10 @@
         <ul class="repartition-legende">${pos.map((po) => `<li><i style="background:${COULEURS[po]}"></i><span>${esc(POSTES[po])}</span><span class="pct">${pct(c.sous[po] / somme)}</span><span class="m">${eur(c.sous[po])}</span></li>`).join('')}</ul>
         <p class="petit" style="margin-top:14px">${esc(D.meta.hypotheses.find((h) => h.startsWith('Budget tout compris')) || '')}</p>
       </div>
-    </div>`;
+    </div>
+    ${(() => { const ch = (p.budget.ecarts_vs_v2 || []).filter((e) => e.ecart); if (!ch.length) return ''; return `<details class="depliant budget__changes"><summary>Ce qui a changé depuis le 12/11/2026 : ${eurSigne(p.budget.ecart_vs_v2)} (${eur(p.budget.total_v2)} → ${eur(p.budget.total)})</summary>
+      <ul class="lignes">${ch.map((e) => `<li><span>${esc(libLigne(e.libelle))}<small class="petit"> — ${esc(e.raison)}</small></span><span class="l-montant">${eurSigne(e.ecart)}</span></li>`).join('')}</ul>
+      <p class="petit">Lignes non citées : inchangées (non rebalayées le ${majLe()}).</p></details>`; })()}`;
   }
 
   function rendreBilan(p) {
@@ -1011,6 +1037,31 @@
     $('#risques').innerHTML = D.risques.map((x) => `<div class="risque"><b>${esc(x.risque)}</b><p>${esc(x.parade)}</p></div>`).join('');
   }
 
+  /* ------------------------------------------------------------------ v3. Astuce VPN */
+  function rendreVpn() {
+    const a = D.astuce_vpn, z = $('#vpn-contenu'); if (!a || !z) return;
+    const ep = a.economie_par_programme;
+    z.innerHTML = `
+      <p class="chapeau">${esc(a.resume)}</p>
+      <div class="vpn-grille">
+        <div>
+          <h3 class="bloc__titre">Ce que ça change, programme par programme</h3>
+          <ul class="vpn-prog">${D.programmes.map((p) => { const e = ep[p.id]; return e ? `<li><span>${esc(p.nom)}</span><span class="num">${eur(e.total_prix_france)} → <b>${eur(e.total_vpn_inde)}</b></span><span class="vpn-gain">${eurSigne(-e.economie)}${e.dont_ecart_estime_a_10_pct ? `<small>dont ${eur(e.dont_ecart_estime_a_10_pct)} estimés</small>` : ''}</span></li>` : ''; }).join('')}</ul>
+          <h3 class="bloc__titre" style="margin-top:28px">Écart mesuré le ${dateNum(a.observe_le)}</h3>
+          <ul class="vpn-hotels">${a.par_hotel.map((h) => `<li><span>${esc(h.nom)}</span><span class="num">− ${virgule(h.gain_median_pct)}${NBSP}%</span><small>${h.nombre_de_tarifs_compares} tarif${h.nombre_de_tarifs_compares > 1 ? 's' : ''} comparé${h.nombre_de_tarifs_compares > 1 ? 's' : ''}${h.gain_min_pct !== h.gain_max_pct ? `, de ${virgule(h.gain_min_pct)} à ${virgule(h.gain_max_pct)}${NBSP}%` : ''}</small></li>`).join('')}</ul>
+          <p class="petit">Même chambre, mêmes dates, même tarif, prix TTC en euros. Autres pays essayés (écart médian) : ${Object.values(a.par_pays).filter((x) => x.pays !== 'Inde').map((x) => `${esc(x.pays)} ${virgule(x.gain_median_pct)}${NBSP}%`).join(', ')}.</p>
+        </div>
+        <div>
+          <h3 class="bloc__titre">Mode d’emploi</h3>
+          <ol class="vpn-etapes">${a.mode_d_emploi.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
+          <h3 class="bloc__titre" style="margin-top:28px">Risques</h3>
+          <ul class="liste-filet moins">${a.risques.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+          <p class="vpn-vols"><b>Pas pour les vols.</b> ${esc(a.vols)}</p>
+          <ul class="liste-filet petit">${a.conditions.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+        </div>
+      </div>`;
+  }
+
   /* ------------------------------------------------------------------ 10. Formalités */
   function rendreFormalites() {
     $('#formalites-liste').innerHTML = D.formalites.map((f, i) => `<details ${i === 0 ? 'open' : ''}><summary>${esc(f.sujet)}</summary><div class="contenu"><p>${esc(f.texte)}</p>${f.url ? lienFleche(f.url, 'Source : ' + new URL(f.url).hostname.replace(/^www\./, '')) : ''}</div></details>`).join('');
@@ -1021,7 +1072,16 @@
     const m = D.meta, t = m.taux_change;
     const remplacees = PH.filter((x) => x.remplacee);
     $('#methode').innerHTML = `
-      <p class="chapeau">Tous les prix ont été relevés le ${dateLongue(m.date_observation)}. ${esc(m.unite)}</p>
+      <p class="chapeau">Mis à jour le ${majLe()}. ${esc(m.unite)}</p>
+      <div class="methode-v3">
+        <h3 class="bloc__titre">Comment les prix du ${majLe()} ont été relevés</h3>
+        <dl class="definitions">
+          <div><dt>Vols internationaux</dt><dd>${esc(m.methode_v3.vols)} ${esc(m.methode_v3.horaires_retour)}</dd></div>
+          <div><dt>Vols intérieurs</dt><dd>${esc(m.methode_v3.vols_interieurs)}</dd></div>
+          <div><dt>Hôtels</dt><dd>${esc(m.methode_v3.hotels)}</dd></div>
+          <div><dt>Non rebalayé</dt><dd>${esc(m.methode_v3.non_releve_le_15_11)}</dd></div>
+        </dl>
+      </div>
       <div class="methode-grille">
         <div>
           <h3 class="bloc__titre">Deux sortes de prix</h3>
@@ -1047,7 +1107,7 @@
       <details class="depliant" style="margin-top:32px"><summary>Les ${D.sources.length} sources consultées</summary>
         <ol class="sources-liste">${D.sources.map((s) => `<li>${lien(s.url, esc(s.titre))} <span>· consulté le ${dateNum(s.consulte_le)}</span></li>`).join('')}</ol>
       </details>`;
-    $('#pied-texte').innerHTML = `Dossier préparé le ${dateLongue(m.date_observation)}. Les prix « observés » ont été lus ce jour-là et bougeront ; les estimations sont à faire confirmer. Aucune réservation n’a été faite, aucun compte créé. Page privée, non référencée.`;
+    $('#pied-texte').innerHTML = `Dossier mis à jour le ${dateLongue(m.mis_a_jour_le || m.date_observation)}. Les prix « observés » ont été lus ce jour-là et bougeront ; les estimations sont à faire confirmer. Aucune réservation n’a été faite, aucun compte créé. Page privée, non référencée.`;
   }
 
   /* ------------------------------------------------------------------ Interactions communes */
