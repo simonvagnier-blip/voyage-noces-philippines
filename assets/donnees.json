@@ -5384,7 +5384,7 @@
   {
    "ordre": 2,
    "quand": "Au moment de réserver chaque hôtel",
-   "quoi": "Comparer le prix Booking avec le VPN placé en Inde et sans VPN, puis réserver au moins cher (voir « astuce_vpn »)",
+   "quoi": "Comparer le prix Booking avec le VPN placé en Inde et sans VPN, puis réserver au moins cher (voir « L'astuce du VPN »)",
    "ou": "Booking",
    "url": "https://www.booking.com/",
    "annulable": null,
@@ -5457,7 +5457,7 @@
  "demandes_honeymoon": [
   "Préciser « voyage de noces » à la réservation et le rappeler par courriel une semaine avant l'arrivée.",
   "Demander un surclassement selon disponibilité, sans l'exiger : à El Nido, une suite en étage élevé ; à Panglao, la villa la plus éloignée des allées.",
-  "Ni arrivée anticipée ni départ tardif à demander : arrivée vers 19 h le 02/03, départ de l'hôtel vers 9 h 30 le 14/03.",
+  "Prévenir La Colonial d'une arrivée tardive le 06/03 (atterrissage à 20 h 35) ; aucun départ tardif à demander : départ de l'hôtel vers 9 h 30 le 18/03.",
   "Demander la décoration du lit et un gâteau : c'est d'usage aux Philippines et souvent offert.",
   "Faire chiffrer par écrit le dîner privé sur la plage (menu, boissons, taxes et service compris) et le rituel spa en duo.",
   "Demander le prix du transfert privé hôtel → port de Tagbilaran, et à Cebu, port → aéroport.",
@@ -6923,7 +6923,7 @@
   },
   {
    "id": "trip_intl",
-   "titre": "Trip.com France — Paris ⇄ Cebu, un aller-retour par jour de départ du 01/02 au 17/05/2027, retour de Cebu à J+13, 2 adultes (relevés de Main, 15/11/2026)",
+   "titre": "Trip.com France — Paris ⇄ Cebu, un aller-retour par jour de départ du 01/02 au 17/05/2027, retour de Cebu à J+13, 2 adultes (relevés du 15/11/2026)",
    "url": "https://fr.trip.com/flights/",
    "consulte_le": "2026-11-15"
   },
@@ -6941,7 +6941,7 @@
   },
   {
    "id": "bk_vpn",
-   "titre": "Booking.com via VPN placé en Inde — 21 hôtels, 8 fenêtres de 5 nuits du 01/02 au 15/05/2027, prix TTC (relevés de Main, 15/11/2026)",
+   "titre": "Booking.com via VPN placé en Inde — 21 hôtels, 8 fenêtres de 5 nuits du 01/02 au 15/05/2027, prix TTC (relevés du 15/11/2026)",
    "url": "https://www.booking.com/",
    "consulte_le": "2026-11-15"
   },

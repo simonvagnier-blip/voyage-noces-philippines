@@ -60,11 +60,24 @@
   const deMois = (m) => (/^[aeiouyàâéèêh]/i.test(nomMois(m)) ? 'd’' : 'de ') + nomMois(m);   // « de mars », « d’avril »
 
   /* Pastille observé / estimation, avec méthode consultable */
-  const pastille = (statut, methode, extra) => {
+  /* Date affichée dans la bulle (revue v3-2, point 2) : la date du prix (observe_le) quand l'appelant la donne ;
+     sinon le 15/11 seulement si le détail cite un relevé du 15/11 (Trip.com France, VPN Inde, « 15/11 ») et ne dit pas
+     que le prix du 12/11 a été gardé ; sinon le 12/11/2026, date des relevés du dossier précédent. */
+  const DATE_DOSSIER_PRECEDENT = '2026-11-12';
+  const GARDE_DU_12 = /prix du 12\/11 conservé|non relevé le 15\/11|non rebalayé|non rebalayés/i;
+  const CITE_LE_15 = /Trip\.com France|VPN Inde|VPN placé en Inde|15\/11/i;
+  const datePastille = (obs, detail, observeLe) => {
+    if (observeLe) return observeLe;
+    if (GARDE_DU_12.test(detail)) return DATE_DOSSIER_PRECEDENT;
+    if (!obs || CITE_LE_15.test(detail)) return D.meta.date_observation;   // estimations : faites lors de la mise à jour
+    return DATE_DOSSIER_PRECEDENT;
+  };
+  const pastille = (statut, methode, extra, observeLe) => {
     if (!statut) return '';
     const obs = statut === 'observé';
-    const date = obs ? `Relevé le ${dateNum(D.meta.date_observation)}` : `Estimation faite le ${dateNum(D.meta.date_observation)}`;
     const detail = [methode, extra].filter(Boolean).join(' — ');
+    const quand = dateNum(datePastille(obs, detail, observeLe));
+    const date = obs ? `Relevé le ${quand}` : `Estimation faite le ${quand}`;
     return `<button type="button" class="pastille ${obs ? 'pastille--obs' : 'pastille--est'}" data-titre="${obs ? 'Prix observé' : 'Estimation'}" data-detail="${escA(detail)}" data-date="${escA(date)}" aria-label="${obs ? 'Prix observé' : 'Estimation'} : voir la méthode">${obs ? 'observé' : 'estim.'}</button>`;
   };
 
@@ -205,7 +218,7 @@
             <div><dt>Face au plafond de ${eur(8500)}</dt><dd class="num">${ecart <= 0 ? eur(-ecart) + ' en dessous' : eur(ecart) + ' au-dessus'}</dd></div>
             <div><dt>Part de prix observés</dt><dd class="num">${pct(part)}</dd></div>
             <div><dt>Durée</dt><dd>${p.dates.jours_porte_a_porte} jours porte à porte, ${p.dates.nuits_sur_place} nuits sur place</dd></div>
-            <div><dt>Vols</dt><dd>${esc(v.compagnie)} via ${esc(v.escale_via)} : <span class="num">${eur(v.prix_2_adultes)}</span>${pastille(v.statut, `${v.source}, relevé le ${dateNum(v.observe_le || D.meta.date_observation)}, départ le ${dateCourte(v.depart_paris)}, arrivée à Paris le ${dateCourte(v.retour_paris)}, 2 adultes. ${v.note || ''}`)}</dd></div>
+            <div><dt>Vols</dt><dd>${esc(v.compagnie)} via ${esc(v.escale_via)} : <span class="num">${eur(v.prix_2_adultes)}</span>${pastille(v.statut, `${v.source}, relevé le ${dateNum(v.observe_le || D.meta.date_observation)}, départ le ${dateCourte(v.depart_paris)}, arrivée à Paris le ${dateCourte(v.retour_paris)}, 2 adultes. ${v.note || ''}`, null, v.observe_le)}</dd></div>
             <div><dt>Hôtels</dt><dd>Réservés via VPN Inde ; depuis la France : <span class="num">${eur(p.budget.total_prix_france)}</span> au total (${eurSigne(p.budget.economie_vpn)})</dd></div>
           </dl>
         </div>
@@ -282,7 +295,7 @@
     const dest = v.aeroport_arrivee === 'CEB' ? 'Cebu' : 'Manille';
     return `<article class="vol ${confort ? 'vol--confort' : ''}">
       <span class="vol__etiquette">${etiquette}</span>
-      <div class="vol__prix"><span class="montant">${eur(v.prix_2_adultes)}</span><small>pour deux</small>${pastille(v.statut, `${v.source}, ${v.compagnie}, départ le ${dateCourte(v.depart_paris)}, arrivée à Paris le ${dateCourte(v.retour_paris)}, 2 adultes`)}</div>
+      <div class="vol__prix"><span class="montant">${eur(v.prix_2_adultes)}</span><small>pour deux</small>${pastille(v.statut, `${v.source}, ${v.compagnie}, départ le ${dateCourte(v.depart_paris)}, arrivée à Paris le ${dateCourte(v.retour_paris)}, 2 adultes`, null, v.observe_le)}</div>
       <p class="vol__ligne">Paris → ${dest} (${esc(v.aeroport_arrivee)}) · ${esc(v.compagnie)}</p>
       <ul>
         <li>Départ ${dateLongue(v.depart_paris, false)}, retour à Paris ${dateLongue(v.retour_paris, false)} (${v.jours_porte_a_porte} jours)</li>
@@ -307,7 +320,7 @@
       if (k.meilleur_choix_par_pers != null) vals.push(`« meilleur choix » ${eur(k.meilleur_choix_par_pers)} (${esc(k.detail_meilleur)})`);
       if (k.plus_rapide_par_pers != null) vals.push(`le plus rapide ${eur(k.plus_rapide_par_pers)} (${esc(k.detail_rapide)})`);
       if (k.des_1_escale_par_pers != null) vals.push(`dès ${eur(k.des_1_escale_par_pers)} avec une escale (${esc(k.detail)})`);
-      return `<li><span class="r-dates">${esc(k.recherche)}</span><span class="r-prix">${lien(k.url, 'KAYAK')}${pastille(k.statut, `KAYAK, ${k.unite}`)}</span><span class="r-detail">Par personne : ${vals.join(' ; ')}.</span></li>`;
+      return `<li><span class="r-dates">${esc(k.recherche)}</span><span class="r-prix">${lien(k.url, 'KAYAK')}${pastille(k.statut, `KAYAK, ${k.unite}`, null, k.observe_le)}</span><span class="r-detail">Par personne : ${vals.join(' ; ')}.</span></li>`;
     }).join('');
     const panneau = $('#mois-panneau');
     panneau.setAttribute('aria-labelledby', 'onglet-' + m.id);
@@ -326,7 +339,7 @@
         <summary>Tous les vols relevés en ${esc(nomMois(m))} (${releves.length})</summary>
         <ul class="releves">${releves.map((v) => `<li>
           <span class="r-dates">${dateCourte(v.depart_paris)} → ${dateCourte(v.retour_paris)} · ${v.jours_porte_a_porte} jours</span>
-          <span class="r-prix">${lien(v.url, eur(v.prix_2_adultes))}${pastille(v.statut, `${v.source}, 2 adultes, aller-retour`)}</span>
+          <span class="r-prix">${lien(v.url, eur(v.prix_2_adultes))}${pastille(v.statut, `${v.source}, 2 adultes, aller-retour`, null, v.observe_le)}</span>
           <span class="r-detail">${esc(v.compagnie)} via ${esc(v.escale_via)}, vers ${v.aeroport_arrivee === 'CEB' ? 'Cebu' : 'Manille'} · aller ${duree(v.duree_aller)}, ${dureeRetour(v.duree_retour)} · ${v.bagage_soute_inclus ? 'bagage en soute compris' : 'sans bagage en soute'}${v.note ? ' · ' + esc(v.note) : ''}</span>
         </li>`).join('')}</ul>
         ${kayak ? `<p class="sous-titre" style="margin-top:18px">Contre-vérification KAYAK, relevée le ${dateNum(m.vols.releves_kayak[0].observe_le)} (avant la mise à jour)</p><ul class="releves">${kayak}</ul>` : ''}
@@ -432,7 +445,7 @@
           <p class="surtitre">Seconde fenêtre</p>
           <h3>${esc(f.seconde.libelle)}</h3>
           <ul class="liste-filet">${f.seconde.pourquoi.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>
-          ${vs ? `<p class="petit">Vol relevé : ${esc(vs.compagnie)}, <span class="num">${lien(vs.url, eur(vs.prix_2_adultes))}</span>${pastille(vs.statut, `${vs.source}, départ le ${dateCourte(vs.depart_paris)}, arrivée à Paris le ${dateCourte(vs.retour_paris)}, 2 adultes`)}</p>` : ''}
+          ${vs ? `<p class="petit">Vol relevé : ${esc(vs.compagnie)}, <span class="num">${lien(vs.url, eur(vs.prix_2_adultes))}</span>${pastille(vs.statut, `${vs.source}, départ le ${dateCourte(vs.depart_paris)}, arrivée à Paris le ${dateCourte(vs.retour_paris)}, 2 adultes`, null, vs.observe_le)}</p>` : ''}
         </div>
       </div>
       <div class="fenetre fenetre--alt">
@@ -968,7 +981,7 @@
       <div class="escale-grille">
         <div>
           <h3 class="bloc__titre">Ce que coûte l’escale</h3>
-          <p>Billet avec arrêt à ${esc(r.ville)} : <strong class="num">${lien(mv.url, eur(mv.prix_2_adultes))}</strong> pour deux${pastille(mv.statut, `${mv.source}, ${mv.compagnie} : ${mv.trajet}`)}, relevé le ${dateNum(mv.observe_le)} pour un départ le ${mv.trajet.match(/\d\d\/\d\d/)[0]}, soit <span class="num">${eur(Math.abs(mv.ecart_vs_aller_retour_simple))}</span> ${mv.ecart_vs_aller_retour_simple < 0 ? 'de moins' : 'de plus'} que l’aller-retour relevé le même jour pour cette date. ${(() => { const ar = vol(D.fenetre_recommandee.principale.vol_reference), d = mv.prix_2_adultes - ar.prix_2_adultes; return d > 0 ? `Face à l’aller-retour simple du ${dateCourte(ar.depart_paris)}, relevé le ${dateNum(D.meta.date_observation)} à <span class="num">${eur(ar.prix_2_adultes)}</span>, ce billet du ${dateNum(mv.observe_le)} serait <span class="num">${eur(d)}</span> plus cher : il reste à relever pour votre date, et la marge de <span class="num">${eur(cf.supplement_vol_estime)}</span> comptée ci-dessous peut ne pas suffire.` : ''; })()} ${esc(mv.note)}</p>
+          <p>Billet avec arrêt à ${esc(r.ville)} : <strong class="num">${lien(mv.url, eur(mv.prix_2_adultes))}</strong> pour deux${pastille(mv.statut, `${mv.source}, ${mv.compagnie} : ${mv.trajet}`, null, mv.observe_le)}, relevé le ${dateNum(mv.observe_le)} pour un départ le ${mv.trajet.match(/\d\d\/\d\d/)[0]}, soit <span class="num">${eur(Math.abs(mv.ecart_vs_aller_retour_simple))}</span> ${mv.ecart_vs_aller_retour_simple < 0 ? 'de moins' : 'de plus'} que l’aller-retour relevé le même jour pour cette date. ${(() => { const ar = vol(D.fenetre_recommandee.principale.vol_reference), d = mv.prix_2_adultes - ar.prix_2_adultes; return d > 0 ? `Face à l’aller-retour simple du ${dateCourte(ar.depart_paris)}, relevé le ${dateNum(D.meta.date_observation)} à <span class="num">${eur(ar.prix_2_adultes)}</span>, ce billet du ${dateNum(mv.observe_le)} serait <span class="num">${eur(d)}</span> plus cher : il reste à relever pour votre date, et la marge de <span class="num">${eur(cf.supplement_vol_estime)}</span> comptée ci-dessous peut ne pas suffire.` : ''; })()} ${esc(mv.note)}</p>
           <ul class="cout-escale">
             <li><span>Hôtel, 2 nuits</span><b class="num">${eur(cf.hotel_2_nuits)}</b></li>
             <li><span>Frais sur place (repas, transports, visites)</span><b class="num">${eur(cf.frais_sur_place)}</b></li>
@@ -1089,8 +1102,8 @@
         <div>
           <h3 class="bloc__titre">Deux sortes de prix</h3>
           <dl class="definitions">
-            <div><dt>${pastille('observé', 'Exemple')}</dt><dd>${esc(m.statuts['observé'])}</dd></div>
-            <div><dt>${pastille('estimation', 'Exemple')}</dt><dd>${esc(m.statuts.estimation)}</dd></div>
+            <div><dt>${pastille('observé', 'Exemple : vols lus sur Trip.com France et hôtels rebalayés via le VPN Inde le 15/11/2026 ; les autres prix observés gardent leur date du 12/11/2026', null, D.meta.date_observation)}</dt><dd>${esc(m.statuts['observé'])}</dd></div>
+            <div><dt>${pastille('estimation', 'Exemple : prix calculé à partir d’un relevé, méthode donnée dans cette bulle', null, D.meta.date_observation)}</dt><dd>${esc(m.statuts.estimation)}</dd></div>
           </dl>
           <p class="petit" style="margin-top:14px">Touchez une pastille pour lire la méthode et la date du relevé.</p>
           <h3 class="bloc__titre" style="margin-top:32px">Taux de change</h3>

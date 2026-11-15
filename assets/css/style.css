@@ -762,3 +762,11 @@ sup { font-size: .68em; line-height: 0; vertical-align: baseline; position: rela
 /* Le « + » tourné de 45° débordait de sa colonne (sa boîte tournée est plus large) : à l'ouverture, on affiche « × » sans rotation. */
 .poste[open] > summary::after, .depliant[open] > summary::after { content: "×"; transform: none; }
 .l-montant .pastille::after { inset: -12px 0; }
+
+/* Revue v3-2, point 1 : sous 900 px, le crédit photo est posé en haut de la photo ; la ligne « Mis à jour le… » faisait
+   remonter le bloc de texte sous le cartouche. Le cartouche tient sur une ou deux lignes et le bloc de texte garde
+   au-dessus de lui une marge plus haute que le cartouche : la photo s'allonge plutôt que de laisser le texte y monter. */
+@media (max-width: 899px) {
+  .ouverture__photo figcaption { max-width: calc(100% - 20px); }
+  .ouverture__texte { padding-top: calc(var(--haut-entete) + 8px + 3.6rem); }
+}
